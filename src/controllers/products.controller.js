@@ -41,7 +41,7 @@ export const deleteProduct = async (req, res) => {
   }
 };
 
-export const createproduct = async (req, res) => {
+export const createProduct = async (req, res) => {
   try {
     const { name, price, brand, description } = req.body;
     const [rows] = await pool.query(
