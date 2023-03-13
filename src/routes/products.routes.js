@@ -9,19 +9,19 @@ import {
 
 const router = Router();
 
-// GET all Posts
+// GET all Products
 router.get("/products", getProducts);
 
-// GET An Post
+// GET An Product
 router.get("/products/:id", getProduct);
 
-// DELETE An Post
+// DELETE An Product
 router.delete("/products/:id", deleteProduct);
 
-// INSERT An Post
+// INSERT An Product
 router.post("/products", createProduct);
 
-// UPDATE An Post
+// UPDATE An Product
 router.patch("/products/:id", updateProduct);
 
 export default router;

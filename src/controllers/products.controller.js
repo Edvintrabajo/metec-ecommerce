@@ -43,12 +43,12 @@ export const deleteProduct = async (req, res) => {
 
 export const createProduct = async (req, res) => {
   try {
-    const { name, price, brand, description } = req.body;
+    const { name, price, brand, description, stock } = req.body;
     const [rows] = await pool.query(
-      "INSERT INTO Products (name, price, brand, description) VALUES (?, ?, ?, ?)",
-      [name, price, brand, description]
+      "INSERT INTO Products (name, price, brand, description, stock) VALUES (?, ?, ?, ?, ?)",
+      [name, price, brand, description, stock]
     );
-    res.status(201).json({ id: rows.insertId, name, price, brand, description });
+    res.status(201).json({ id: rows.insertId, name, price, brand, description, stock });
   } catch (error) {
     return res.status(500).json({ message: "Something goes wrong" });
   }
@@ -57,11 +57,11 @@ export const createProduct = async (req, res) => {
 export const updateProduct = async (req, res) => {
   try {
     const { id } = req.params;
-    const { name, price, brand, description } = req.body;
+    const { name, price, brand, description, stock } = req.body;
 
     const [result] = await pool.query(
-      "UPDATE Products SET name = IFNULL(?, name), price = IFNULL(?, price), brand = IFNULL(?, brand), description = IFNULL(?, description) WHERE id = ?",
-      [name, price, brand, description, id]
+      "UPDATE Products SET name = IFNULL(?, name), price = IFNULL(?, price), brand = IFNULL(?, brand), description = IFNULL(?, description), stock = IFNULL(?, stock) WHERE id = ?",
+      [name, price, brand, description, stock, id]
     );
 
     if (result.affectedRows === 0)
