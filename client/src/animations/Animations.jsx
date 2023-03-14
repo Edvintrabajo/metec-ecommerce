@@ -15,12 +15,18 @@ export function LoadCircle(){
   )
 }
 
-var opacidad = 1;
-var intervalo = setInterval(function() {
-  opacidad -= 0.003;
-  document.getElementById('circle-container').style.opacity = opacidad;
-  if (opacidad <= 0) {
-    clearInterval(intervalo);
-    document.getElementById('circle-container').style.display = 'none';
-  }
-}, 10);
+  var opacidad = 1;
+  var intervalo = setInterval(function() {
+    if (document.getElementById('circle-container') !== null) {
+      document.getElementById('circle-container').style.opacity = opacidad;
+      if (opacidad >= 0.8) {
+        opacidad -= 0.001;
+      } else {
+        opacidad -= 0.007;
+      }
+      if (opacidad <= 0) {
+        clearInterval(intervalo);
+        // document.getElementById('circle-container').style.display = 'none';
+      }
+    }
+  }, 10);
