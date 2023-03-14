@@ -1,7 +1,14 @@
+import { useEffect } from "react"
+import fetchRegister from "../controllers/fetchregister"
+
 function Register() {  
-    return (
+  useEffect(() => {
+    fetchRegister()
+  }, [])
+
+  return (
       <div className="bg-bg-img bg-center bg-cover p-4 w-full h-screen flex flex-col items-center justify-center">
-        <form id="register-form" action="#" method="post" className="bg-white border-2 rounded-2xl flex justify-center items-start flex-wrap h-2/4 text-black tablet:text-xl laptop:w-3/5 laptop:h-3/5 desktop:text-2xl shadow-low-box-shadow p-3">
+        <form id="register-form" className="bg-white border-2 rounded-2xl flex justify-center items-start flex-wrap h-2/4 text-black tablet:text-xl laptop:w-3/5 laptop:h-3/5 desktop:text-2xl shadow-low-box-shadow p-3">
             <div className="w-full flex justify-between tablet:justify-evenly mt-4 p-4">
               <label htmlFor="Fullname" className="tablet:w-1/4 tablet:p-2">Fullname</label>
               <input type="text" name="Fullname" id="Fullname" className="border-b-2 border-current pl-2 tablet:w-2/4 tablet:p-2 bg-transparent rounded-sm"/>
@@ -25,6 +32,5 @@ function Register() {
       </div>
     )
   }
-  
+
 export default Register
-  
