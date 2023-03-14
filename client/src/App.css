@@ -14,8 +14,9 @@
     background: linear-gradient(#33ccff,#ff0066);
     border-radius: 50%;
     animation: rotate 1s linear infinite;
-    display: grid;
-    place-items: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 @keyframes rotate{
@@ -66,3 +67,5 @@
     z-index: 1;
     scale: 5.5;
 }
+
+/* Formulario reversible https://web-leb.com/code/17 */

@@ -1,14 +1,12 @@
 import './App.css'
-import Register from './Register'
-import Login from './Login'
-import { LoadCircle } from './animations/animations'
+import { RouterProvider } from "react-router-dom"
+import router from './Router'
+
 function App() {
 
   return (
     <>
-      {/* <Register /> */}
-      {/* <Login /> */}
-      <LoadCircle/>
+      <RouterProvider router={router}/>
     </>
   )
 }
