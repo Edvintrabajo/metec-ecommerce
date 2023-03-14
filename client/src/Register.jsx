@@ -1,7 +1,7 @@
 function Register() {  
     return (
-      <div id="form" className="bg-bg-img bg-center bg-cover p-4 w-full h-screen flex flex-col items-center justify-center">
-        <form action="#" method="post" className="bg-transparent backdrop-blur-lg border-2 rounded-md flex justify-center items-start flex-wrap h-2/4 text-white tablet:text-xl laptop:w-3/5 laptop:h-3/5 desktop:text-2xl">
+      <div className="bg-bg-img bg-center bg-cover p-4 w-full h-screen flex flex-col items-center justify-center">
+        <form id="register-form" action="#" method="post" className="bg-transparent backdrop-blur-lg border-2 rounded-md flex justify-center items-start flex-wrap h-2/4 text-white tablet:text-xl laptop:w-3/5 laptop:h-3/5 desktop:text-2xl">
             <div className="w-full flex justify-between tablet:justify-evenly mt-4 p-4">
               <label htmlFor="Fullname" className="tablet:w-1/4 tablet:p-2">Fullname</label>
               <input type="text" name="Fullname" id="Fullname" className="border-b-2  pl-2 tablet:w-2/4 tablet:p-2 bg-transparent rounded-sm"/>
