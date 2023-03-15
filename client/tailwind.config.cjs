@@ -7,7 +7,7 @@ module.exports = {
   theme: {
     extend: {
       backgroundImage: {
-        'bg-img': 'linear-gradient(45deg, #85FFBD 0%, #FFFB7D 100%)',
+        'bg-img': 'linear-gradient(90deg, hsla(280, 95%, 57%, 1) 0%, hsla(193, 90%, 55%, 1) 100%)',
       }
     },
     screens: {
@@ -19,7 +19,7 @@ module.exports = {
     boxShadow: {
       'low-box-shadow': '0 10px 20px rgba(0, 0, 0, 0.3)',
       'high-box-shadow': '0 10px 20px rgba(0, 0, 0, 0.6)',
-      'reverse-box-shadow': 'rgba(0, 0, 0, 0.16) 0px 1px 20px, rgb(240, 46, 170) 0px 0px 0px 5px;',
+      'multiple-box-shadow': 'rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px',
     }
   },
   plugins: [],

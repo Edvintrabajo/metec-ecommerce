@@ -2,12 +2,12 @@ import {createBrowserRouter} from "react-router-dom";
 import Register from '../components/Register'
 import Login from '../components/Login'
 import Error404 from '../components/Error404'
-import { LoadCircle } from '../animations/animations'
+import Index from '../components/Index'
 
 const router = createBrowserRouter([
     {
       path: "/",
-      element: <LoadCircle />,
+      element: <Index />,
     },
     {
       path: "/login",

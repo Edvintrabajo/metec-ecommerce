@@ -15,7 +15,7 @@ export function LoadCircle(){
   )
 }
 
-  var opacidad = 1;
+var opacidad = 1;
   var intervalo = setInterval(function() {
     if (document.getElementById('circle-container') !== null) {
       document.getElementById('circle-container').style.opacity = opacidad;
@@ -26,7 +26,8 @@ export function LoadCircle(){
       }
       if (opacidad <= 0) {
         clearInterval(intervalo);
-        // document.getElementById('circle-container').style.display = 'none';
+        document.getElementById('circle-container').style.display = 'none';
+        document.getElementById('loaded-index').style.display = 'block';
       }
     }
   }, 10);
