@@ -1,3 +1,5 @@
+import { verificarContraseña } from './crypto.js'
+
 const fetchLogin = async () => {
     document.getElementById('login-form').addEventListener('submit', (e) => {
         e.preventDefault()
@@ -16,7 +18,7 @@ const fetchLogin = async () => {
             let state = false
 
             data.forEach(user => {
-                if(user.email === email && user.password === password){
+                if(user.email === email && verificarContraseña(password, user.password)){
                     state = true
                     window.location.href = '/'
                 }

@@ -1,3 +1,5 @@
+import { generarHashContraseña } from './crypto.js'
+
 const fetchRegister = async () => {
     document.getElementById('register-form').addEventListener('submit', (e) => {
         e.preventDefault()
@@ -6,6 +8,7 @@ const fetchRegister = async () => {
         const password = document.getElementById('password').value
         const confirmPassword = document.getElementById('confirmPassword').value
         if (password === confirmPassword) {
+          password = generarHashContraseña(password)
           fetch ('http://10.11.100.9:3000/api/users', {
             method: 'POST',
             headers: {
