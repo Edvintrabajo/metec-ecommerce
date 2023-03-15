@@ -6,7 +6,7 @@ const fetchRegister = async () => {
         const password = document.getElementById('password').value
         const confirmPassword = document.getElementById('confirmPassword').value
         if (password === confirmPassword) {
-          fetch ('http://10.11.100.9:3000/api/users', {
+          fetch ('http://localhost:3000/api/users', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'
