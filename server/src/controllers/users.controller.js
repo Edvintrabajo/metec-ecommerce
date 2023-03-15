@@ -45,12 +45,12 @@ export const deleteUser = async (req, res) => {
 export const createUser = async (req, res) => {
   try {
     const { fullname, email, password } = req.body;
-    password = generarHashContraseña(password);
+    const hash = generarHashContraseña(password);
     const [rows] = await pool.query(
       "INSERT INTO Users (fullname, email, password) VALUES (?, ?, ?)",
-      [fullname, email, password]
+      [fullname, email, hash]
     );
-    res.status(201).json({ id: rows.insertId, fullname, email, password });
+    res.status(201).json({ id: rows.insertId, fullname, email, hash });
   } catch (error) {
     return res.status(500).json({ message: "Something goes wrong" });
   }
@@ -60,11 +60,11 @@ export const updateUser = async (req, res) => {
   try {
     const { id } = req.params;
     const { fullname, email, password } = req.body;
-    password = generarHashContraseña(password);
+    const hash = generarHashContraseña(password);
 
     const [result] = await pool.query(
       "UPDATE Users SET fullname = IFNULL(?, fullname), email = IFNULL(?, email), password = IFNULL(?, password) WHERE id = ?",
-      [fullname, email, password, id]
+      [fullname, email, hash, id]
     );
 
     if (result.affectedRows === 0)
