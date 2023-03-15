@@ -42,16 +42,16 @@ INSERT INTO products (name, price, brand, description, stock) values
   ('Xiaomi Redmi buds 3', 30, 'Xiaomi', 'The best earbuds in the market', 20),
   ('HP Victus 16-e1022ns', 1149, 'HP', 'The best laptop in the world', 15);
 
-INSERT INTO users (fullname, email, password) values
-  ('Edvin', 'Edvin@gmail.com', '1234'),
-  ('Miguelito', 'Miguelito@gmail.com', '1234');
+-- INSERT INTO users (fullname, email, password) values
+--   ('Edvin', 'Edvin@gmail.com', ''),
+--   ('Miguelito', 'Miguelito@gmail.com', '');
 
-INSERT INTO orders (user_id, product_id) values
-  (1, 1),
-  (2, 2);
+-- INSERT INTO orders (user_id, product_id) values
+--   (1, 1),
+--   (2, 2);
 
 SELECT * FROM products;
 
-SELECT * FROM users;
+-- SELECT * FROM users;
 
-SELECT * FROM orders;
+-- SELECT * FROM orders;
