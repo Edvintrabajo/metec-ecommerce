@@ -1,5 +1,5 @@
 import { pool } from "../db.js";
-import { generarHashContraseña } from "./crypto.js";
+import { generarHashContraseña, validarContraseña } from "./crypto.js";
 
 export const getUsers = async (req, res) => {
   try {
@@ -79,3 +79,25 @@ export const updateUser = async (req, res) => {
     return res.status(500).json({ message: "Something goes wrong" });
   }
 };
+
+export const login = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+    const [rows] = await pool.query("SELECT * FROM Users WHERE email = ?", [email]);
+
+    if (rows.length <= 0) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    const user = rows[0];
+
+    if (!validarContraseña(password, user.password)) {
+      return res.status(401).json({ state : false, message: "Invalid password" });
+    } 
+
+    return res.staus(200).json({ state : true, message: "Login success" });
+
+  } catch (error) {
+    return res.status(500).json({ message: "Something goes wrong" });
+  }
+}

@@ -5,4 +5,9 @@ function generarHashContraseña(contraseña) {
     return hash;
 }
 
+function validarContraseña(contraseña, hash) {
+    const hashContraseña = generarHashContraseña(contraseña);
+    return hashContraseña === hash;
+}
+
 export { generarHashContraseña };

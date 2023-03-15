@@ -5,6 +5,7 @@ import {
   getUser,
   getUsers,
   updateUser,
+  login
 } from "../controllers/users.controller.js";
 
 const router = Router();
@@ -23,5 +24,8 @@ router.post("/Users", createUser);
 
 // UPDATE An User
 router.patch("/Users/:id", updateUser);
+
+// LOGIN An User
+router.post("/login", login);
 
 export default router;

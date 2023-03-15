@@ -1,5 +1,3 @@
-import { verificarContraseña } from './crypto.js'
-
 const fetchLogin = async () => {
     document.getElementById('login-form').addEventListener('submit', (e) => {
         e.preventDefault()
@@ -7,30 +5,25 @@ const fetchLogin = async () => {
         const email = document.getElementById('Email').value
         const password = document.getElementById('password').value
 
-        fetch ('http://10.11.100.9:3000/api/users', {
-            method: 'GET',
+        fetch ('http://10.11.100.9:3000/api/login', {
+            method: 'POST',
             headers: {
-              'Content-Type': 'application/json'
-            }
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({email, password})
         })
         .then(res => res.json())
         .then(data => {
-            let state = false
-
-            data.forEach(user => {
-                if(user.email === email && verificarContraseña(password, user.password)){
-                    state = true
-                    window.location.href = '/'
-                }
-            });
-
-            if (!state) {
-                alert('Email o contraseña incorrectos')
+            console.log(data)
+            const { state, message } = data
+            if (state) {
+                window.location.href = 'http://localhost:5173/'
+            } else {
+                alert(message)
             }
 
-        })          
-        
-      })
+        })
+    })
 }
 
 export default fetchLogin
