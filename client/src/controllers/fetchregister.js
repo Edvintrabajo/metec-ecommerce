@@ -19,13 +19,9 @@ const fetchRegister = async () => {
           })
           .then(res => res.json())
           .then(data => {
-            if (data.error) {
-              alert(data.error)
-            }
-          })
-  
-          window.location.href = 'http://localhost:5173/login'
-          
+            window.location.href = 'http://localhost:5173/login'   
+          })    
+          .catch(err => alert(err))   
         } else {
           alert('Las contraseñas no coinciden')
         }
