@@ -10,4 +10,4 @@ function validarContraseña(contraseña, hash) {
     return hashContraseña === hash;
 }
 
-export { generarHashContraseña };
+export { generarHashContraseña, validarContraseña };
