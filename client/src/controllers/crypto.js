@@ -9,3 +9,5 @@ function verificarContraseña(contraseña, hashAlmacenada) {
     const hashEntrada = generarHashContraseña(contraseña);
     return hashEntrada === hashAlmacenada;
 }
+
+export { generarHashContraseña, verificarContraseña };
