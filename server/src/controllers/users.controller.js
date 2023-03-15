@@ -50,7 +50,7 @@ export const createUser = async (req, res) => {
       "INSERT INTO Users (fullname, email, password) VALUES (?, ?, ?)",
       [fullname, email, hash]
     );
-    res.status(201).json({ id: rows.insertId, fullname, email, hash });
+    res.status(201).json({ id: rows.insertId, fullname, email, password : hash });
   } catch (error) {
     return res.status(500).json({ message: "Something goes wrong" });
   }
