@@ -1,8 +1,9 @@
 import { LoadCircle } from '../animations/animations'
-import { GiHamburgerMenu } from 'react-icons/gi'
 import fetchProducts from "../controllers/fetchproducts"
+import fetchAddProduct from "../controllers/products/fetch.add.products"
 import { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
+import AddProduct from "./admin/AddProduct"
 
 const Index = () => {
 
@@ -13,18 +14,29 @@ const Index = () => {
         try{
             const data = await fetchProducts();
             setProducts(data);
-            // console.log(data)
+            console.log(data)
         }catch(err){
             console.log(`Ha ocurrido un error: ${err}`)
         }
       }
+
+      async function addProduct() {
+        try{
+            const data = await fetchAddProduct();
+        }catch(err){
+            console.log(`Ha ocurrido un error: ${err}`)
+        }
+      }
+
       getProducts();
+      addProduct();
     }, []);        
 
     return (
         <>
             <LoadCircle />
             <div id='loaded-index' className='hidden w-full h-full min-h-screen	'>
+                <AddProduct/>
                 <Navbar />
                 <main className='w-full h-auto text-white flex justify-evenly items-center flex-wrap mt-10'>
                     <h1 className='w-full text-center text-3xl'>Productos del mes</h1>

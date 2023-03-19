@@ -10,6 +10,7 @@ CREATE TABLE products (
   brand VARCHAR(45) DEFAULT NULL,
   description VARCHAR(200) DEFAULT NULL,
   stock INT(11) DEFAULT NULL,
+  image VARCHAR(100) DEFAULT NULL,
   PRIMARY KEY(id)
 );
 
@@ -38,9 +39,9 @@ DESCRIBE users;
 DESCRIBE orders;
 
 
-INSERT INTO products (name, price, brand, description, stock) values 
-  ('Xiaomi Redmi buds 3', 30, 'Xiaomi', 'The best earbuds in the market', 20),
-  ('HP Victus 16-e1022ns', 1149, 'HP', 'The best laptop in the world', 15);
+INSERT INTO products (name, price, brand, description, stock, image) values 
+  ('Xiaomi Redmi buds 3', 30, 'Xiaomi', 'The best earbuds in the market', 20, "path"),
+  ('HP Victus 16-e1022ns', 1149, 'HP', 'The best laptop in the world', 15, "path");
 
 -- INSERT INTO users (fullname, email, password) values
 --   ('Edvin', 'Edvin@gmail.com', ''),
