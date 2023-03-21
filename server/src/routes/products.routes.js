@@ -5,6 +5,7 @@ import {
   getProduct,
   getProducts,
   updateProduct,
+  getImage
 } from "../controllers/products.controller.js";
 import multer  from 'multer';
 import storage from "../storage.js";
@@ -27,5 +28,8 @@ router.post("/products", upload.single('image'), createProduct);
 
 // UPDATE a Product
 router.patch("/products/:id", updateProduct);
+
+// GET a Product Image
+router.get("/products/images/:id", getImage);
 
 export default router;

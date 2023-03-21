@@ -44,17 +44,27 @@ export const deleteProduct = async (req, res) => {
 export const createProduct = async (req, res) => {
   try {
     const { name, price, brand, description, stock } = req.body;
-    const imagePath = req.file.path.split("\\").join("/")
-    
+    const path = req.file.path.split("\\")
+    const image = path[path.length - 1]
+    const url = req.protocol + "://" + req.get("host");
+
     const [rows] = await pool.query(
       "INSERT INTO products (name, price, brand, description, stock, image) VALUES (?, ?, ?, ?, ?, ?)",
-      [name, price, brand, description, stock, imagePath]
+      [name, price, brand, description, stock, image]
     );
-    res.status(201).json({ id: rows.insertId, name, price, brand, description, stock, imagePath });
+
+    const id = rows.insertId;
+    const newURL = url + "/api/products/images/" + id
+
+    updateProductURL(id, newURL)
+
+    res.status(201).json({ id: id, name, price, brand, description, stock, image, url });
   } catch (error) {
     return res.status(500).json({ message: "Something goes wrong" });
   }
 };
+
+
 
 // PENDIENTE DE ARREGLO
 export const updateProduct = async (req, res) => {
@@ -79,3 +89,32 @@ export const updateProduct = async (req, res) => {
     return res.status(500).json({ message: "Something goes wrong" });
   }
 };
+
+export const getImage = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const route = "/src/uploads/";
+    let imageURL = route;
+
+    const [rows] = await pool.query("SELECT image FROM products WHERE id = ?", [
+      id,
+    ]);
+
+    if (rows.length <= 0) {
+      return res.status(404).json({ message: "Image not found" });
+    }
+
+    imageURL += rows[0].image;
+
+    res.sendFile(imageURL, { root: "." });
+
+  } catch (error) {
+    return res.status(500).json({ message: "Something goes wrong" });
+  }
+};
+
+const updateProductURL = async (id, url) => {
+  const [rows] = await pool.query("UPDATE products SET url = ? WHERE id = ?", [
+    url, id
+  ]);
+}
