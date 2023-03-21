@@ -45,6 +45,7 @@ const Index = () => {
                         <div key={product.id} className="flip-card">
                             <div className="flip-card-inner">
                                 <div className="flip-card-front">
+                                    <img src={product.url} alt={product.name}/>
                                     <h1>{product.name}</h1>
                                 </div>
                                 <div className="flip-card-back">
