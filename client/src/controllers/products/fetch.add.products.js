@@ -1,6 +1,6 @@
 const fetchAddProduct = async () => {
     document.getElementById('add-product-form').addEventListener('submit', (e) => {
-        e.preventDefault()
+        // e.preventDefault()
         const productName = document.getElementById('product-name').value
         const productPrice = document.getElementById('product-price').value
         const productBrand = document.getElementById('product-brand').value
@@ -25,7 +25,7 @@ const fetchAddProduct = async () => {
         })
         .then(res => res.json())
         .then(data => {
-          console.log("Data is here from server: ", data)
+          console.log("Server response: ", data)
         })    
         .catch(err => alert(err))   
         

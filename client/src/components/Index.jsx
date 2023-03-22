@@ -14,7 +14,7 @@ const Index = () => {
         try{
             const data = await fetchProducts();
             setProducts(data);
-            console.log(data)
+            // console.log(data);
         }catch(err){
             console.log(`Ha ocurrido un error: ${err}`)
         }

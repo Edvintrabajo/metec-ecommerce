@@ -23,7 +23,7 @@ function AddProduct() {
                 <input type="text" name="product-stock" id="product-stock" className="border-b-2 border-current pl-2 tablet:w-2/4 tablet:p-2 bg-transparent rounded-sm"/>
               </div>
               <div className="w-full flex justify-between p-4 tablet:justify-evenly">
-                <input type="file" name="product-image" id="product-image" className="border-current pl-2 tablet:w-2/4 tablet:p-2 bg-transparent rounded-sm"/>
+                <input type="file" accept="image/png, image/jpeg" name="product-image" id="product-image" className="border-current pl-2 tablet:w-2/4 tablet:p-2 bg-transparent rounded-sm"/>
               </div>
               <div className="w-full flex justify-center p-4">
                 <button type="submit" className="border-2 border-current rounded-md p-2 hover:bg-white hover:text-lime-400 hover:scale-110 transition-all	shadow-low-box-shadow hover:shadow-high-box-shadow">Add Product</button>
