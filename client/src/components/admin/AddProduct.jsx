@@ -1,6 +1,6 @@
 function AddProduct() {  
     return (
-        <div className="bg-bg-img bg-center bg-cover p-4 w-full h-screen flex flex-col items-center justify-center">
+        <div className="bg-bg-img bg-center bg-cover w-full flex flex-col items-center justify-center">
           <form id="add-product-form" encType="multipart/formdata" className="bg-white border-2 rounded-2xl flex justify-center align-top flex-wrap text-black tablet:text-xl laptop:w-3/5 desktop:text-2xl shadow-low-box-shadow m-4">
               <div className="w-full flex justify-between tablet:justify-evenly mt-4 p-4">
                 <label htmlFor="product-name" className="tablet:w-1/4 tablet:p-2">Product Name</label>
