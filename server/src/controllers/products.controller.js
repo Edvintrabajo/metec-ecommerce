@@ -43,14 +43,14 @@ export const deleteProduct = async (req, res) => {
 
 export const createProduct = async (req, res) => {
   try {
-    const { name, price, brand, description, stock } = req.body;
+    const { name, price, brand, description, stock, category } = req.body;
     const path = req.file.path.split("\\")
     const image = path[path.length - 1]
     const url = req.protocol + "://" + req.get("host");
 
     const [rows] = await pool.query(
-      "INSERT INTO products (name, price, brand, description, stock, image) VALUES (?, ?, ?, ?, ?, ?)",
-      [name, price, brand, description, stock, image]
+      "INSERT INTO products (name, price, brand, description, stock, category, image) VALUES (?, ?, ?, ?, ?, ?, ?)",
+      [name, price, brand, description, stock, category, image]
     );
 
     const id = rows.insertId;
@@ -58,7 +58,7 @@ export const createProduct = async (req, res) => {
 
     updateProductURL(id, newURL)
 
-    res.status(201).json({ id: id, name, price, brand, description, stock, image, url });
+    res.status(201).json({ id: id, name, price, brand, description, stock, category, image, url });
   } catch (error) {
     return res.status(500).json({ message: "Something goes wrong" });
   }

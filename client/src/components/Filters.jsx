@@ -11,7 +11,7 @@ const Filters = () => {
             <h1 className="text-2xl font-bold pl-4">Filters</h1>
         </div>
         
-        <div id="filter-container" className="w-4/5 bg-white h-64 rounded-b-lg flex">
+        <div id="filter-container" className="w-4/5 bg-white h-70 rounded-b-lg hidden">
             <div id="filter-options" className="p-4 flex flex-col leading-loose border-r-4 border-opacity-100 w-2/4 rounded-bl-lg text-xl">
                 <div className="filter-item w-full">
                     <button id="filter-components">Components</button>
@@ -30,6 +30,9 @@ const Filters = () => {
                 </div>
                 <div className="filter-item w-full">
                     <button id="filter-gaming">Gaming</button>
+                </div>
+                <div className="filter-item w-full">
+                    <button id="filter-Setup">Setup</button>
                 </div>
             </div>
             <div id="filter-checks" className="w-2/4 flex flex-col leading-loose overflow-y-scroll p-4">

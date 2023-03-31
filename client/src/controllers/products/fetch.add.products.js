@@ -6,6 +6,7 @@ const fetchAddProduct = async () => {
         const productBrand = document.getElementById('product-brand').value
         const productDescription = document.getElementById('product-description').value
         const productStock = document.getElementById('product-stock').value
+        const productCategory = document.getElementById('product-category').value
         // Obtener la imagen del usuario
         const fileInput = document.getElementById('product-image');
         const productImage = fileInput.files[0];
@@ -17,6 +18,7 @@ const fetchAddProduct = async () => {
         formData.append('brand', productBrand);
         formData.append('description', productDescription);
         formData.append('stock', productStock);
+        formData.append('category', productCategory);
         formData.append('image', productImage);
         
         fetch ('http://localhost:3000/api/products', {
