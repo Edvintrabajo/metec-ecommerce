@@ -3,7 +3,9 @@ import fetchProducts from "../controllers/fetchproducts"
 import fetchAddProduct from "../controllers/products/fetch.add.products"
 import { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
+import Filters from '../components/Filters';
 import AddProduct from "./admin/AddProduct"
+import chekMenu from '../controllers/filters/filter.display';
 
 const Index = () => {
 
@@ -28,8 +30,9 @@ const Index = () => {
         }
       }
 
-      getProducts();
-      addProduct();
+    chekMenu(); // Funcion para mostrar el menu de filtros
+    getProducts();
+    addProduct();
     }, []);        
 
     return (
@@ -37,6 +40,7 @@ const Index = () => {
             <LoadCircle />
             <div id='loaded-index' className='hidden w-full h-full min-h-screen	'>
                 <Navbar />
+                <Filters />
                 <AddProduct/>
                 <main className='w-full h-auto p-4 min-w-20 text-white flex justify-evenly items-center flex-wrap mt-10'>
                     <h1 className='w-full text-center text-3xl p-20'>Productos del mes</h1>
