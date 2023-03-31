@@ -34,12 +34,6 @@ const Filters = () => {
             </div>
             <div id="filter-checks" className="w-2/4 flex flex-col leading-loose overflow-y-scroll p-4">
                 <button href="" className="w-3/4 border-none shadow-low-box-shadow p-1 ml-2 mb-2 pl-3 text-left hover:scale-110 hover:shadow-high-box-shadow transition-all">Test 1</button>
-                <button href="" className="w-3/4 border-2  border-none shadow-low-box-shadow p-1 ml-2 mb-2 pl-3 text-left hover:scale-110 hover:shadow-high-box-shadow transition-all">Test 1</button>
-                <button href="" className="w-3/4 border-2  border-none shadow-low-box-shadow p-1 ml-2 mb-2 pl-3 text-left hover:scale-110 hover:shadow-high-box-shadow transition-all">Test 1</button>
-                <button href="" className="w-3/4 border-2  border-none shadow-low-box-shadow p-1 ml-2 mb-2 pl-3 text-left hover:scale-110 hover:shadow-high-box-shadow transition-all">Test 1</button>
-                <button href="" className="w-3/4 border-2  border-none shadow-low-box-shadow p-1 ml-2 mb-2 pl-3 text-left hover:scale-110 hover:shadow-high-box-shadow transition-all">Test 1</button>
-                <button href="" className="w-3/4 border-2  border-none shadow-low-box-shadow p-1 ml-2 mb-2 pl-3 text-left hover:scale-110 hover:shadow-high-box-shadow transition-all">Test 1</button>
-                <button href="" className="w-3/4 border-2  border-none shadow-low-box-shadow p-1 ml-2 mb-2 pl-3 text-left hover:scale-110 hover:shadow-high-box-shadow transition-all">Test 1</button>
             </div>
         </div>
     </div>
