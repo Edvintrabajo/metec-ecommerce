@@ -1,6 +1,6 @@
 const Navbar = () => {
     return(
-    <nav className='w-full h-1/6  flex justify-between items-center bg-white p-4 text-4xl select-none'>
+    <nav id="navbar" className='w-full h-1/6  flex justify-between items-center bg-white p-4 text-4xl select-none z-20 relative'>
         <a href="/" className='ml-4'>
             <h1>METEC</h1>
         </a>

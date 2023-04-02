@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import Filters from '../components/Filters';
 import AddProduct from "./admin/AddProduct"
-import chekMenu from '../controllers/filters/filter.display';
+import displayMenu from '../controllers/filters/filter.display';
 
 const Index = () => {
 
@@ -30,7 +30,7 @@ const Index = () => {
         }
       }
 
-    chekMenu(); // Funcion para mostrar el menu de filtros
+    displayMenu(); // Funcion para mostrar el menu de filtros
     getProducts();
     addProduct();
     }, []);        

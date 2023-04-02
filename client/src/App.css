@@ -242,3 +242,8 @@
   width: 250px;
   height: 250px;
 }
+
+/* Filter */
+#filter-container{
+  transform: translateY(-100%);
+}
