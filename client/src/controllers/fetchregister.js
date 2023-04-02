@@ -1,6 +1,5 @@
 const fetchRegister = async () => {
     document.getElementById('register-form').addEventListener('submit', (e) => {
-        e.preventDefault()
         const fullname = document.getElementById('Fullname').value
         const email = document.getElementById('Email').value
         const password = document.getElementById('password').value
@@ -17,10 +16,7 @@ const fetchRegister = async () => {
               password,
             })
           })
-          .then(res => res.json())
-          .then(data => {
-            window.location.href = 'http://localhost:5173/login'   
-          })    
+          .then(res => res.ok ? window.location.href = 'http://localhost:5173/login': alert('El usuario ya existe'))
           .catch(err => alert(err))   
         } else {
           alert('Las contraseñas no coinciden')

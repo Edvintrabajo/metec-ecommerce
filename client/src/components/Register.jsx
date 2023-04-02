@@ -1,33 +1,47 @@
 import { useEffect } from "react"
 import fetchRegister from "../controllers/fetchregister"
+import {
+  Card,
+  Input,
+  Button,
+  Typography,
+} from "@material-tailwind/react";
 
 function Register() {  
-  useEffect(() => {
+  useEffect(() => { 
     fetchRegister()
   }, [])
 
   return (
-      <div className="bg-bg-img bg-center bg-cover p-4 w-full h-screen flex flex-col items-center justify-center">
-        <form id="register-form" className="bg-white border-2 rounded-2xl flex justify-center items-start flex-wrap h-2/4 text-black tablet:text-xl laptop:w-3/5 laptop:h-3/5 desktop:text-2xl shadow-low-box-shadow p-3">
-            <div className="w-full flex justify-between tablet:justify-evenly mt-4 p-4">
-              <label htmlFor="Fullname" className="tablet:w-1/4 tablet:p-2">Fullname</label>
-              <input type="text" name="Fullname" id="Fullname" className="border-b-2 border-current pl-2 tablet:w-2/4 tablet:p-2 bg-transparent rounded-sm"/>
-            </div>
-            <div className="w-full flex justify-between p-4 tablet:justify-evenly">
-              <label htmlFor="Email" className="tablet:w-1/4 tablet:p-2">Email</label>
-              <input type="email" name="Email" id="Email" className="border-b-2 border-current pl-2 tablet:w-2/4 tablet:p-2 bg-transparent rounded-sm"/>
-            </div>
-            <div className="w-full flex justify-between p-4 tablet:justify-evenly">
-              <label htmlFor="password" className="tablet:w-1/4 tablet:p-2">Password</label>
-              <input type="password" name="password" id="password" className="border-b-2 border-current pl-2	tablet:w-2/4 tablet:p-2 bg-transparent rounded-sm"/>
-            </div>
-            <div className="w-full flex justify-between p-4 tablet:justify-evenly">
-              <label htmlFor="confirmPassword" className="tablet:w-1/4 tablet:p-2">Confirm Pass</label>
-              <input type="password" name="confirmPassword" id="confirmPassword" className="border-b-2 border-current pl-2 tablet:w-2/4 tablet:p-2 bg-transparent rounded-sm"/>
-            </div>
-            <div className="w-full flex justify-center p-4">
-              <button type="submit" className="border-2 border-current rounded-md p-2 hover:bg-white hover:text-lime-400 hover:scale-110 transition-all	shadow-low-box-shadow hover:shadow-high-box-shadow">Register</button>
-            </div>
+      <div className="w-full h-screen flex items-center justify-center">
+        <form id="register-form">
+          <Card color="white" shadow={false} className="p-10">
+            <Typography variant="h4" color="blue-gray">
+              Sign Up
+            </Typography>
+            <Typography color="gray" className="mt-1 font-normal">
+              Enter your details to register.
+            </Typography>
+              <div className="mb-4 flex flex-col gap-6">
+                <Input size="lg" name="Fullname" id="Fullname" label="Fullname" />
+                <Input size="lg" name="Email" id="Email" label="Email" />
+                <Input type="password" name="password" id="password" size="lg" label="Password" />
+                <Input type="password" name="confirmPassword" id="confirmPassword" size="lg" label="Confirm Password" />
+              </div>
+              
+              <Button type="submit" className="mt-6" fullWidth>
+                Register
+              </Button>
+              <Typography color="gray" className="mt-4 text-center font-normal">
+                Already have an account?{" "}
+                <a
+                  href="/login"
+                  className="font-medium text-blue-500 transition-colors hover:text-blue-700"
+                >
+                  Sign In
+                </a>
+              </Typography>
+          </Card>
         </form>
       </div>
     )
