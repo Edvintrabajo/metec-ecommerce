@@ -1,6 +1,7 @@
 const chekMenu = () => {
     const menu = document.querySelector('#burger');
     const filters = document.querySelector('#filter-container');
+    let main = document.querySelector('main');
     let intervalId, currentTranslateY;
 
     menu.addEventListener('click', () => {
@@ -9,7 +10,9 @@ const chekMenu = () => {
             menu.classList.remove('closed');
             menu.classList.add('open');
             menu.disabled = true;
-            
+
+            main.classList.add('open-menu');
+
             intervalId = setInterval(function() {
                 currentTranslateY += 1
 
@@ -27,6 +30,8 @@ const chekMenu = () => {
             menu.classList.remove('open');
             menu.classList.add('closed');
             menu.disabled = true;
+
+            main.classList.remove('open-menu');
 
             intervalId = setInterval(function() {
                 currentTranslateY -= 1

@@ -41,9 +41,9 @@ const Index = () => {
             <div id='loaded-index' className='hidden w-full h-full min-h-screen	'>
                 <Navbar />
                 <Filters />
-                <AddProduct/>
-                <main className='w-full h-auto p-4 min-w-20 text-white flex justify-evenly items-center flex-wrap mt-10'>
-                    <h1 className='w-full text-center text-3xl p-20'>Productos del mes</h1>
+                {/* <AddProduct/> // Descomentar para añadir productos*/}
+                <main className='absolute bg-bg-img w-full h-auto pt-8 p-4 min-w-20 text-white flex justify-evenly items-center flex-wrap'>
+                    <h1 className='w-full text-center text-3xl p-10'>Productos del mes</h1>
                     {products.map(product => (
                     // Link de card https://uiverse.io/Praashoo7/black-lizard-62
                         <div key={product.id} className="flip-card">
