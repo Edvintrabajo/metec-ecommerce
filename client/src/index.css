@@ -2,10 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-*{
-    font-family: 'Tilt Neon', cursive;
-}
-
 ::-webkit-scrollbar {
     width: 0;
 }

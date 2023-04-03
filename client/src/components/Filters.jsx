@@ -20,7 +20,7 @@ const Filters = () => {
       >
         <div
           id="filter-options"
-          className="p-4 flex flex-col leading-loose border-r-4 border-opacity-100 w-2/4 rounded-bl-lg text-xl"
+          className="p-6 flex flex-col leading-loose border-r-4 border-opacity-100 w-2/4 rounded-bl-lg text-xl"
         >
           <div className="filter-item transition-all hover:scale-110 w-full">
             <button id="filter-components">Components</button>
