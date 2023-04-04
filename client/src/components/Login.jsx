@@ -1,24 +1,44 @@
 import { useEffect } from "react"
 import fetchLogin from "../controllers/fetchlogin"
-
+import fetchRegister from "../controllers/fetchregister"
+import {
+  Card,
+  Input,
+  Button,
+  Typography,
+} from "@material-tailwind/react";
 function Login() {  
   useEffect(() => {
     fetchLogin()
   }, [])
     return (
-      <div className="bg-center bg-cover p-4 w-full h-screen flex flex-col items-center justify-center">
-          <form id="login-form" className="bg-white rounded-2xl flex justify-center items-start flex-wrap h-2/5 text-black tablet:text-xl laptop:w-3/5 laptop:h-2/6 desktop:text-2xl desktop:h-2/5 desktop:w-2/5 shadow-low-box-shadow p-3">
-            <div className="w-full flex justify-between p-4 tablet:justify-evenly m-3">
-              <label htmlFor="Email" className="tablet:w-1/4 tablet:p-2">Email</label>
-              <input type="email" name="Email" id="Email" className="border-b-2 border-current pl-2 tablet:w-2/4 tablet:p-2 bg-transparent rounded-sm"/>
-            </div>
-            <div className="w-full flex justify-between p-4 tablet:justify-evenly m-3">
-              <label htmlFor="password" className="tablet:w-1/4 tablet:p-2">Password</label>
-              <input type="password" name="password" id="password" className="border-b-2 border-current pl-2	tablet:w-2/4 tablet:p-2 bg-transparent rounded-sm"/>
-            </div>
-            <div className="w-full flex justify-center p-4">
-              <button type="submit" className="border-2 border-current rounded-md p-2 hover:bg-white hover:text-lime-400 hover:scale-110 transition-all	shadow-low-box-shadow hover:shadow-high-box-shadow">Login</button>
-            </div>
+      <div className="w-full h-screen flex items-center justify-center">
+        <form id="login-form">
+          <Card color="white" shadow={false} className="p-10">
+            <Typography variant="h4" color="blue-gray">
+              Sign In
+            </Typography>
+            <Typography color="gray" className="mt-1 mb-1 font-normal">
+              Enter your details to Login.
+            </Typography>
+              <div className="mb-4 flex flex-col gap-6">
+                <Input type="email" name="Email" id="Email" label="Email" />
+                <Input type="password" name="password" id="password" size="lg" label="Password" />
+              </div>
+              
+              <Button type="submit" className="mt-6" fullWidth>
+                Login
+              </Button>
+              <Typography color="gray" className="mt-4 text-center font-normal">
+                You don't have an account?{" "}
+                <a
+                  href="/register"
+                  className="font-medium text-blue-500 transition-colors hover:text-blue-700"
+                >
+                  Sign Up
+                </a>
+              </Typography>
+          </Card>
         </form>
       </div>
     )

@@ -5,7 +5,7 @@ const fetchLogin = async () => {
         const email = document.getElementById('Email').value
         const password = document.getElementById('password').value
 
-        fetch ('http://localhost/api/login', {
+        fetch ('http://localhost:3000/api/Users/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
