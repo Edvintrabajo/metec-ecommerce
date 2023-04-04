@@ -118,3 +118,15 @@ const updateProductURL = async (id, url) => {
     url, id
   ]);
 }
+
+export const getBrands = async (req, res) => {
+  try {
+    const { category } = req.body;
+    const [rows] = await pool.query("SELECT brand FROM products WHERE category = ?", [
+      category
+    ]);
+    res.json(rows);
+  } catch (error) {
+    return res.status(500).json({ message: "Something goes wrong" });
+  }
+}
