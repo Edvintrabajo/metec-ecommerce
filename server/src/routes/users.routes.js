@@ -26,6 +26,7 @@ router.post("/Users", createUser);
 router.patch("/Users/:id", updateUser);
 
 // LOGIN An User
-router.post("/login", login);
+router.post("/Users/login", login);
+
 
 export default router;
