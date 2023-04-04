@@ -52,8 +52,8 @@ INSERT INTO products (name, price, brand, description, stock, category, image, u
   ('Corsair RM750x', 99, 'Corsair', 'The best PSU in the world', 10, "Components", "name", "https://www.corsair.com/corsairmedia/sys_master/productcontent/CP-9020179-NA-RM750x_PSU_01.png"),
   ('Cooler Master MasterBox MB311L', 49, 'Cooler Master', 'The best case in the world', 10, "Components", "name", "https://cdn.x-kom.pl/i/setup/images/prod/big/product-new-big,,2023/3/pr_2023_3_27_14_45_0_941_00.jpg"),
   ('Corsair K55 RGB', 39, 'Corsair', 'The best keyboard in the world', 10, "Components", "name", "https://cwsmgmt.corsair.com/pdp/k55-rgb-pro/pro/k55_rgb_pro_top.png"),
-  ('Corsair Harpoon RGB', 29, 'Corsair', 'The best mouse in the world', 10, "Components", "name", "https://f00.esfr.pl/foto/8/45511807673/54010327151b102cfaa1b3a94f6e0903/corsair-mysz-corsair-harpoon-rgb-pro,45511807673_3.jpg"),
-  ('Corsair Void Pro RGB', 79, 'Corsair', 'The best headset in the world', 10, "Components", "name", "htthttps://media.ldlc.com/r1600/ld/products/00/05/51/16/LD0005511647_2.jpg");
+  ('Corsair Harpoon RGB', 29, 'Corsair', 'The best mouse in the world', 10, "Components", "name", "https://planetagracza.pl/wp-content/uploads/2022/01/corsair-harpoon-rgb-pro.jpg"),
+  ('Corsair Void Pro RGB', 79, 'Corsair', 'The best headset in the world', 10, "Components", "name", "https://media.ldlc.com/r1600/ld/products/00/05/51/16/LD0005511647_2.jpg");
 
 -- INSERT INTO users (fullname, email, password) values
 --   ('Edvin', 'Edvin@gmail.com', ''),
