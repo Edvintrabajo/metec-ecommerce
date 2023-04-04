@@ -19,11 +19,11 @@ const Filters = () => {
 
       <div
         id="filter-container"
-        className="w-full bg-white h-70 rounded-b-lg flex z-10 absolute"
+        className="w-full bg-white h-70 rounded-b-lg flex z-10 absolute flex-wrap"
       >
         <div
           id="filter-options"
-          className="p-4 flex flex-col leading-loose border-r-4 border-opacity-100 w-2/4 rounded-bl-lg text-xl"
+          className="p-4 flex flex-col leading-loose border-r-4 w-2/4 rounded-bl-lg text-xl"
         >
           <div className="filter-item transition-all hover:scale-110 w-full">
             <button id="filter-components" value="Components">Components</button>
@@ -44,11 +44,18 @@ const Filters = () => {
             <button id="filter-music" value="Music">Music</button>
           </div>
         </div>
+
         <div
           id="filter-checks"
-          className="p-4 flex flex-col leading-loose border-r-4 border-opacity-100 w-2/4 rounded-bl-lg text-xl overflow-y-auto"
+          className="p-4 flex flex-col leading-loose w-2/4 rounded-bl-lg text-xl overflow-y-auto"
         >
           
+        </div>
+        <div
+          id="filter-extras"
+          className="p-4 flex flex-col leading-loose border-t-4 border-opacity-100 w-full rounded-bl-lg text-xl"
+        >
+
         </div>
       </div>
     </div>

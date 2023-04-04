@@ -1,4 +1,4 @@
-const chekMenu = () => {
+const displayMenu = () => {
   const menu = document.querySelector("#burger");
   const filters = document.querySelector("#filter-container");
   let main = document.querySelector("main");
@@ -60,4 +60,4 @@ const chekMenu = () => {
   }
 };
 
-export default chekMenu;
+export default displayMenu;
