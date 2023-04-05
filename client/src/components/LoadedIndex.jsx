@@ -5,7 +5,8 @@ import { useContext } from 'react';
 import { Context } from '../context/Context';
 
 const LoadedIndex = () => {
-  useContext(Context);
+  const {indexStates} = useContext(Context);
+  indexStates();
   return (
     <div id="loaded-index" className="hidden w-full h-full min-h-screen	">
         <Navbar />

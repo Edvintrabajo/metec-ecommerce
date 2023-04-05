@@ -8,7 +8,8 @@ export const Context = createContext()
 export function ContextProvider(props) {
     const [products, setProducts] = useState([]);
     
-    useEffect(() => {
+    const indexStates = () => {
+      useEffect(() => {
         async function getProducts() {
           try {
             const data = await fetchProducts();
@@ -29,13 +30,14 @@ export function ContextProvider(props) {
     
         displayMenu(); // Funcion para mostrar el menu de filtros
         getProducts();
-        addProduct();
       }, []);
+    }
 
     return (
         <Context.Provider value={{
             products, 
-            setProducts
+            setProducts,
+            indexStates
         }}>{props.children} 
         </Context.Provider>
     )
