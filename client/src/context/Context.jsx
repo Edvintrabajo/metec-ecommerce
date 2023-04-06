@@ -7,6 +7,8 @@ export const Context = createContext()
 
 export function ContextProvider(props) {
     const [products, setProducts] = useState([]);
+    const [types, setTypes] = useState([]);
+    const [brands, setBrands] = useState([]);
     
     const indexStates = () => {
       useEffect(() => {
@@ -37,7 +39,11 @@ export function ContextProvider(props) {
         <Context.Provider value={{
             products, 
             setProducts,
-            indexStates
+            indexStates,
+            types,
+            setTypes,
+            brands,
+            setBrands
         }}>{props.children} 
         </Context.Provider>
     )

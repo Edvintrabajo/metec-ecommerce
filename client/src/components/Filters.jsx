@@ -1,7 +1,10 @@
 import fetchCategory from "../controllers/filters/filter.fetch.category";
-
+import fetchType from "../controllers/filters/filter.fetch.type";
+import { useContext } from 'react';
+import { Context } from '../context/Context';
 const Filters = () => {
   fetchCategory();
+  fetchType();
   return (
     <div id="filters" className="flex justify-center flex-wrapº">
       <div

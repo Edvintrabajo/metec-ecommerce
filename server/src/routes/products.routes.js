@@ -6,7 +6,8 @@ import {
   getProducts,
   updateProduct,
   getImage,
-  getBrands
+  getBrands,
+  getTypes
 } from "../controllers/products.controller.js";
 import multer  from 'multer';
 import storage from "../storage.js";
@@ -35,5 +36,8 @@ router.get("/products/images/:id", getImage);
 
 // GET a Product Brand by Category
 router.post("/products/brands", getBrands)
+
+// Get a Product Type by Category
+router.post("/products/types", getTypes)
 
 export default router;

@@ -1,7 +1,10 @@
+import { useContext } from 'react';
+import { Context } from '../../context/Context';
+
 const fetchCategory = async (req, res) => {
+    const { brands, setBrands } = useContext(Context);
     const filterItems = document.querySelectorAll('.filter-item');
     const filterChecks = document.querySelector('#filter-checks');
-    let brands = [];
 
     filterItems.forEach((item) => {
         const button = item.querySelector('button');
@@ -23,22 +26,22 @@ const fetchCategory = async (req, res) => {
                     data.forEach((data) => {
                         filterChecks.innerHTML += `
                         <div class="filter-check w-full">
-                            <input class="check" type="checkbox" name="filter-${data.brand}" id="filter-${data.brand}" value="${data.brand}"/>
+                            <input class="check-brand" type="checkbox" name="filter-${data.brand}" id="filter-${data.brand}" value="${data.brand}"/>
                             <label htmlFor="filter-${data.brand}" >${data.brand}</label>
                         </div>
                         `;
                     })
                 })
                 .then(() => {
-                    const checks = document.querySelectorAll('.check');
+                    const checks = document.querySelectorAll('.check-brand');
                     checks.forEach((input) => {
                         input.addEventListener('click', () => {
                             if (input.checked) {
-                                brands.push(input.value);
+                                setBrands(brands.push(input.value));
                             }else{
-                                brands = brands.filter((brand) => brand !== input.value);
+                                setBrands(brands.filter((brand) => brand !== input.value));
                             }
-                            console.log(brands)
+                            console.log(brands);
                         });
                     });
                 })
