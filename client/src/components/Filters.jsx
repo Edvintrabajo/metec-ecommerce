@@ -1,10 +1,15 @@
-import fetchCategory from "../controllers/filters/filter.fetch.category";
-import fetchType from "../controllers/filters/filter.fetch.type";
+import fetchData from "../controllers/filters/filter.fetch";
 import { useContext } from 'react';
 import { Context } from '../context/Context';
+import {
+  Button,
+} from "@material-tailwind/react";
+
 const Filters = () => {
-  fetchCategory();
-  fetchType();
+  
+  fetchData('types', '#filter-extras', 'setTypes');
+  fetchData('brands', '#filter-checks', 'setBrands');
+
   return (
     <div id="filters" className="flex justify-center flex-wrapº">
       <div
@@ -59,6 +64,12 @@ const Filters = () => {
           className="p-4 flex flex-col leading-loose border-t-4 border-opacity-100 w-full rounded-bl-lg text-xl"
         >
 
+        </div>
+        <div
+          id="filter-button"
+          className="p-4 flex justify-center align-middle border-t-4 border-opacity-100 w-full rounded-bl-lg text-xl"
+        >
+          <Button id="apply-filter" className="w-30 tablet:w-40">Apply</Button>
         </div>
       </div>
     </div>
