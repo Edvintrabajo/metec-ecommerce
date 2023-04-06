@@ -34,10 +34,10 @@ router.patch("/products/:id", updateProduct);
 // GET a Product Image
 router.get("/products/images/:id", getImage);
 
-// GET a Product Brand by Category
+// POST a Product Category and get a list of Brands
 router.post("/products/brands", getBrands)
 
-// Get a Product Type by Category
+// POST a Product Category and get a list of Types
 router.post("/products/types", getTypes)
 
 export default router;
