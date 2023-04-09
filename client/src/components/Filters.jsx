@@ -1,18 +1,18 @@
-import {fetchData, filterFetch} from "../controllers/filters/filter.fetch";
-import { useContext, useEffect } from 'react';
+import fetchData from "../controllers/filters/filter.fetch";
+import { useContext } from "react";
 import { Context } from '../context/Context';
 import {
   Button,
 } from "@material-tailwind/react";
 
 const Filters = () => {
-  const {types, brands} = useContext(Context);
-  useEffect(() => {
-    filterFetch(types, brands);
-  }, []);
-  
-  fetchData('types', '#filter-extras', 'setTypes');
-  fetchData('brands', '#filter-checks', 'setBrands');
+
+  const { saveData, setSaveData } = useContext(Context);
+  const types = [],
+        brands = [],
+        category = "";
+
+  fetchData(types, brands, category, saveData, setSaveData);
 
   return (
     <div id="filters" className="flex justify-center flex-wrapº">
@@ -58,13 +58,13 @@ const Filters = () => {
         </div>
 
         <div
-          id="filter-checks"
+          id="filter-brands"
           className="p-4 flex flex-col leading-loose w-2/4 rounded-bl-lg text-xl overflow-y-auto"
         >
           
         </div>
         <div
-          id="filter-extras"
+          id="filter-types"
           className="p-4 flex flex-col leading-loose border-t-4 border-opacity-100 w-full rounded-bl-lg text-xl"
         >
 
@@ -72,6 +72,7 @@ const Filters = () => {
         <form
           id="filter-form"
           className="p-4 flex justify-center align-middle border-t-4 border-opacity-100 w-full rounded-bl-lg text-xl"
+          // action="/products-filtred"
         >
           <Button id="apply-filter" type="submit" className="w-30 tablet:w-40">Apply</Button>
         </form>
