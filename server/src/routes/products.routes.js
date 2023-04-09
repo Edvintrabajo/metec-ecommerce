@@ -7,7 +7,8 @@ import {
   updateProduct,
   getImage,
   getBrands,
-  getTypes
+  getTypes,
+  getFilteredProducts
 } from "../controllers/products.controller.js";
 import multer  from 'multer';
 import storage from "../storage.js";
@@ -40,4 +41,6 @@ router.post("/products/brands", getBrands)
 // POST a Product Category and get a list of Types
 router.post("/products/types", getTypes)
 
+// POST Filtered Products
+router.post("/products/filter", getFilteredProducts)
 export default router;

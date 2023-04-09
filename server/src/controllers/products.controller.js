@@ -142,3 +142,41 @@ export const getTypes = async (req, res) => {
     return res.status(500).json({ message: "Something goes wrong" });
   }
 }
+
+export const getFilteredProducts = async (req, res) => {
+  try {
+    const { category, brand, type } = req.body;    
+    const filters = [category]
+    let paramas = "SELECT * FROM products WHERE category = ?"
+
+    // Brands
+    paramas += " AND brand IN ("
+    brand.forEach((element, index) => {
+      if (index === brand.length - 1) {
+        paramas += "?"
+      } else {
+        paramas += "?,"
+      }
+      filters.push(element)
+    });
+    paramas += ")"
+
+    // Types
+    paramas += " AND type IN ("
+    type.forEach((element, index) => {
+      if (index === type.length - 1) {
+        paramas += "?"
+      } else {
+        paramas += "?,"
+      }
+      filters.push(element)
+    });
+    paramas += ")"
+
+    const [rows] = await pool.query(paramas, filters);
+    res.json(rows);
+    
+  } catch (error) {
+    return res.status(500).json({ message: "Something goes wrong" });
+  }
+}
