@@ -12,7 +12,7 @@ const LoadedIndex = () => {
     <div id="loaded-index" className="hidden w-full h-full min-h-screen	">
         <Navbar />
         <Filters />
-        <AddProduct/>
+        {/* <AddProduct/> */}
         <MainContent />
     </div>
   );

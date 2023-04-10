@@ -37,22 +37,22 @@ const Filters = () => {
           id="filter-options"
           className="p-4 flex flex-col leading-loose border-r-4 w-2/4 rounded-bl-lg text-xl"
         >
-          <div className="filter-item transition-all hover:scale-110 w-full">
+          <div className="filter-item transition-all hover:scale-95 w-full">
             <button id="filter-components" value="Components">Components</button>
           </div>
-          <div className="filter-item transition-all hover:scale-110 w-full">
+          <div className="filter-item transition-all hover:scale-95 w-full">
             <button id="filter-pc" value="PC">PC</button>
           </div>
-          <div className="filter-item transition-all hover:scale-110 w-full">
+          <div className="filter-item transition-all hover:scale-95 w-full">
             <button id="filter-laptops" value="Laptops">Laptops</button>
           </div>
-          <div className="filter-item transition-all hover:scale-110 w-full">
+          <div className="filter-item transition-all hover:scale-95 w-full">
             <button id="filter-smartphones" value="Smartphones">Smartphones</button>
           </div>
-          <div className="filter-item transition-all hover:scale-110 w-full">
+          <div className="filter-item transition-all hover:scale-95 w-full">
             <button id="filter-tv" value="TV">TV</button>
           </div>
-          <div className="filter-item transition-all hover:scale-110 w-full">
+          <div className="filter-item transition-all hover:scale-95 w-full">
             <button id="filter-music" value="Music">Music</button>
           </div>
         </div>
