@@ -63,10 +63,9 @@
     filter: blur(50px);
 }
 
-#fa{
-    color: #33ccff;    
+#logo{ 
     z-index: 1;
-    scale: 5.5;
+    width: 100px;
 }
 
 /* Formulario reversible https://web-leb.com/code/17 */

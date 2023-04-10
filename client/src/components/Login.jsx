@@ -7,12 +7,13 @@ import {
   Button,
   Typography,
 } from "@material-tailwind/react";
+
 function Login() {  
   useEffect(() => {
     fetchLogin()
   }, [])
     return (
-      <div className="w-full h-screen flex items-center justify-center">
+      <div className="w-full h-screen flex flex-wrap justify-center items-center">
         <form id="login-form">
           <Card color="white" shadow={false} className="p-10">
             <Typography variant="h4" color="blue-gray">

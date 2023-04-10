@@ -5,7 +5,8 @@ export function LoadCircle(){
   return (
     <div id='circle-container'>
       <div id="circle">
-        <FaReact id='fa'/>
+        {/* <FaReact id='fa'/> */}
+        <img src={`./src/img/logo-metec.png`} id='logo' alt="" />
         <span></span>
         <span></span>
         <span></span>
