@@ -240,3 +240,7 @@
   z-index: 1;
   transition: all 0.5s ease-in-out;
 }
+
+#navbar-body:hover #navbar-logo{
+  animation: rotate 1s linear infinite;
+}
