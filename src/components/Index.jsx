@@ -6,7 +6,7 @@ import EditProduct from './EditProduct'
 function Index() {
   return (
     <div className='App'>
-        <h1 className='font-bold	'>METEC</h1>
+        <h1 className='font-bold'>METEC</h1>
         <ProductList />
         <AddProduct />
         <EditProduct />

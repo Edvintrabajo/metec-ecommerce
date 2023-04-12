@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { useContext } from 'react'
 import { Context } from '../context/Context'
 import { getProducts, deleteProduct, displayForm } from '../controllers/products/products.functions'
+import Product from './Product'
 
 
 function ProductList() {
@@ -22,26 +23,9 @@ function ProductList() {
         <h1>Product List</h1>
 
         <div id='products-cards-container'>
-            {products.map((product) => (
-                <div key={product.id} className='product-card'>
-
-                    <h2>{product.name}</h2>
-                    <p>{product.brand}</p>
-                    <img src={product.url} alt={product.image} />
-                    
-                    <button 
-                        onClick={() => deleteProduct(product.id)}>
-                        Delete
-                    </button>
-                    
-                    <button 
-                        onClick={() => {
-                            displayForm()
-                            setProductIdEdit(product.id, )}}>
-                        Edit
-                    </button>
-
-                </div>
+            {products.map(product => (
+        
+                <Product key={product.id} product={product} deleteProduct={deleteProduct} displayForm={displayForm} setProductIdEdit={setProductIdEdit} />
             ))}
         </div>
         
