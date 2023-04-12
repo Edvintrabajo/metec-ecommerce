@@ -1,246 +1,127 @@
-#circle-container{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: black;
-    width: 100%;
-    height: 100vh;
-    overflow: hidden;
-}
-
-#circle{
-    position: relative;
-    width: 350px;
-    height: 350px;
-    background: linear-gradient(#33ccff,#ff0066);
-    border-radius: 50%;
-    animation: rotate 1s linear infinite;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    opacity: 1;
-}
-
-@keyframes rotate{
-    0%{
-        transform: rotate(0deg);
-    }
-    100%{
-        transform: rotate(360deg);
-    }
-}
-
-#circle::after{
-    content: '';
-    position: absolute;
-    top: 35px;
-    right: 35px;
-    bottom: 35px;
-    left: 35px;
-    border-radius: 50%;
-    background-color: black;
-    /* filter: blur(1px); */
-}
-
-#circle span{
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(45deg, hsla(193, 90%, 55%, 1) 0%, hsla(280, 95%, 57%, 1) 100%);
-    border-radius: 50%;
-}
-
-#circle span:nth-child(1){
-    filter: blur(5px);
-}
-#circle span:nth-child(2){
-    filter: blur(10px);
-}
-#circle span:nth-child(3){
-    filter: blur(20px);
-}
-#circle span:nth-child(4){
-    filter: blur(50px);
-}
-
-#logo{ 
-    z-index: 1;
-    width: 100px;
-}
-
-/* Formulario reversible https://web-leb.com/code/17 */
-
-/* Menu Burguer */
-.burger {
-    position: relative;
-    width: 40px;
-    height: 30px;
-    background: transparent;
-    cursor: pointer;
-  }
-  
-  .burger input {
-    display: none;
-  }
-  
-  .burger span {
-    display: block;
-    position: absolute;
-    height: 4px;
-    width: 100%;
-    background: black;
-    border-radius: 10px;
-    opacity: 1;
-    left: 0;
-    transform: rotate(0deg);
-    transition: .25s ease-in-out;
-  }
-  
-  .burger span:nth-of-type(1) {
-    top: 0px;
-    transform-origin: left center;
-  }
-  
-  .burger span:nth-of-type(2) {
-    top: 50%;
-    transform: translateY(-50%);
-    transform-origin: left center;
-  }
-  
-  .burger span:nth-of-type(3) {
-    top: 100%;
-    transform-origin: left center;
-    transform: translateY(-100%);
-  }
-  
-  .burger input:checked ~ span:nth-of-type(1) {
-    transform: rotate(45deg);
-    top: 0px;
-    left: 5px;
-  }
-  
-  .burger input:checked ~ span:nth-of-type(2) {
-    width: 0%;
-    opacity: 0;
-  }
-  
-  .burger input:checked ~ span:nth-of-type(3) {
-    transform: rotate(-45deg);
-    top: 28px;
-    left: 5px;
-  }
-  .burger input:checked ~ span{
-    background: black;
-  }
-
-/* Cards */
-.flip-card {
-  background-color: transparent;
-  width: 340px;
-  height: 350px;
-  perspective: 1000px;
-  margin: 1em;
-  margin-bottom: 5em;
-  transition: all 0.5s ease-in-out;
-  cursor: pointer;
-}
-
-.heading {
-  position: absolute;
-  letter-spacing: .2em;
-  font-size: 0.5em;
-  top: 2em;
-  left: 18.6em;
-}
-
-.logo {
-  position: absolute;
-  top: 6.8em;
-  left: 11.7em;
-}
-
-.chip {
-  position: absolute;
-  top: 2.3em;
-  left: 1.5em;
-}
-
-.contactless {
-  position: absolute;
-  top: 3.5em;
-  left: 12.4em;
-}
-
-.flip-card-inner {
-  position: relative;
-  width: 100%;
-  height: 100%;
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
   text-align: center;
-  transition: all 0.5s ease-in-out;
-  transform-style: preserve-3d;
 }
 
-.flip-card:hover .flip-card-inner {
-  transform: rotateY(180deg);
-  box-shadow: 0 8px 14px 0 rgba(0,0,0,0.6);
-  border-radius: 1rem;
-  scale: 1.1;
-  transition: all 0.5s ease-in-out;
-}
-
-.flip-card-front, .flip-card-back {
-  box-shadow: 0 8px 14px 0 rgba(0,0,0,0.2);
-  position: absolute;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-  border-radius: 1rem;
-  background-color: white;
-  color: black;
-
-}
-
-.flip-card-front {
+.App {
+  text-align: center;
   display: flex;
   justify-content: center;
-  flex-wrap: wrap;
   align-items: center;
-  
-  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 2px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -1px 0px inset;
+  flex-direction: column; 
 }
 
-.flip-card-back {
-  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 2px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -1px 0px inset;
-  transform: rotateY(180deg);
+#register-form{
+  width: 200px;
+  border: 2px solid white;
+  padding: 2em;
+  border-radius: 15px;
 }
 
-.flip-card-front img{
-  width: 250px;
-  height: 250px;
+input{
+  padding: 1em;
 }
 
-/* Filter */
-#filter-container{
-  transform: translateY(-100%);
-  top: 136px;
-}
-
-.open-menu::before{
-  content: "";
+#register-message-container {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  z-index: 1;
-  transition: all 0.5s ease-in-out;
+  background: rgba(0, 0, 0, 0.4);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  display: none;
 }
 
-#navbar-body:hover #navbar-logo{
-  animation: rotate 1s linear infinite;
+.register-message {
+  padding: 1em;
+  width: 300px;
+  height: 300px;
+  color: black;
+  border-radius: 1em;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.register-message img {
+  width: 100px;
+  padding: 1em;
+  border-radius: 15px;
+}
+
+#products-cards-container{
+  width: 100%;
+  padding-top: 2em;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.product-card{
+  color: black;
+  width: 300px;
+  background-color: white;
+  border-radius: 15px;
+  padding: 1em;
+  cursor: pointer;
+  margin: 1em;
+}
+
+.product-card img{
+  width: 200px;
+}
+
+
+#create-product-container, #edit-product-container {
+  width: 750px;
+  margin: 0 auto;
+  /* width: 400px; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  border: 1px solid #ccc;
+  border-radius: 15px;
+  padding: 1em;
+  backdrop-filter: blur(10px);
+  z-index: 2;
+}
+
+#create-product-container input, #edit-product-container input {
+  margin: 20px;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  width: 70%;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+}
+
+#edit-product-form{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  top: 0;
+  left: 0;
+  justify-content: center;
+  align-items: center;
+  display: none;
+  z-index: 1;
 }

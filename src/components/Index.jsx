@@ -1,15 +1,17 @@
-import { LoadCircle } from "../animations/animations";
-import LoadedIndex from "../components/Loadedindex";
-import AddProduct from "./admin/AddProduct"; // PARA LA RUTA DE ADMINS
+import React from 'react'
+import ProductList from './ProductList'
+import AddProduct from './AddProduct'
+import EditProduct from './EditProduct'
 
-const Index = () => {
-  
+function Index() {
   return (
-    <>
-      <LoadCircle />
-      <LoadedIndex />
-    </>
-  );
-};
+    <div className='App'>
+        <h1 className='font-bold	'>METEC</h1>
+        <ProductList />
+        <AddProduct />
+        <EditProduct />
+    </div>
+  )
+}
 
-export default Index;
+export default Index
