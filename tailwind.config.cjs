@@ -9,11 +9,11 @@ module.exports = withMT({
     "path-to-your-node_modules/@material-tailwind/react/theme/components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {
-      backgroundImage: {
-        'custom-gradient': 'linear-gradient(90deg, hsla(280, 95%, 57%, 1) 0%, hsla(193, 90%, 55%, 1) 100%)',
-      }
-    },
+    // extend: {
+    //   backgroundImage: {
+    //     'custom-gradient': 'linear-gradient(90deg, hsla(280, 95%, 57%, 1) 0%, hsla(193, 90%, 55%, 1) 100%)',
+    //   }
+    // },
     screens: {
       'mobile': '300px',
       'tablet': '600px',

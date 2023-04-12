@@ -1,50 +1,47 @@
-import { useEffect } from "react"
-import fetchRegister from "../controllers/fetchregister"
-import {
-  Card,
-  Input,
-  Button,
-  Typography,
-} from "@material-tailwind/react";
+import React from 'react'
+import { useContext } from 'react'
+import { Context } from '../context/Context'
+import { signUp } from '../controllers/register/register.functions'
+import { auth } from '../config/firebase'
 
-function Register() {  
-  useEffect(() => { 
-    fetchRegister()
-  }, [])
+function Register() {
 
+  const { email, setEmail, password, setPassword } = useContext(Context)
+  
+  const register = () => signUp(email, password)
+  console.log(auth?.currentUser?.email)
   return (
-      <div className="w-full h-screen flex flex-wrap justify-center items-center">
-        <form id="register-form">
-          <Card color="white" shadow={false} className="p-10">
-            <Typography variant="h4" color="blue-gray">
-              Sign Up
-            </Typography>
-            <Typography color="gray" className="mt-1 font-normal">
-              Enter your details to register.
-            </Typography>
-              <div className="mb-4 flex flex-col gap-6">
-                <Input size="lg" name="Fullname" id="Fullname" label="Fullname" />
-                <Input size="lg" name="Email" id="Email" label="Email" />
-                <Input type="password" name="password" id="password" size="lg" label="Password" />
-                <Input type="password" name="confirmPassword" id="confirmPassword" size="lg" label="Confirm Password" />
-              </div>
-              
-              <Button type="submit" className="mt-6" fullWidth>
-                Register
-              </Button>
-              <Typography color="gray" className="mt-4 text-center font-normal">
-                Already have an account?{" "}
-                <a
-                  href="/login"
-                  className="font-medium text-blue-500 transition-colors hover:text-blue-700"
-                >
-                  Sign In
-                </a>
-              </Typography>
-          </Card>
-        </form>
-      </div>
-    )
-  }
+    <>
+      <form 
+        id='register-form'
+        onSubmit={(e) => {e.preventDefault(); register()}}
+       >
+        <h2>Sign up</h2>
+        <input 
+          type="email" 
+          placeholder='email . . .'
+          onChange={(e) => setEmail(e.target.value)}
+          required
+          />
+        <br />
+        <br />
+        <input 
+          type="password" 
+          placeholder='password . . .'
+          onChange={(e) => setPassword(e.target.value)}
+          required
+          />
+        <br />
+        <br />
+        <button
+          type='submit'
+        >
+          Register
+        </button>
+        <div id='register-message-container'></div>
+      </form>
+    </>
+  )
+}
 
 export default Register
