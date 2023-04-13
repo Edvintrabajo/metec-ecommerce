@@ -1,5 +1,6 @@
 import { db } from '../../config/firebase'
 import { getDocs,
+    getDoc,
     collection,
     addDoc,
     deleteDoc,
@@ -24,10 +25,10 @@ export const addProduct = async (name, brand, price, stock, description, ratings
         await addDoc(productsCollection, {
             name,
             brand,
-            price,
-            stock,
+            price: Number(price),
+            stock: Number(stock),
             description,
-            ratings,
+            ratings: Number(ratings),
             category,
             type,
             image,
@@ -54,16 +55,16 @@ export const deleteProduct = async (id) => {
 export const updateProduct = async (id, name, brand, price, stock, description, ratings, category, type, image, url) => {
     try{
         const productDoc = doc(db, 'products', id)
-        
-        // NECESITA VALIDACIONES
-        
+
+        console.log(ratings, typeof(ratings))
+
         await updateDoc(productDoc, {
             name,
             brand,
-            price,
-            stock,
+            price: Number(price),
+            stock: Number(stock),
             description,
-            ratings,
+            ratings: Number(ratings),
             category,
             type,
             image,
@@ -71,7 +72,8 @@ export const updateProduct = async (id, name, brand, price, stock, description, 
         })
     } catch (error) {
         console.log(error)
-    } finally {
+    } 
+    finally {
         reload()
     }
 }
@@ -88,4 +90,21 @@ export const displayForm = () => {
 
 const reload = () => {
     window.location.reload()
+}
+
+
+export const updateStates = async (id, setName, setBrand, setPrice, setStock, setDescription, setRatings, setCategory, setType, setImage, setUrl) => {
+    const productDoc = doc(db, 'products', id)
+    const productData = await getDoc(productDoc)
+    
+    setName(productData.data().name)
+    setBrand(productData.data().brand)
+    setPrice(productData.data().price)
+    setStock(productData.data().stock)
+    setDescription(productData.data().description)
+    setRatings(productData.data().ratings)
+    setCategory(productData.data().category)
+    setType(productData.data().type)
+    setImage(productData.data().image)
+    setUrl(productData.data().url)
 }
