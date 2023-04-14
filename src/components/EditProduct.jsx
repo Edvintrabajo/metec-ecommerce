@@ -19,8 +19,8 @@ function EditProduct() {
         } = useContext(Context)
         
   return (
-    <div id='edit-product-form'>
-        <div id='edit-product-container'>
+    <div id='edit-product-form' className='absolute w-full h-full top-0 left-0 hidden justify-center items-center z-10'>
+        <div id='edit-product-container' className='w-2/4  z-20'>
             <h3 style={{width: "100%"}}>Edit Product</h3>
             <div className='form-group'>
                 <label htmlFor="">Name</label>

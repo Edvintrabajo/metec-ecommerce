@@ -12,7 +12,7 @@ function Register() {
 
   return (
     <div className="flex justify-center items-center w-full min-h-screen">
-      <Card color="transparent" shadow={false} className="text-center border-2 p-4">
+      <Card color="transparent" shadow={false} className="text-center border-2 p-4 bg-white">
         <Typography variant="h4" color="blue-gray">
           Sign Up
         </Typography>

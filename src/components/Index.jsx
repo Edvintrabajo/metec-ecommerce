@@ -6,7 +6,7 @@ import Navbar from './Navbar'
 
 function Index() {
   return (
-    <div className='App p-4'>
+    <div className='App p-4 relative'>
         <Navbar />
         <ProductList />
         <AddProduct />
