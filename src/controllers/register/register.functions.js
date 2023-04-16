@@ -24,6 +24,17 @@ export const signIn = async (email, password) => {
     });
 };
 
+export const logOut = async () => {
+  await signOut(auth)
+    .then(() => {
+      showMsg("Logged out successfully", true);
+    })
+    .catch((error) => {
+      const errMsg = checkErrorCodes(error.code);
+      showMsg(errMsg, false);
+    });
+};
+
 const showMsg = (msg, valid) => {
   const msgContainer = document.querySelector("#register-message-container");
 
