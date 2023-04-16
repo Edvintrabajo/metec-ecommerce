@@ -1,6 +1,7 @@
-import {createBrowserRouter} from "react-router-dom";
+import {createBrowserRouter} from "react-router-dom"
 import Register from '../components/Register'
-import Index from "../components/Index";
+import Login from '../components/Login'
+import Index from "../components/Index"
 
 const router = createBrowserRouter([
     {
@@ -18,6 +19,10 @@ const router = createBrowserRouter([
     {
       path: "/register",
       element: <Register />,
+    },
+    {
+      path: "/login",
+      element: <Login />,
     },
     {
       path: "*",

@@ -1,29 +1,29 @@
 import React from "react";
 import { useContext } from "react";
 import { Context } from "../context/Context";
-import { signUp } from "../controllers/register/register.functions";
+import { signIn } from "../controllers/register/register.functions";
 import { auth } from "../config/firebase";
 import { Card, Input, Button, Typography } from "@material-tailwind/react";
 
-function Register() {
+function Login() {
   const { email, setEmail, password, setPassword } = useContext(Context);
-  const register = () => signUp(email, password);
+  const login = () => signIn(email, password);
   console.log(auth?.currentUser?.email);
 
   return (
     <div className="flex justify-center items-center w-full min-h-screen">
       <Card color="transparent" shadow={false} className="text-center border-2 p-4 bg-white">
         <Typography variant="h4" color="blue-gray">
-          Sign Up
+          Sign In
         </Typography>
         <Typography color="gray" className="mt-1 font-normal">
-          Enter your details to register.
+          Enter your details to login.
         </Typography>
         <form
           className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96"
           onSubmit={(e) => {
             e.preventDefault();
-            register();
+            login();
           }}
         >
           <div className="mb-4 flex flex-col gap-6">
@@ -45,7 +45,7 @@ function Register() {
 
           <div className="flex flex-col">
             <Button className="mt-6 mb-4 p-4" fullWidth type="submit">
-              Register
+              Login
             </Button>
             <Button
               variant="outlined"
@@ -59,12 +59,12 @@ function Register() {
 
 
           <Typography color="gray" className="mt-4 text-center font-normal">
-            Already have an account?{" "}
+            Don't have an account?{" "}
             <a
-              href="/login"
+              href="/register"
               className="font-medium text-blue-500 transition-colors hover:text-blue-700"
             >
-              Sign In
+              Sign Up
             </a>
           </Typography>
         </form>
@@ -76,4 +76,4 @@ function Register() {
   );
 }
 
-export default Register;
+export default Login;
