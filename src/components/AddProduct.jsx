@@ -14,7 +14,7 @@ function AddProduct() {
         category, setCategory,
         type, setType,
         image, setImage,
-        url, setUrl
+        uploadImage, setUploadImage,
     } = useContext(Context)
 
   return (
@@ -24,50 +24,61 @@ function AddProduct() {
             <div className='form-group'>
                 <input 
                     placeholder='Name' 
-                    type="text" 
+                    type="text"
+                    required 
                     onChange={(e) => setName(e.target.value)} />
                 <input 
                     placeholder='Brand' 
-                    type="text" 
+                    type="text"
+                    required 
                     onChange={(e) => setBrand(e.target.value)} />
                 <input 
                     placeholder='Price' 
-                    type="number" min={0} max={10000}
+                    type="numbe
+                    requiredr" min={0} max={10000}
                     onChange={(e) => setPrice(e.target.value)} />
                 <input 
                     placeholder='Stock' 
-                    type="number" min={0} max={10000}
+                    type="numbe
+                    requiredr" min={0} max={10000}
                     onChange={(e) => setStock(e.target.value)} />
                 <input 
                     placeholder='Description' 
-                    type="text" 
+                    type="text"
+                    required 
                     onChange={(e) => setDescription(e.target.value)} />
             </div>
             <div className='form-group'>
                 <input 
                     placeholder='Ratings'
-                    type="number" min={0} max={10}
+                    type="numbe
+                    requiredr" min={0} max={10}
                     onChange={(e) => setRatings(e.target.value)} />
                 <input 
                     placeholder='Category' 
-                    type="text" 
+                    type="text"
+                    required 
                     onChange={(e) => setCategory(e.target.value)} />
                 <input 
                     placeholder='Type' 
-                    type="text" 
+                    type="text"
+                    required 
                     onChange={(e) => setType(e.target.value)} />
                 <input 
                     placeholder='Image' 
-                    type="text" 
+                    type="text"
+                    required 
                     onChange={(e) => setImage(e.target.value)} />
                 <input 
                     placeholder='Url' 
-                    type="text" 
-                    onChange={(e) => setUrl(e.target.value)} />
+                    type="file"
+                    required
+                    accept="image/png, image/jpeg, image/jpg"
+                    onChange={(e) => setUploadImage(e.target.files[0])} />
             </div>
 
             <button
-                onClick={() => addProduct(name, brand, price, stock, description, ratings, category, type, image, url)}>
+                onClick={() => addProduct(name, brand, price, stock, description, ratings, category, type, image, uploadImage)}>
                 Add
             </button>
         </div>

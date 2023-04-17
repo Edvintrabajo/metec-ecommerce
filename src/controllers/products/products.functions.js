@@ -20,7 +20,7 @@ export const getProducts = async (setProducts) => {
     }
 }
 
-export const addProduct = async (name, brand, price, stock, description, ratings, category, type, image, url) => {
+export const addProduct = async (name, brand, price, stock, description, ratings, category, type, image, uploadImage) => {
     try {
         await addDoc(productsCollection, {
             name,
@@ -32,7 +32,7 @@ export const addProduct = async (name, brand, price, stock, description, ratings
             category,
             type,
             image,
-            url
+            uploadImage
         })
     } catch (error) {
         console.log(error)
