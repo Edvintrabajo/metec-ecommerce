@@ -9,7 +9,7 @@ import { getDocs,
  } from 'firebase/firestore'
 
  import { storage } from '../../config/firebase'
-import { ref, uploadBytes, getDownloadURL } from 'firebase/storage'
+import { ref, uploadBytes, getDownloadURL, deleteObject } from 'firebase/storage'
 import {v4} from 'uuid'
 
 const productsCollection = collection(db, 'products')
@@ -31,8 +31,8 @@ export const getProducts = async (setProducts) => {
 }
 
 export const addProduct = async (name, brand, price, stock, description, ratings, category, type, imageUpload) => {
-    
-    const imageRef = ref(storage, `images/${imageUpload.name + v4()}`)
+    const imageRefName = `images/${imageUpload.name + v4()}`
+    const imageRef = ref(storage, imageRefName)
     await uploadBytes(imageRef, imageUpload)
     const url = await getDownloadURL(imageRef)
 
@@ -46,32 +46,37 @@ export const addProduct = async (name, brand, price, stock, description, ratings
             ratings: Number(ratings),
             category,
             type,
-            url
+            url,
+            imageRefName
         })
     } catch (error) {
         console.log(error)
     } 
-    finally {
-        reload()
-    }
+    // finally {
+    //     reload()
+    // }
 }
 
 export const deleteProduct = async (id) => {
     try{
         const productDoc = doc(db, 'products', id)
+        const productData = await getDoc(productDoc)
+        const imageRef = ref(storage, productData.data().imageRefName)
+        await deleteObject(imageRef)
         await deleteDoc(productDoc)
     } catch (error) {
         console.log(error)
-    } finally {
-        reload()
-    }
+    } 
+    // finally {
+    //     reload()
+    // }
 }
 
-export const updateProduct = async (id, name, brand, price, stock, description, ratings, category, type, imageUpload) => {
-    if (imageUpload == null) {
-        try{
-            const productDoc = doc(db, 'products', id)
+export const updateProduct = async (id, name, brand, price, stock, description, ratings, category, type, imageUpload, imageRefName) => {
+    const productDoc = doc(db, 'products', id)
     
+    if (imageUpload == null) {
+        try{    
             await updateDoc(productDoc, {
                 name,
                 brand,
@@ -88,15 +93,12 @@ export const updateProduct = async (id, name, brand, price, stock, description, 
         finally {
             reload()
         }
-    }
-    else{
+    } else{
         const imageRef = ref(storage, `images/${imageUpload.name + v4()}`)
         await uploadBytes(imageRef, imageUpload)
         const url = await getDownloadURL(imageRef)
         
-        try{
-            const productDoc = doc(db, 'products', id)
-    
+        try{    
             await updateDoc(productDoc, {
                 name,
                 brand,
@@ -108,12 +110,21 @@ export const updateProduct = async (id, name, brand, price, stock, description, 
                 type,
                 url
             })
+            try
+            {
+                const imageRef = ref(storage, imageRefName)
+                await deleteObject(imageRef)
+            }
+            catch (error) {
+                console.log(error)
+            }
+
         } catch (error) {
             console.log(error)
         } 
-        finally {
-            reload()
-        }
+        // finally {
+        //     reload()
+        // }
     }
     
 }
@@ -133,7 +144,7 @@ const reload = () => {
 }
 
 
-export const updateStates = async (id, setName, setBrand, setPrice, setStock, setDescription, setRatings, setCategory, setType, setImageUpload) => {
+export const updateStates = async (id, setName, setBrand, setPrice, setStock, setDescription, setRatings, setCategory, setType, setImageRefName, setUrl) => {
     const productDoc = doc(db, 'products', id)
     const productData = await getDoc(productDoc)
     
@@ -145,5 +156,6 @@ export const updateStates = async (id, setName, setBrand, setPrice, setStock, se
     setRatings(productData.data().ratings)
     setCategory(productData.data().category)
     setType(productData.data().type)
-    setImageUpload(productData.data().url)
+    setImageRefName(productData.data().imageRefName)
+    setUrl(productData.data().url)
 }

@@ -16,20 +16,21 @@ export function ContextProvider(props) {
     const [brand, setBrand] = useState('')
     const [price, setPrice] = useState('')
     const [stock, setStock] = useState('')
-    const [description, setDescription] = useState('')
     
-     // COL 2
+    // COL 2
+    const [description, setDescription] = useState('')
     const [ratings, setRatings] = useState('')
     const [category, setCategory] = useState('')
     const [type, setType] = useState('')
-    const [url, setUrl] = useState('')
-
-    // EDIT PRODUCT
-    const [productIdEdit, setProductIdEdit] = useState('')
-
+    
     // UPLOAD IMAGE
     const [imageUpload, setImageUpload] = useState(null)
-
+    const [imageRefName, setImageRefName] = useState(null)
+    const [url, setUrl] = useState('')
+    
+    // EDIT PRODUCT
+    const [productIdEdit, setProductIdEdit] = useState('')
+    
     // STATES & FUNCTIONS
     const states = {
         email, setEmail,
@@ -43,9 +44,10 @@ export function ContextProvider(props) {
         ratings, setRatings,
         category, setCategory,
         type, setType,
-        url, setUrl,
         productIdEdit, setProductIdEdit,
-        imageUpload, setImageUpload
+        imageUpload, setImageUpload,
+        imageRefName, setImageRefName,
+        url, setUrl,
     } 
 
     return (

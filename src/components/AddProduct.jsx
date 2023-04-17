@@ -14,7 +14,7 @@ function AddProduct() {
         ratings, setRatings,
         category, setCategory,
         type, setType,
-        imageUpload, setImageUpload,
+        imageUpload, setImageUpload
     } = useContext(Context)
 
   return (

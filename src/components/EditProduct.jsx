@@ -14,6 +14,7 @@ function EditProduct() {
             category, setCategory,
             type, setType,
             imageUpload, setImageUpload,
+            imageRefName,
             productIdEdit
         } = useContext(Context)
         
@@ -75,7 +76,7 @@ function EditProduct() {
 
             <button
                 onClick={() => {
-                    updateProduct(productIdEdit, name, brand, price, stock, description, ratings, category, type, imageUpload)
+                    updateProduct(productIdEdit, name, brand, price, stock, description, ratings, category, type, imageUpload, imageRefName)
                     displayForm()}}>
                 Edit
             </button>

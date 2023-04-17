@@ -16,6 +16,7 @@ function Product({product, deleteProduct, displayForm, updateStates}) {
     setRatings,
     setType,
     setUrl,
+    setImageRefName,
     setProductIdEdit
    } = useContext(Context);
   
@@ -40,7 +41,7 @@ function Product({product, deleteProduct, displayForm, updateStates}) {
             onClick={() => {
                     displayForm()
                     setProductIdEdit(product.id)
-                    updateStates(product.id, setName, setBrand, setPrice, setStock, setDescription, setRatings, setCategory, setType, setUrl)
+                    updateStates(product.id, setName, setBrand, setPrice, setStock, setDescription, setRatings, setCategory, setType, setImageRefName, setUrl)
                     }}>
                 Edit
                 <MdModeEdit />
