@@ -22,14 +22,13 @@ export function ContextProvider(props) {
     const [ratings, setRatings] = useState('')
     const [category, setCategory] = useState('')
     const [type, setType] = useState('')
-    const [image, setImage] = useState('')
     const [url, setUrl] = useState('')
 
     // EDIT PRODUCT
     const [productIdEdit, setProductIdEdit] = useState('')
 
     // UPLOAD IMAGE
-    const [imageUpload, setImageUpload] = useState('')
+    const [imageUpload, setImageUpload] = useState(null)
 
     // STATES & FUNCTIONS
     const states = {
@@ -44,7 +43,6 @@ export function ContextProvider(props) {
         ratings, setRatings,
         category, setCategory,
         type, setType,
-        image, setImage,
         url, setUrl,
         productIdEdit, setProductIdEdit,
         imageUpload, setImageUpload

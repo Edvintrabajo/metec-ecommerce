@@ -8,7 +8,17 @@ import { getDocs,
     updateDoc
  } from 'firebase/firestore'
 
+ import { storage } from '../../config/firebase'
+import { ref, uploadBytes, getDownloadURL } from 'firebase/storage'
+import {v4} from 'uuid'
+
 const productsCollection = collection(db, 'products')
+
+// OPTIMIZAR GET PRODUCTS - Función que guarde los productos en el local storage para que no se haga una 
+// petición a la base de datos cada vez que se recargue la página
+// export const saveProducts = (products) => {
+//     localStorage.setItem('products', JSON.stringify(products))
+// }
 
 export const getProducts = async (setProducts) => {
     try{
@@ -20,7 +30,12 @@ export const getProducts = async (setProducts) => {
     }
 }
 
-export const addProduct = async (name, brand, price, stock, description, ratings, category, type, image, uploadImage) => {
+export const addProduct = async (name, brand, price, stock, description, ratings, category, type, imageUpload) => {
+    
+    const imageRef = ref(storage, `images/${imageUpload.name + v4()}`)
+    await uploadBytes(imageRef, imageUpload)
+    const url = await getDownloadURL(imageRef)
+
     try {
         await addDoc(productsCollection, {
             name,
@@ -31,12 +46,12 @@ export const addProduct = async (name, brand, price, stock, description, ratings
             ratings: Number(ratings),
             category,
             type,
-            image,
-            uploadImage
+            url
         })
     } catch (error) {
         console.log(error)
-    } finally {
+    } 
+    finally {
         reload()
     }
 }
@@ -52,30 +67,55 @@ export const deleteProduct = async (id) => {
     }
 }
 
-export const updateProduct = async (id, name, brand, price, stock, description, ratings, category, type, image, url) => {
-    try{
-        const productDoc = doc(db, 'products', id)
-
-        console.log(ratings, typeof(ratings))
-
-        await updateDoc(productDoc, {
-            name,
-            brand,
-            price: Number(price),
-            stock: Number(stock),
-            description,
-            ratings: Number(ratings),
-            category,
-            type,
-            image,
-            url
-        })
-    } catch (error) {
-        console.log(error)
-    } 
-    finally {
-        reload()
+export const updateProduct = async (id, name, brand, price, stock, description, ratings, category, type, imageUpload) => {
+    if (imageUpload == null) {
+        try{
+            const productDoc = doc(db, 'products', id)
+    
+            await updateDoc(productDoc, {
+                name,
+                brand,
+                price: Number(price),
+                stock: Number(stock),
+                description,
+                ratings: Number(ratings),
+                category,
+                type
+            })
+        } catch (error) {
+            console.log(error)
+        } 
+        finally {
+            reload()
+        }
     }
+    else{
+        const imageRef = ref(storage, `images/${imageUpload.name + v4()}`)
+        await uploadBytes(imageRef, imageUpload)
+        const url = await getDownloadURL(imageRef)
+        
+        try{
+            const productDoc = doc(db, 'products', id)
+    
+            await updateDoc(productDoc, {
+                name,
+                brand,
+                price: Number(price),
+                stock: Number(stock),
+                description,
+                ratings: Number(ratings),
+                category,
+                type,
+                url
+            })
+        } catch (error) {
+            console.log(error)
+        } 
+        finally {
+            reload()
+        }
+    }
+    
 }
 
 export const displayForm = () => {
@@ -93,7 +133,7 @@ const reload = () => {
 }
 
 
-export const updateStates = async (id, setName, setBrand, setPrice, setStock, setDescription, setRatings, setCategory, setType, setImage, setUrl) => {
+export const updateStates = async (id, setName, setBrand, setPrice, setStock, setDescription, setRatings, setCategory, setType, setImageUpload) => {
     const productDoc = doc(db, 'products', id)
     const productData = await getDoc(productDoc)
     
@@ -105,6 +145,5 @@ export const updateStates = async (id, setName, setBrand, setPrice, setStock, se
     setRatings(productData.data().ratings)
     setCategory(productData.data().category)
     setType(productData.data().type)
-    setImage(productData.data().image)
-    setUrl(productData.data().url)
+    setImageUpload(productData.data().url)
 }

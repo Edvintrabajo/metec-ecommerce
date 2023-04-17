@@ -5,7 +5,7 @@ import { BsFillTrashFill } from 'react-icons/bs';
 import { MdModeEdit } from 'react-icons/md';
 
 
-function Product({product, deleteProduct, displayForm, setProductIdEdit, updateStates}) {
+function Product({product, deleteProduct, displayForm, updateStates}) {
   const { 
     setName,
     setBrand,
@@ -15,8 +15,8 @@ function Product({product, deleteProduct, displayForm, setProductIdEdit, updateS
     setDescription,
     setRatings,
     setType,
-    setImage,
-    setUrl
+    setUrl,
+    setProductIdEdit
    } = useContext(Context);
   
   return (
@@ -40,7 +40,7 @@ function Product({product, deleteProduct, displayForm, setProductIdEdit, updateS
             onClick={() => {
                     displayForm()
                     setProductIdEdit(product.id)
-                    updateStates(product.id, setName, setBrand, setPrice, setStock, setDescription, setRatings, setCategory,  setType, setImage, setUrl)
+                    updateStates(product.id, setName, setBrand, setPrice, setStock, setDescription, setRatings, setCategory, setType, setUrl)
                     }}>
                 Edit
                 <MdModeEdit />

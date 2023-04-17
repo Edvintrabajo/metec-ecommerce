@@ -10,7 +10,7 @@ import {
 import Product from "./Product";
 
 function ProductList() {
-  const { products, setProducts, setProductIdEdit } = useContext(Context);
+  const { products, setProducts } = useContext(Context);
 
   // IMPORTANTE:
   // Se debe dejar el get products en el useEffect para que
@@ -21,7 +21,6 @@ function ProductList() {
   useEffect(() => {
     getProducts(setProducts);
   }, []);
-    
   
   return (
     <div>
@@ -34,7 +33,6 @@ function ProductList() {
             product={product}
             deleteProduct={deleteProduct}
             displayForm={displayForm}
-            setProductIdEdit={setProductIdEdit}
             updateStates={updateStates}
           />
         ))}

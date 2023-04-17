@@ -13,8 +13,7 @@ function EditProduct() {
             ratings, setRatings,
             category, setCategory,
             type, setType,
-            image, setImage,
-            url, setUrl,
+            imageUpload, setImageUpload,
             productIdEdit
         } = useContext(Context)
         
@@ -43,13 +42,13 @@ function EditProduct() {
                     placeholder='Stock' 
                     type="number" min={0} max={10000}
                     onChange={(e) => setStock(e.target.value)} value={stock}/>
+            </div>
+            <div className='form-group'>
                 <label htmlFor="">Description</label>
                 <input 
                     placeholder='Description' 
                     type="text" 
                     onChange={(e) => setDescription(e.target.value)} value={description}/>
-            </div>
-            <div className='form-group'>
                 <label htmlFor="">Ratings</label>
                 <input 
                     placeholder='Ratings'
@@ -65,21 +64,18 @@ function EditProduct() {
                     placeholder='Type' 
                     type="text" 
                     onChange={(e) => setType(e.target.value)} value={type}/>
-                <label htmlFor="">Image</label>
+            </div>
+            <div className='form-group w-full'>
                 <input 
-                    placeholder='Image' 
-                    type="text" 
-                    onChange={(e) => setImage(e.target.value)} value={image}/>
-                <label htmlFor="">Url</label>
-                <input 
-                    placeholder='Url' 
-                    type="text" 
-                    onChange={(e) => setUrl(e.target.value)} value={url}/>
+                    type="file"
+                    required
+                    accept="image/png, image/jpeg, image/jpg"
+                    onChange={(e) => setImageUpload(e.target.files[0])} />
             </div>
 
             <button
                 onClick={() => {
-                    updateProduct(productIdEdit, name, brand, price, stock, description, ratings, category, type, image, url)
+                    updateProduct(productIdEdit, name, brand, price, stock, description, ratings, category, type, imageUpload)
                     displayForm()}}>
                 Edit
             </button>
