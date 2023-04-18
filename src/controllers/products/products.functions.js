@@ -30,7 +30,7 @@ export const getProducts = async (setProducts) => {
     }
 }
 
-export const addProduct = async (name, brand, price, stock, description, ratings, category, type, imageUpload) => {
+export const addProduct = async (name, brand, price, stock, description, ratings, category, type, imageUpload, setProducts) => {
     const imageRefName = `images/${imageUpload.name + v4()}`
     const imageRef = ref(storage, imageRefName)
     await uploadBytes(imageRef, imageUpload)
@@ -52,12 +52,12 @@ export const addProduct = async (name, brand, price, stock, description, ratings
     } catch (error) {
         console.log(error)
     } 
-    // finally {
-    //     reload()
-    // }
+    finally {
+        getProducts(setProducts);
+    }
 }
 
-export const deleteProduct = async (id) => {
+export const deleteProduct = async (id, setProducts) => {
     try{
         const productDoc = doc(db, 'products', id)
         const productData = await getDoc(productDoc)
@@ -67,12 +67,12 @@ export const deleteProduct = async (id) => {
     } catch (error) {
         console.log(error)
     } 
-    // finally {
-    //     reload()
-    // }
+    finally {
+        getProducts(setProducts);
+    }
 }
 
-export const updateProduct = async (id, name, brand, price, stock, description, ratings, category, type, imageUpload, imageRefName) => {
+export const updateProduct = async (id, name, brand, price, stock, description, ratings, category, type, imageUpload, imageRefName, setProducts) => {
     const productDoc = doc(db, 'products', id)
     
     if (imageUpload == null) {
@@ -91,7 +91,7 @@ export const updateProduct = async (id, name, brand, price, stock, description, 
             console.log(error)
         } 
         finally {
-            reload()
+            getProducts(setProducts);
         }
     } else{
         const imageRef = ref(storage, `images/${imageUpload.name + v4()}`)
@@ -108,7 +108,8 @@ export const updateProduct = async (id, name, brand, price, stock, description, 
                 ratings: Number(ratings),
                 category,
                 type,
-                url
+                url,
+                imageRef
             })
             try
             {
@@ -122,9 +123,9 @@ export const updateProduct = async (id, name, brand, price, stock, description, 
         } catch (error) {
             console.log(error)
         } 
-        // finally {
-        //     reload()
-        // }
+        finally {
+            getProducts(setProducts);
+        }
     }
     
 }

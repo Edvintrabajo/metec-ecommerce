@@ -2,7 +2,7 @@ import React from 'react'
 import { useContext } from 'react'
 import { Context } from '../context/Context'
 import { addProduct } from '../controllers/products/products.functions'
-
+import { displayForm } from '../controllers/products/products.functions'
 
 function AddProduct() {
     const {  
@@ -14,13 +14,16 @@ function AddProduct() {
         ratings, setRatings,
         category, setCategory,
         type, setType,
-        imageUpload, setImageUpload
+        imageUpload, setImageUpload,
+        setProducts
     } = useContext(Context)
 
   return (
-    <div>
-        <div id='create-product-container'>
-            <h3 style={{width: "100%"}}>Add Product</h3>
+    <div id='create-product-form' 
+        className='absolute w-full h-full top-0 left-0 hidden justify-center items-center z-10'>
+        
+        <div id='create-product-container' className='w-2/4  z-20'>
+            <h3 style={{width: "100%", fontSize: "2em"}}>Add Product</h3>
             <div className='form-group'>
                 <input 
                     placeholder='Name' 
@@ -78,10 +81,22 @@ function AddProduct() {
             </div>
 
             <button
-                onClick={() => addProduct(name, brand, price, stock, description, ratings, category, type, imageUpload)}>
+                onClick={() => {
+                    addProduct(name, brand, price, stock, description, ratings, category, type, imageUpload, setProducts)
+                    displayForm('create-product-form')}}>
                 Add
             </button>
+
+            <button
+                className='bg-cancel'
+                onClick={() => {
+                displayForm('create-product-form')
+                }}>
+                Cancel
+            </button>
+
         </div>
+
     </div>
   )
 }

@@ -4,7 +4,7 @@ import { Context } from '../context/Context'
 import { displayForm, deleteProduct } from '../controllers/products/products.functions'
 
 function DeleteProduct() {
-    const { productIdEdit } = useContext(Context)
+    const { productIdEdit, setProducts } = useContext(Context)
         
   return (
     <div id='delete-product-form' className='absolute w-full h-full top-0 left-0 hidden justify-center items-center z-10'>
@@ -17,7 +17,7 @@ function DeleteProduct() {
             <button
                 className='bg-danger'
                 onClick={() => {
-                deleteProduct(productIdEdit)
+                deleteProduct(productIdEdit, setProducts)
                 displayForm('delete-product-form')
                 }}>
                 Delete

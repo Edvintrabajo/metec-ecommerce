@@ -18,6 +18,7 @@ module.exports = withMT({
         'danger': '#EF4444',
         'warning': '#F59E0B',
         'info': '#3B82F6',
+        'edit': '#10B981',
         'b-rgba-1': 'rgba(0, 0, 0, 0.1)',
         'b-rgba-2': 'rgba(0, 0, 0, 0.2)',
         'b-rgba-3': 'rgba(0, 0, 0, 0.3)',

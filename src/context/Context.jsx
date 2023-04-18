@@ -24,8 +24,8 @@ export function ContextProvider(props) {
     const [type, setType] = useState('')
     
     // UPLOAD IMAGE
-    const [imageUpload, setImageUpload] = useState(null)
-    const [imageRefName, setImageRefName] = useState(null)
+    const [imageUpload, setImageUpload] = useState(null) // image file
+    const [imageRefName, setImageRefName] = useState(null) // path to image in firebase storage
     const [url, setUrl] = useState('')
     
     // EDIT PRODUCT

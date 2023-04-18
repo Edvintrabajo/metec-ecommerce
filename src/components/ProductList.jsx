@@ -8,7 +8,7 @@ import {
   updateStates
 } from "../controllers/products/products.functions";
 import Product from "./Product";
-
+import AddButton from "./AddButton";
 function ProductList() {
   const { products, setProducts } = useContext(Context);
 
@@ -23,9 +23,9 @@ function ProductList() {
   }, []);
   
   return (
-    <div>
-      <h1>Product List</h1>
-
+    <div className="w-full">
+      <h1 className="mt-20">Product List</h1>
+      <AddButton />
       <div id="products-cards-container">
         {products.map((product) => (
           <Product

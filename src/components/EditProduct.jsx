@@ -15,7 +15,8 @@ function EditProduct() {
             type, setType,
             imageUpload, setImageUpload,
             imageRefName,
-            productIdEdit
+            productIdEdit,
+            setProducts
         } = useContext(Context)
         
   return (
@@ -77,7 +78,7 @@ function EditProduct() {
             <button
                 className='bg-info'
                 onClick={() => {
-                    updateProduct(productIdEdit, name, brand, price, stock, description, ratings, category, type, imageUpload, imageRefName)
+                    updateProduct(productIdEdit, name, brand, price, stock, description, ratings, category, type, imageUpload, imageRefName, setProducts)
                     displayForm('edit-product-form')}}>
                 Edit
             </button>

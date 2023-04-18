@@ -7,7 +7,7 @@ import DeleteProduct from './DeleteProduct'
 
 function Index() {
   return (
-    <div className='App p-4 relative'>
+    <div className='App p-4 relative min-h-screen flex justify-start items-center'>
         <Navbar />
         <ProductList />
         <AddProduct />

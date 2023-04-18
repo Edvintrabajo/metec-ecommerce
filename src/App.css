@@ -65,11 +65,6 @@
   margin: 1em;
 }
 
-.product-card img{
-  width: 200px;
-}
-
-
 #create-product-container, #edit-product-container, #delete-product-container {
   width: 750px;
   /* width: 400px; */
@@ -101,6 +96,6 @@
   width: 50%;
 }
 
-#edit-product-form, #delete-product-form{
+#edit-product-form, #delete-product-form, #create-product-form{
   background: rgba(0, 0, 0, 0.4);
 }
