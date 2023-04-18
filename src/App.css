@@ -70,7 +70,7 @@
 }
 
 
-#create-product-container, #edit-product-container {
+#create-product-container, #edit-product-container, #delete-product-container {
   width: 750px;
   /* width: 400px; */
   display: flex;
@@ -84,7 +84,7 @@
   z-index: 2;
 }
 
-#create-product-container input, #edit-product-container input {
+#create-product-container input, #edit-product-container input, #delete-product-container input {
   margin: 20px;
   padding: 10px;
   border-radius: 5px;
@@ -101,6 +101,6 @@
   width: 50%;
 }
 
-#edit-product-form{
+#edit-product-form, #delete-product-form{
   background: rgba(0, 0, 0, 0.4);
 }
