@@ -21,7 +21,7 @@ function EditProduct() {
   return (
     <div id='edit-product-form' className='absolute w-full h-full top-0 left-0 hidden justify-center items-center z-10'>
         <div id='edit-product-container' className='w-2/4  z-20'>
-            <h3 style={{width: "100%"}}>Edit Product</h3>
+            <h3 style={{width: "100%", fontSize: "2em"}}>Edit Product</h3>
             <div className='form-group'>
                 <label htmlFor="">Name</label>
                 <input 
@@ -75,11 +75,21 @@ function EditProduct() {
             </div>
 
             <button
+                className='bg-info'
                 onClick={() => {
                     updateProduct(productIdEdit, name, brand, price, stock, description, ratings, category, type, imageUpload, imageRefName)
-                    displayForm()}}>
+                    displayForm('edit-product-form')}}>
                 Edit
             </button>
+
+            <button
+                className='bg-cancel'
+                onClick={() => {
+                displayForm('edit-product-form')
+                }}>
+                Cancel
+            </button>
+
         </div>
 
     </div>

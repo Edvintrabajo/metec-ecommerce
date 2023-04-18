@@ -5,7 +5,7 @@ import { BsFillTrashFill } from 'react-icons/bs';
 import { MdModeEdit } from 'react-icons/md';
 
 
-function Product({product, deleteProduct, displayForm, updateStates}) {
+function Product({product, displayForm, updateStates}) {
   const { 
     setName,
     setBrand,
@@ -17,7 +17,7 @@ function Product({product, deleteProduct, displayForm, updateStates}) {
     setType,
     setUrl,
     setImageRefName,
-    setProductIdEdit
+    setProductIdEdit,
    } = useContext(Context);
   
   return (
@@ -29,23 +29,29 @@ function Product({product, deleteProduct, displayForm, updateStates}) {
         <img src={product.url} alt={product.image} />
         
         <div className='w-full flex justify-evenly'>
+          
           <button 
             className='bg-red-500 text-white p-2 w-1/3 flex justify-between items-center hover:border-red-500 hover:bg-white hover:text-red-500 transition-all duration-300 ease-in-out'
-            onClick={() => deleteProduct(product.id)}>
+            onClick={() => {
+              displayForm('delete-product-form')
+              setProductIdEdit(product.id)
+              updateStates(product.id, setName, setBrand, setPrice, setStock, setDescription, setRatings, setCategory, setType, setImageRefName, setUrl)
+            }}>
             Delete
-            <BsFillTrashFill />
-              
+            <BsFillTrashFill />      
           </button>
+
           <button 
             className='bg-blue-500 text-white p-2 w-1/3 flex justify-between items-center hover:border-blue-500 hover:bg-white hover:text-blue-500 transition-all duration-300 ease-in-out'
             onClick={() => {
-                    displayForm()
-                    setProductIdEdit(product.id)
-                    updateStates(product.id, setName, setBrand, setPrice, setStock, setDescription, setRatings, setCategory, setType, setImageRefName, setUrl)
-                    }}>
-                Edit
-                <MdModeEdit />
-            </button>
+              displayForm('edit-product-form')
+              setProductIdEdit(product.id)
+              updateStates(product.id, setName, setBrand, setPrice, setStock, setDescription, setRatings, setCategory, setType, setImageRefName, setUrl)
+            }}>
+            Edit
+            <MdModeEdit />
+          </button>
+          
         </div>
     </div>
   )

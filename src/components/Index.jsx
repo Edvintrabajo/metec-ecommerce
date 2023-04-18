@@ -3,6 +3,7 @@ import ProductList from './ProductList'
 import AddProduct from './AddProduct'
 import EditProduct from './EditProduct'
 import Navbar from './Navbar'
+import DeleteProduct from './DeleteProduct'
 
 function Index() {
   return (
@@ -11,6 +12,7 @@ function Index() {
         <ProductList />
         <AddProduct />
         <EditProduct />
+        <DeleteProduct />
     </div>
   )
 }
