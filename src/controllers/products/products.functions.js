@@ -129,13 +129,12 @@ export const updateProduct = async (id, name, brand, price, stock, description, 
     
 }
 
-export const displayForm = () => {
-    const editForm = document.querySelector('#edit-product-form')
-    
-    if (editForm.style.display == 'flex') {
-        editForm.style.display = 'none'
+export const displayForm = (id) => {
+    const container = document.getElementById(id)
+    if (container.style.display == 'flex') {
+        container.style.display = 'none'
     } else {
-        editForm.style.display = 'flex'
+        container.style.display = 'flex'
     }
 }
 
