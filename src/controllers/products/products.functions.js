@@ -61,8 +61,8 @@ export const deleteProduct = async (id, setProducts) => {
     try{
         const productDoc = doc(db, 'products', id)
         const productData = await getDoc(productDoc)
-        const imageRef = ref(storage, productData.data().imageRefName)
-        await deleteObject(imageRef)
+        const imageRefName = ref(storage, productData.data().imageRefName)
+        await deleteObject(imageRefName)
         await deleteDoc(productDoc)
     } catch (error) {
         console.log(error)
@@ -72,9 +72,9 @@ export const deleteProduct = async (id, setProducts) => {
     }
 }
 
-export const updateProduct = async (id, name, brand, price, stock, description, ratings, category, type, imageUpload, imageRefName, setProducts) => {
+export const updateProduct = async (id, name, brand, price, stock, description, ratings, category, type, imageUpload, oldImageRefName, setProducts) => {
     const productDoc = doc(db, 'products', id)
-    
+
     if (imageUpload == null) {
         try{    
             await updateDoc(productDoc, {
@@ -94,10 +94,14 @@ export const updateProduct = async (id, name, brand, price, stock, description, 
             getProducts(setProducts);
         }
     } else{
-        const imageRef = ref(storage, `images/${imageUpload.name + v4()}`)
-        await uploadBytes(imageRef, imageUpload)
-        const url = await getDownloadURL(imageRef)
+        const imageRefName = `images/${imageUpload.name + v4()}`
+        const imageRefUpload = ref(storage, imageRefName)
+
+        await uploadBytes(imageRefUpload, imageUpload)
+        const url = await getDownloadURL(imageRefUpload)
         
+        console.log(url)
+
         try{    
             await updateDoc(productDoc, {
                 name,
@@ -109,11 +113,11 @@ export const updateProduct = async (id, name, brand, price, stock, description, 
                 category,
                 type,
                 url,
-                imageRef
+                imageRefName
             })
             try
             {
-                const imageRef = ref(storage, imageRefName)
+                const imageRef = ref(storage, oldImageRefName)
                 await deleteObject(imageRef)
             }
             catch (error) {
@@ -126,6 +130,7 @@ export const updateProduct = async (id, name, brand, price, stock, description, 
         finally {
             getProducts(setProducts);
         }
+
     }
     
 }
