@@ -1,4 +1,5 @@
 import React from "react";
+import ShoppingCart from "./ShoppingCart";
 
 function Navbar() {
   return (
@@ -29,13 +30,14 @@ function Navbar() {
           </label>
           <div
             tabIndex={0}
-            className="mt-3 card card-compact dropdown-content w-52 bg-base-100 shadow"
+            className="mt-3 card card-compact dropdown-content w-72 bg-base-100 shadow"
           >
             <div className="card-body">
-              <span className="font-bold text-lg">8 Items</span>
-              <span className="text-info">Subtotal: $999</span>
+              <span className="font-bold text-lg">1 Items</span>
+              <ShoppingCart />
+              <span className="text-info mt-4">Subtotal: $20</span>
               <div className="card-actions">
-                <button className="btn btn-primary btn-block">View cart</button>
+                <button className="btn btn-primary btn-block">Checkout</button>
               </div>
             </div>
           </div>
