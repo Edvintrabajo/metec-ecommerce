@@ -11,6 +11,9 @@ export function ContextProvider(props) {
     const [products, setProducts] = useState([])
 
     // ADD PRODUCT
+    // Data Form Object 
+    const [data, setData] = useState({})
+    
      // COL 1
     const [name, setName] = useState('')
     const [brand, setBrand] = useState('')
@@ -48,6 +51,7 @@ export function ContextProvider(props) {
         imageUpload, setImageUpload,
         imageRefName, setImageRefName,
         url, setUrl,
+        data, setData
     } 
 
     return (

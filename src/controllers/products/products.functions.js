@@ -30,7 +30,7 @@ export const getProducts = async (setProducts) => {
     }
 }
 
-export const addProduct = async (name, brand, price, stock, description, ratings, category, type, imageUpload, setProducts) => {
+export const addProduct = async (data, setProducts) => {
     const imageRefName = `images/${imageUpload.name + v4()}`
     const imageRef = ref(storage, imageRefName)
     await uploadBytes(imageRef, imageUpload)
@@ -38,14 +38,14 @@ export const addProduct = async (name, brand, price, stock, description, ratings
 
     try {
         await addDoc(productsCollection, {
-            name,
-            brand,
-            price: Number(price),
-            stock: Number(stock),
-            description,
-            ratings: Number(ratings),
-            category,
-            type,
+            name: data.name,
+            brand: data.brand,
+            price: data.price,
+            stock: data.stock,
+            description: data.description,
+            ratings: data.ratings,
+            category: data.category,
+            type: data.type,
             url,
             imageRefName
         })
@@ -144,10 +144,17 @@ export const displayForm = (id) => {
     }
 }
 
-const reload = () => {
-    window.location.reload()
+export const addData = (data, setData) => {
+    setData(data.name = document.getElementById('name').value)
+    setData(data.brand = document.getElementById('brand').value)
+    setData(data.price = Number(document.getElementById('price').value))
+    setData(data.stock = Number(document.getElementById('stock').value))
+    setData(data.description = document.getElementById('description').value)
+    setData(data.ratings = Number(document.getElementById('ratings').value))
+    setData(data.category = document.getElementById('category').value)
+    setData(data.type = document.getElementById('type').value)
+    setData(data.imageUpload = document.getElementById('imageUpload').files[0])
 }
-
 
 export const updateStates = async (id, setName, setBrand, setPrice, setStock, setDescription, setRatings, setCategory, setType, setImageRefName, setUrl) => {
     const productDoc = doc(db, 'products', id)
