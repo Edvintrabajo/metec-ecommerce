@@ -14,11 +14,8 @@ import {v4} from 'uuid'
 
 const productsCollection = collection(db, 'products')
 
-// OPTIMIZAR GET PRODUCTS - Función que guarde los productos en el local storage para que no se haga una 
-// petición a la base de datos cada vez que se recargue la página
-// export const saveProducts = (products) => {
-//     localStorage.setItem('products', JSON.stringify(products))
-// }
+// OPTIMIZAR GET PRODUCTS - Función que guarde los productos en un estado para que en caso de que
+// ocrra un error no se pierdan los datos y se puedan mostrar en la tabla de forma que se reflefe
 
 export const getProducts = async (setProducts) => {
     try{
@@ -102,8 +99,6 @@ export const updateProduct = async (id, setProducts, data, setData, oldImageRefN
         await uploadBytes(imageRefUpload, data.imageUpload)
         const url = await getDownloadURL(imageRefUpload)
         
-        console.log(url)
-
         try{    
             await updateDoc(productDoc, {
                 name: data.name,

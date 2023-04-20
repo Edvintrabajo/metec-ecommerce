@@ -1,8 +1,7 @@
 import React from 'react'
 import { useContext } from 'react'
 import { Context } from '../context/Context'
-import { addProduct, addData } from '../controllers/products/products.functions'
-import { displayForm } from '../controllers/products/products.functions'
+import { displayForm, addProduct, addData, resetForm } from '../controllers/products/products.functions'
 
 function AddProduct() {
 
@@ -21,6 +20,7 @@ function AddProduct() {
                     addData(data, setData)
                     addProduct(data, setProducts)
                     displayForm('create-product-form')
+                    resetForm('create-product-container')
                 }}
                 >
                 <h3 style={{width: "100%", fontSize: "2em"}}>Add Product</h3>
@@ -98,7 +98,10 @@ function AddProduct() {
                 <button
                     className='bg-cancel'
                     type='button'
-                    onClick={() => displayForm('create-product-form')}>
+                    onClick={() => {
+                        displayForm('create-product-form')
+                        resetForm('create-product-container')
+                        }}>
                     Cancel
                 </button>
 
