@@ -18,7 +18,7 @@ function AddProduct() {
                 onSubmit={(e) => {
                     e.preventDefault()
                     addData(data, setData)
-                    addProduct(data, setProducts)
+                    addProduct(data, setData, setProducts)
                     displayForm('create-product-form')
                     resetForm('create-product-container')
                 }}

@@ -27,7 +27,7 @@ export const getProducts = async (setProducts) => {
     }
 }
 
-export const addProduct = async (data, setProducts) => {
+export const addProduct = async (data, setData, setProducts) => {
     const imageRefName = `images/${data.imageUpload.name + v4()}`
     const imageRef = ref(storage, imageRefName)
     await uploadBytes(imageRef, data.imageUpload)
@@ -51,6 +51,7 @@ export const addProduct = async (data, setProducts) => {
     } 
     finally {
         getProducts(setProducts);
+        resetData(data, setData);
     }
 }
 
