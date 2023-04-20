@@ -9,7 +9,8 @@ function AddProduct() {
     const { setProducts, data, setData } = useContext(Context)
 
     return (
-        <div id='create-product-form' 
+        <div 
+            id='create-product-form' 
             className='absolute w-full h-full top-0 left-0 hidden justify-center items-center z-10'>
             
             <form 
@@ -81,22 +82,23 @@ function AddProduct() {
 
                 <div className='form-group w-full'>
                     <input
-                        id='imageUpload'
+                        id='image'
                         type="file"
                         required
                         accept="image/png, image/jpeg, image/jpg"
                         />
                 </div>
 
-                <button type='submit'>
+                <button 
+                    className='bg-info'
+                    type='submit'>
                     Add
                 </button>
 
                 <button
                     className='bg-cancel'
-                    onClick={() => {
-                    displayForm('create-product-form')
-                    }}>
+                    type='button'
+                    onClick={() => displayForm('create-product-form')}>
                     Cancel
                 </button>
 

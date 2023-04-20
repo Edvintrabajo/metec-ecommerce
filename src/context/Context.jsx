@@ -14,18 +14,6 @@ export function ContextProvider(props) {
     // Data Form Object 
     const [data, setData] = useState({})
     
-     // COL 1
-    const [name, setName] = useState('')
-    const [brand, setBrand] = useState('')
-    const [price, setPrice] = useState('')
-    const [stock, setStock] = useState('')
-    
-    // COL 2
-    const [description, setDescription] = useState('')
-    const [ratings, setRatings] = useState('')
-    const [category, setCategory] = useState('')
-    const [type, setType] = useState('')
-    
     // UPLOAD IMAGE
     const [imageUpload, setImageUpload] = useState(null) // image file
     const [imageRefName, setImageRefName] = useState(null) // path to image in firebase storage
@@ -39,19 +27,11 @@ export function ContextProvider(props) {
         email, setEmail,
         password, setPassword,
         products, setProducts,
-        name, setName,
-        brand, setBrand,
-        price, setPrice,
-        stock, setStock,
-        description, setDescription,
-        ratings, setRatings,
-        category, setCategory,
-        type, setType,
         productIdEdit, setProductIdEdit,
         imageUpload, setImageUpload,
         imageRefName, setImageRefName,
         url, setUrl,
-        data, setData
+        data, setData,
     } 
 
     return (

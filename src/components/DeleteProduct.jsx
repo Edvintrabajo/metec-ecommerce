@@ -24,6 +24,7 @@ function DeleteProduct() {
             </button>
             <button
                 className='bg-cancel'
+                type='button'
                 onClick={() => {
                 displayForm('delete-product-form')
                 }}>

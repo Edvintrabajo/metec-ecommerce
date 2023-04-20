@@ -31,9 +31,9 @@ export const getProducts = async (setProducts) => {
 }
 
 export const addProduct = async (data, setProducts) => {
-    const imageRefName = `images/${imageUpload.name + v4()}`
+    const imageRefName = `images/${data.imageUpload.name + v4()}`
     const imageRef = ref(storage, imageRefName)
-    await uploadBytes(imageRef, imageUpload)
+    await uploadBytes(imageRef, data.imageUpload)
     const url = await getDownloadURL(imageRef)
 
     try {
@@ -72,46 +72,48 @@ export const deleteProduct = async (id, setProducts) => {
     }
 }
 
-export const updateProduct = async (id, name, brand, price, stock, description, ratings, category, type, imageUpload, oldImageRefName, setProducts) => {
+export const updateProduct = async (id, setProducts, data, setData, oldImageRefName) => {
     const productDoc = doc(db, 'products', id)
-
-    if (imageUpload == null) {
+    
+    if (data.imageUpload == null) {
         try{    
             await updateDoc(productDoc, {
-                name,
-                brand,
-                price: Number(price),
-                stock: Number(stock),
-                description,
-                ratings: Number(ratings),
-                category,
-                type
+                name: data.name,
+                brand: data.brand,
+                price: data.price,
+                stock: data.stock,
+                description: data.description,
+                ratings: data.ratings,
+                category: data.category,
+                type: data.type,
             })
         } catch (error) {
             console.log(error)
         } 
         finally {
             getProducts(setProducts);
+            resetData(data, setData);
         }
-    } else{
-        const imageRefName = `images/${imageUpload.name + v4()}`
+    } 
+    else{
+        const imageRefName = `images/${data.imageUpload.name + v4()}`
         const imageRefUpload = ref(storage, imageRefName)
 
-        await uploadBytes(imageRefUpload, imageUpload)
+        await uploadBytes(imageRefUpload, data.imageUpload)
         const url = await getDownloadURL(imageRefUpload)
         
         console.log(url)
 
         try{    
             await updateDoc(productDoc, {
-                name,
-                brand,
-                price: Number(price),
-                stock: Number(stock),
-                description,
-                ratings: Number(ratings),
-                category,
-                type,
+                name: data.name,
+                brand: data.brand,
+                price: data.price,
+                stock: data.stock,
+                description: data.description,
+                ratings: data.ratings,
+                category: data.category,
+                type: data.type,
                 url,
                 imageRefName
             })
@@ -129,10 +131,10 @@ export const updateProduct = async (id, name, brand, price, stock, description, 
         } 
         finally {
             getProducts(setProducts);
+            resetData(data, setData);
         }
 
     }
-    
 }
 
 export const displayForm = (id) => {
@@ -153,21 +155,44 @@ export const addData = (data, setData) => {
     setData(data.ratings = Number(document.getElementById('ratings').value))
     setData(data.category = document.getElementById('category').value)
     setData(data.type = document.getElementById('type').value)
-    setData(data.imageUpload = document.getElementById('imageUpload').files[0])
+    setData(data.imageUpload = document.getElementById('image').files[0])
 }
 
-export const updateStates = async (id, setName, setBrand, setPrice, setStock, setDescription, setRatings, setCategory, setType, setImageRefName, setUrl) => {
+export const addDataEdit = (dataEdit, setDataEdit) => {
+    setDataEdit(dataEdit.name = document.getElementById('editName').value)
+    setDataEdit(dataEdit.brand = document.getElementById('editBrand').value)
+    setDataEdit(dataEdit.price = Number(document.getElementById('editPrice').value))
+    setDataEdit(dataEdit.stock = Number(document.getElementById('editStock').value))
+    setDataEdit(dataEdit.description = document.getElementById('editDescription').value)
+    setDataEdit(dataEdit.ratings = Number(document.getElementById('editRatings').value))
+    setDataEdit(dataEdit.category = document.getElementById('editCategory').value)
+    setDataEdit(dataEdit.type = document.getElementById('editType').value)
+    setDataEdit(dataEdit.imageUpload = document.getElementById('editImage').files[0])
+}
+
+export const getStates = async (id, data, setData) => {
     const productDoc = doc(db, 'products', id)
     const productData = await getDoc(productDoc)
-    
-    setName(productData.data().name)
-    setBrand(productData.data().brand)
-    setPrice(productData.data().price)
-    setStock(productData.data().stock)
-    setDescription(productData.data().description)
-    setRatings(productData.data().ratings)
-    setCategory(productData.data().category)
-    setType(productData.data().type)
-    setImageRefName(productData.data().imageRefName)
-    setUrl(productData.data().url)
+    // DATA: name, brand, price, stock, description, ratings, category, type, imageRefName, url
+    setData(data = productData.data())
+    showData(data)
 }
+
+export const resetForm = (id) => {
+    document.getElementById(id).reset()
+}
+
+const resetData = (data, setData) => {
+    setData(data = {})
+}
+
+const showData = (data) => {
+    document.getElementById('editName').value = data.name
+    document.getElementById('editBrand').value = data.brand
+    document.getElementById('editPrice').value = data.price
+    document.getElementById('editStock').value = data.stock
+    document.getElementById('editDescription').value = data.description
+    document.getElementById('editRatings').value = data.ratings
+    document.getElementById('editCategory').value = data.category
+    document.getElementById('editType').value = data.type
+  }

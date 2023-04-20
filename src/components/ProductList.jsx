@@ -5,7 +5,7 @@ import {
   getProducts,
   deleteProduct,
   displayForm,
-  updateStates
+  getStates
 } from "../controllers/products/products.functions";
 import Product from "./Product";
 import AddButton from "./AddButton";
@@ -31,9 +31,8 @@ function ProductList() {
           <Product
             key={product.id}
             product={product}
-            deleteProduct={deleteProduct}
             displayForm={displayForm}
-            updateStates={updateStates}
+            getStates={getStates}
           />
         ))}
       </div>
