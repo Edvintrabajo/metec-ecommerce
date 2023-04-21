@@ -1,87 +1,88 @@
-/* Cards */
-.flip-card {
-    background-color: transparent;
-    width: 340px;
-    height: 350px;
-    perspective: 1000px;
-    margin: 1em;
-    margin-bottom: 5em;
-    transition: all 0.5s ease-in-out;
-    cursor: pointer;
+
+/* RATING */
+
+ .rating {
+  display: flex;
+  flex-direction: row-reverse;
+  --stroke: #666;
+  --fill: #ffc73a;
+}
+
+.rating input {
+  appearance: unset;
+}
+
+.rating label {
+  cursor: pointer;
+}
+
+.rating svg {
+  width: 2rem;
+  height: 3rem;
+  overflow: visible;
+  fill: transparent;
+  stroke: var(--stroke);
+  stroke-linejoin: bevel;
+  stroke-dasharray: 12;
+  animation: idle 4s linear infinite;
+  transition: stroke 0.2s, fill 0.5s;
+}
+
+@keyframes idle {
+  from {
+    stroke-dashoffset: 24;
   }
-  
-  .heading {
-    position: absolute;
-    letter-spacing: .2em;
-    font-size: 0.5em;
-    top: 2em;
-    left: 18.6em;
+}
+
+.rating label:hover svg {
+  stroke: var(--fill);
+}
+
+.rating input:checked + svg,
+.rating label:has(input:checked) ~ label svg {
+  transition: 0s;
+  /* Hopefully firefox gets :has support soon w/o feature flag */
+  animation: idle 4s linear infinite, yippee 0.75s backwards;
+  fill: var(--fill);
+  stroke: var(--fill);
+  stroke-opacity: 0;
+  stroke-dasharray: 0;
+  stroke-linejoin: miter;
+  stroke-width: 8px;
+}
+
+@keyframes yippee {
+  0% {
+    transform: scale(1);
+    fill: var(--fill);
+    fill-opacity: 0;
+    stroke-opacity: 1;
+    stroke: var(--stroke);
+    stroke-dasharray: 10;
+    stroke-width: 1px;
+    stroke-linejoin: bevel;
   }
-  
-  .logo {
-    position: absolute;
-    top: 6.8em;
-    left: 11.7em;
+
+  30% {
+    transform: scale(0);
+    fill: var(--fill);
+    fill-opacity: 0;
+    stroke-opacity: 1;
+    stroke: var(--stroke);
+    stroke-dasharray: 10;
+    stroke-width: 1px;
+    stroke-linejoin: bevel;
   }
-  
-  .chip {
-    position: absolute;
-    top: 2.3em;
-    left: 1.5em;
+
+  30.1% {
+    stroke: var(--fill);
+    stroke-dasharray: 0;
+    stroke-linejoin: miter;
+    stroke-width: 8px;
   }
-  
-  .contactless {
-    position: absolute;
-    top: 3.5em;
-    left: 12.4em;
+
+  60% {
+    transform: scale(1.2);
+    fill: var(--fill);
   }
-  
-  .flip-card-inner {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    text-align: center;
-    transition: all 0.5s ease-in-out;
-    transform-style: preserve-3d;
-  }
-  
-  .flip-card:hover .flip-card-inner {
-    transform: rotateY(180deg);
-    box-shadow: 0 8px 14px 0 rgba(0,0,0,0.6);
-    border-radius: 1rem;
-    scale: 1.1;
-    transition: all 0.5s ease-in-out;
-  }
-  
-  .flip-card-front, .flip-card-back {
-    box-shadow: 0 8px 14px 0 rgba(0,0,0,0.2);
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
-    border-radius: 1rem;
-    background-color: white;
-    color: black;
-  }
-  
-  .flip-card-front {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    align-items: center;
-    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 2px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -1px 0px inset;
-  }
-  
-  .flip-card-back {
-    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 2px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -1px 0px inset;
-    transform: rotateY(180deg);
-  }
-  
-  .flip-card-front img{
-    width: 250px;
-    height: 250px;
-  }
+}

@@ -10,9 +10,14 @@ module.exports = withMT({
   ],
   theme: {
     extend: {
-      // backgroundImage: {
-      //   'custom-gradient': 'linear-gradient(90deg, hsla(280, 95%, 57%, 1) 0%, hsla(193, 90%, 55%, 1) 100%)',
-      // },
+      boxShadow: {
+        'low-card': '0 10px 20px rgba(59, 130, 246, 0.2)',
+        'high-card': '0 10px 20px rgba(59, 130, 246, 0.4)',
+        'main-card': '0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)',
+      },
+      translate: {
+        '(25%)': '25%',
+      },
       colors: {
         'cancel': 'hsla(280, 95%, 57%, 1)',
         'danger': '#EF4444',
