@@ -13,7 +13,7 @@ function Product({product, displayForm, getStates}) {
       // NEW-CARD
 
       <div className="rounded-xl w-60 h-80 p-4 bg-white relative overflow-visible text-black">
-        <div className="bg-white p-2 h-1/2 w-full rounded-lg transition-all shadow-low-card flex justify-center align-middle hover:shadow-high-card hover:-translate-y-(25%)">
+        <div className="bg-white p-2 h-1/2 w-full rounded-lg transition-all shadow-low-info flex justify-center align-middle hover:shadow-high-info hover:-translate-y-(25%)">
           <img className=' rounded-2xl w-2/3' src={product.url} alt={product.name} />
         </div>
         <div className="p-2 pb-6">
@@ -32,14 +32,14 @@ function Product({product, displayForm, getStates}) {
             
             {/* USER-VIEW */}
             {/* <button 
-              className="border-2 border-info flex p-2 rounded-full transition-all text-info hover:text-white hover:bg-info"
+              className="border-2  border-info shadow-low-info hover:shadow-high-info flex p-2 rounded-full transition-all text-info hover:text-white hover:bg-info"
               >
               <MdOutlineShoppingCart />      
             </button> */}
 
             {/* ADMIN-VIEW */}
             <button 
-              className="border-2 border-danger mr-2 flex p-2 rounded-full transition-all text-danger hover:text-white hover:bg-danger" 
+              className="border-2 border-danger shadow-low-danger hover:shadow-high-danger mr-2 flex p-2 rounded-full transition-all text-danger hover:text-white hover:bg-danger" 
               onClick={() => {
                 displayForm('delete-product-form')
                 setProductIdEdit(product.id)
@@ -49,7 +49,7 @@ function Product({product, displayForm, getStates}) {
             </button>
             
             <button
-              className='border-2 border-edit flex p-2 rounded-full transition-all text-edit hover:text-white hover:bg-edit' 
+              className='border-2 border-edit shadow-low-edit hover:shadow-high-edit flex p-2 rounded-full transition-all text-edit hover:text-white hover:bg-edit' 
               onClick={() => {
                 displayForm('edit-product-form')
                 setProductIdEdit(product.id)

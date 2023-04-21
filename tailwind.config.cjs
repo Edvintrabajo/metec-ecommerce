@@ -11,8 +11,12 @@ module.exports = withMT({
   theme: {
     extend: {
       boxShadow: {
-        'low-card': '0 10px 20px rgba(59, 130, 246, 0.2)',
-        'high-card': '0 10px 20px rgba(59, 130, 246, 0.4)',
+        'low-info': '0 10px 20px rgba(59, 130, 246, 0.2)',
+        'high-info': '0 10px 20px rgba(59, 130, 246, 0.4)',
+        'low-danger': '0 10px 20px rgba(239, 68, 68, 0.2)',
+        'high-danger': '0 10px 20px rgba(239, 68, 68, 0.4)',
+        'low-edit': '0 10px 20px rgba(16, 185, 129, 0.2)',
+        'high-edit': '0 10px 20px rgba(16, 185, 129, 0.4)',
         'main-card': '0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)',
       },
       translate: {
