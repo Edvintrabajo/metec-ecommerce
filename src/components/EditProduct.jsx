@@ -41,7 +41,7 @@ function EditProduct() {
                     name='editPrice'
                     placeholder='Price' 
                     type="number" min={0} max={10000} />
-                <label htmlFor="">Price</label>
+                <label htmlFor="">Stock</label>
                 <input 
                     id='editStock'
                     name='editStock'
