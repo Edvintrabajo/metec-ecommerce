@@ -7,9 +7,8 @@ import { Card, Input, Button, Typography } from "@material-tailwind/react";
 
 function Register() {
   const { email, setEmail, password, setPassword } = useContext(Context);
-  const register = () => signUp(email, password);
   // console.log(auth?.currentUser?.email);
-  console.log(email)
+
   return (
     <div className="flex justify-center items-center w-full min-h-screen">
       <Card color="transparent" shadow={false} className="text-center border-2 p-4 bg-white">
@@ -23,7 +22,8 @@ function Register() {
           className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96"
           onSubmit={(e) => {
             e.preventDefault();
-            register();
+            signUp(email, password);
+            // console.log(auth?.currentUser?.email);
           }}
         >
           <div className="mb-4 flex flex-col gap-6">
@@ -51,6 +51,7 @@ function Register() {
               variant="outlined"
               color="blue-gray"
               className="flex  justify-center items-center gap-3"
+              type="button"
             >
               <img src={"./src/icons/google.svg"} alt="metamask" className="h-6 w-6" />
               Continue with Google

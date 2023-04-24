@@ -1,47 +1,33 @@
 import checkErrorCodes from "./register.errorCodes";
 import { auth } from "../../config/firebase";
-import { createUserWithEmailAndPassword, sendSignInLinkToEmail, isSignInWithEmailLink } from "firebase/auth";
-
-// https://firebase.google.com/docs/auth/web/password-auth?hl=es-419
-
-// export const signUp = async (email, password) => {
-//   await createUserWithEmailAndPassword(auth, email, password)
-//     .then(() => {
-//       showMsg("Account created successfully", true);
-//     })
-//     .catch((error) => {
-//       const errMsg = checkErrorCodes(error.code);
-//       showMsg(errMsg, false);
-//     });
-// };
+import { createUserWithEmailAndPassword, sendEmailVerification, signInWithEmailAndPassword } from "firebase/auth";
 
 export const signUp = async (email, password) => {
-  const settigns = {
-    url: "http://localhost:5173/register",
-    handleCodeInApp: true,
-  }
-
-  await sendSignInLinkToEmail(auth, email, settigns)
+  await createUserWithEmailAndPassword(auth, email, password)
     .then(() => {
-      console.log("Se envió un correo de verificación");
-      // const verifyEmail = () => {
-      //   if (isSignInWithEmailLink(auth, window.location.href)) {
-  
-      //     createUserWithEmailAndPassword(auth, email, password)
-      //       .then(() => {
-      //         console.log("Usuario creado exitosamente");
-      //         showMsg("Account created successfully", true);
-      //       })
-      //       .catch((error) => {
-      //         const errMsg = checkErrorCodes(error.code);
-      //         showMsg(errMsg, false);
-      //       });
-      //   }
-      // }
+      const user = auth.currentUser;
+      sendEmailVerification(user)
+        .then(() => {
+          auth.onAuthStateChanged((user) => {
+            if (user && !user.emailVerified) {
+              showMsg("Please verify your email address to complete registration", true);
+            }
+            if (!user) {
+              showMsg("Something went wrong while registering", false);
+            }
+          });
+        })
+        .catch((error) => {
+          const errMsg = checkErrorCodes(error.code);
+          showMsg(errMsg, false);
+        });
     })
     .catch((error) => {
-      console.error(error);
+      console.log(error)
+      const errMsg = checkErrorCodes(error.code);
+      showMsg(errMsg, false);
     });
+
 };
 
 export const signIn = async (email, password) => {
@@ -101,7 +87,7 @@ const overshadowEffect = (container) => {
   const div = container.querySelector(".register-message");
   let timer = 2;
   const interval = setInterval(() => {
-    timer -= 0.005;
+    timer -= 0.0025;
     if (timer <= 1) {
       timer -= 0.01;
       container.style.opacity = timer;
@@ -115,6 +101,3 @@ const overshadowEffect = (container) => {
   }, 10);
 };
 
-const storeEmailInStorage = (email) => {
-  window.localStorage.setItem('emailForSignIn', email);
-}
