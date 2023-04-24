@@ -17,7 +17,12 @@ const checkErrorCodes = (error) => {
         case 'auth/missing-password':
           errMsg = 'Password is missing'
           break;
-        
+        case 'auth/quota-exceeded).':
+          errMsg = 'Exceeded daily quota for email sign-in'
+        break;
+        // default:
+        //   errMsg = 'Something went wrong'
+        //   break;
       }
       return errMsg
 }

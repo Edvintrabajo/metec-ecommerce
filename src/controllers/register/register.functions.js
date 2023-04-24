@@ -1,15 +1,46 @@
 import checkErrorCodes from "./register.errorCodes";
 import { auth } from "../../config/firebase";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, sendSignInLinkToEmail, isSignInWithEmailLink } from "firebase/auth";
+
+// https://firebase.google.com/docs/auth/web/password-auth?hl=es-419
+
+// export const signUp = async (email, password) => {
+//   await createUserWithEmailAndPassword(auth, email, password)
+//     .then(() => {
+//       showMsg("Account created successfully", true);
+//     })
+//     .catch((error) => {
+//       const errMsg = checkErrorCodes(error.code);
+//       showMsg(errMsg, false);
+//     });
+// };
 
 export const signUp = async (email, password) => {
-  await createUserWithEmailAndPassword(auth, email, password)
+  const settigns = {
+    url: "http://localhost:5173/register",
+    handleCodeInApp: true,
+  }
+
+  await sendSignInLinkToEmail(auth, email, settigns)
     .then(() => {
-      showMsg("Account created successfully", true);
+      console.log("Se envió un correo de verificación");
+      // const verifyEmail = () => {
+      //   if (isSignInWithEmailLink(auth, window.location.href)) {
+  
+      //     createUserWithEmailAndPassword(auth, email, password)
+      //       .then(() => {
+      //         console.log("Usuario creado exitosamente");
+      //         showMsg("Account created successfully", true);
+      //       })
+      //       .catch((error) => {
+      //         const errMsg = checkErrorCodes(error.code);
+      //         showMsg(errMsg, false);
+      //       });
+      //   }
+      // }
     })
     .catch((error) => {
-      const errMsg = checkErrorCodes(error.code);
-      showMsg(errMsg, false);
+      console.error(error);
     });
 };
 
@@ -83,3 +114,7 @@ const overshadowEffect = (container) => {
     }
   }, 10);
 };
+
+const storeEmailInStorage = (email) => {
+  window.localStorage.setItem('emailForSignIn', email);
+}

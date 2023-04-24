@@ -8,8 +8,8 @@ import { Card, Input, Button, Typography } from "@material-tailwind/react";
 function Register() {
   const { email, setEmail, password, setPassword } = useContext(Context);
   const register = () => signUp(email, password);
-  console.log(auth?.currentUser?.email);
-
+  // console.log(auth?.currentUser?.email);
+  console.log(email)
   return (
     <div className="flex justify-center items-center w-full min-h-screen">
       <Card color="transparent" shadow={false} className="text-center border-2 p-4 bg-white">
