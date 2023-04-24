@@ -65,28 +65,6 @@
   margin: 1em;
 }
 
-#create-product-container, #edit-product-container, #delete-product-container {
-  width: 750px;
-  /* width: 400px; */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  border: 1px solid #ccc;
-  border-radius: 15px;
-  padding: 1em;
-  backdrop-filter: blur(10px);
-  z-index: 2;
-}
-
-#create-product-container input, #edit-product-container input, #delete-product-container input {
-  margin: 20px;
-  padding: 10px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  font-size: 16px;
-  width: 70%;
-}
 
 .form-group {
   display: flex;
