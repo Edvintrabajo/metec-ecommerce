@@ -1,6 +1,15 @@
 import React from "react";
+import { useEffect, useState } from "react";
 
 function ShoppingCart() {
+
+  const [cart, setCart] = useState([]);
+
+  useEffect(() => {
+    // obetener orders de firebase
+    // setCart(orders)
+
+  }, []);
   return (
     <div className="ShoppingCart">
 
