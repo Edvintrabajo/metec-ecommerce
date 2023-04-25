@@ -1,4 +1,4 @@
-import checkErrorCodes from "./register.errorCodes";
+import checkErrorCodes from "./errorCodes";
 import { auth } from "../../config/firebase";
 import { createUserWithEmailAndPassword, sendEmailVerification, signInWithEmailAndPassword } from "firebase/auth";
 
@@ -10,7 +10,7 @@ export const signUp = async (email, password) => {
         .then(() => {
           auth.onAuthStateChanged((user) => {
             if (user && !user.emailVerified) {
-              showMsg("Please verify your email address to complete registration", true);
+              showMsg("Please verify your email address to complete registration", true, "/login");
             }
             if (!user) {
               showMsg("Something went wrong while registering", false);
@@ -23,7 +23,6 @@ export const signUp = async (email, password) => {
         });
     })
     .catch((error) => {
-      console.log(error)
       const errMsg = checkErrorCodes(error.code);
       showMsg(errMsg, false);
     });
@@ -31,14 +30,24 @@ export const signUp = async (email, password) => {
 };
 
 export const signIn = async (email, password) => {
-  await signInWithEmailAndPassword(auth, email, password)
-    .then(() => {
-      showMsg("Logged in successfully", true);
-    })
-    .catch((error) => {
-      const errMsg = checkErrorCodes(error.code);
-      showMsg(errMsg, false);
+    auth.onAuthStateChanged(async (user) => {
+      if (!user.emailVerified) {
+        const errMsg = checkErrorCodes("metec/email-not-verified");
+        showMsg(errMsg, false);      
+      }
+      else {
+        await signInWithEmailAndPassword(auth, email, password)
+          .then(() => {
+            showMsg("Logged in successfully", true, "/");
+          })
+          .catch((error) => {
+            const errMsg = checkErrorCodes(error.code);
+            showMsg(errMsg, false);
+          });
+      }
     });
+    
+  
 };
 
 export const logOut = async () => {
@@ -52,12 +61,12 @@ export const logOut = async () => {
     });
 };
 
-const showMsg = (msg, valid) => {
+const showMsg = (msg, valid, redir = null) => {
   const msgContainer = document.querySelector("#register-message-container");
 
   addCheckCards(msgContainer, valid, msg);
 
-  overshadowEffect(msgContainer);
+  overshadowEffect(msgContainer, redir);
 };
 
 const addCheckCards = (container, valid, msg) => {
@@ -83,7 +92,7 @@ const addCheckCards = (container, valid, msg) => {
   container.style.opacity = 1;
 };
 
-const overshadowEffect = (container) => {
+const overshadowEffect = (container, redir = null) => {
   const div = container.querySelector(".register-message");
   let timer = 2;
   const interval = setInterval(() => {
@@ -96,6 +105,9 @@ const overshadowEffect = (container) => {
       container.style.display = "none";
       container.removeChild(div);
       clearInterval(interval);
+      if (redir){
+        window.location.href = redir;
+      }
       // REDIRECT TO LOGIN
     }
   }, 10);

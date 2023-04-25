@@ -1,13 +1,13 @@
 import React from "react";
 import { useContext } from "react";
 import { Context } from "../context/Context";
-import { signUp } from "../controllers/register/register.functions";
+import { signUp } from "../controllers/register-login/functions";
 import { auth } from "../config/firebase";
 import { Card, Input, Button, Typography } from "@material-tailwind/react";
 
 function Register() {
   const { email, setEmail, password, setPassword } = useContext(Context);
-  // console.log(auth?.currentUser?.email);
+  console.log(auth?.currentUser?.email);
 
   return (
     <div className="flex justify-center items-center w-full min-h-screen">

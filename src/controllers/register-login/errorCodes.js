@@ -2,6 +2,7 @@ const checkErrorCodes = (error) => {
   let errMsg = ""
 
     switch (error) {
+        // REGISTER
         case 'auth/invalid-email':
           errMsg = 'Email is not valid'
           break;
@@ -22,6 +23,17 @@ const checkErrorCodes = (error) => {
           break;
         case 'auth/expired-action-code':
           errMsg = 'The email verification has expired'
+          break;
+        // LOGIN
+        case 'auth/user-not-found':
+          errMsg = 'User not found'
+          break;
+        case 'auth/wrong-password':
+          errMsg = 'Wrong password'
+          break;
+        // Custom error codes
+        case "metec/email-not-verified":
+          errMsg = "Email not verified, please check your inbox"
           break;
         // default:
         //   errMsg = 'Something went wrong'

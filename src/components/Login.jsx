@@ -1,15 +1,14 @@
 import React from "react";
 import { useContext } from "react";
 import { Context } from "../context/Context";
-import { signIn } from "../controllers/register/register.functions";
+import { signIn } from "../controllers/register-login/functions";
 import { auth } from "../config/firebase";
 import { Card, Input, Button, Typography } from "@material-tailwind/react";
 
 function Login() {
   const { email, setEmail, password, setPassword } = useContext(Context);
   const login = () => signIn(email, password);
-  console.log(auth?.currentUser?.email);
-
+  
   return (
     <div className="flex justify-center items-center w-full min-h-screen">
       <Card color="transparent" shadow={false} className="text-center border-2 p-4 bg-white">
