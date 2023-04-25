@@ -4,6 +4,7 @@ import { Context } from "../context/Context";
 import { BsFillTrashFill } from 'react-icons/bs';
 import { MdModeEdit } from 'react-icons/md';
 import { MdOutlineShoppingCart } from 'react-icons/md';
+import { setOrder } from "../controllers/orders/orders.functions";
 import '../Cards.css';
 
 function Product({product, displayForm, getStates}) {
@@ -31,14 +32,15 @@ function Product({product, displayForm, getStates}) {
           <div className='flex justify-end  w-1/2'>
             
             {/* USER-VIEW */}
-            {/* <button 
+            <button 
               className="border-2  border-info shadow-low-info hover:shadow-high-info flex p-2 rounded-full transition-all text-info hover:text-white hover:bg-info"
+              onClick={() => setOrder({idproduct: product.id, name: product.name, price: product.price, image: product.url, unidades: 1})}
               >
               <MdOutlineShoppingCart />      
-            </button> */}
+            </button>
 
             {/* ADMIN-VIEW */}
-            <button 
+            {/* <button 
               className="border-2 border-danger shadow-low-danger hover:shadow-high-danger mr-2 flex p-2 rounded-full transition-all text-danger hover:text-white hover:bg-danger" 
               onClick={() => {
                 displayForm('delete-product-form')
@@ -57,7 +59,7 @@ function Product({product, displayForm, getStates}) {
                 getStates(product.id, data, setData)
               }}>
               <MdModeEdit />
-            </button>
+            </button> */}
           </div>
 
         </div>

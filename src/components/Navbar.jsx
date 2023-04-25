@@ -1,7 +1,16 @@
 import React from "react";
 import ShoppingCart from "./ShoppingCart";
+import { useEffect, useState } from "react";
+import { getOrders } from "../controllers/orders/orders.functions";
 
 function Navbar() {
+
+  const [orders, setOrders] = useState([])
+
+  useEffect(() => {
+    setOrders(getOrders())
+  }, [])
+
   return (
     <div className="navbar border-neutral-500 border-2 p-4 px-4 rounded-3xl flex">
       <div className="flex-1">
@@ -34,7 +43,7 @@ function Navbar() {
           >
             <div className="card-body">
               <span className="font-bold text-lg">1 Items</span>
-              <ShoppingCart />
+              <ShoppingCart orders={ orders } />
               <span className="text-info mt-4">Subtotal: $20</span>
               <div className="card-actions">
                 <button className="btn btn-primary btn-block">Checkout</button>
