@@ -38,9 +38,9 @@ const checkErrorCodes = (error) => {
         case 'auth/wrong-password':
           errMsg = 'Wrong password'
           break;
-        // default:
-        //   errMsg = 'Something went wrong'
-        //   break;
+        default:
+          errMsg = 'Something went wrong, we will fix it as soon as possible'
+          break;
       }
       return errMsg
 }
