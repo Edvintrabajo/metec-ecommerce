@@ -3,9 +3,8 @@ import { createContext, useState } from "react";
 export const Context = createContext()
 
 export function ContextProvider(props) {
-    // AUTHENTICATION SIGN UP
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
+    // USER REGISTER & LOGIN
+    const [userData, setUserData] = useState({})
     
     // LIST OF PRODUCTS
     const [products, setProducts] = useState([])
@@ -24,8 +23,7 @@ export function ContextProvider(props) {
     
     // STATES & FUNCTIONS
     const states = {
-        email, setEmail,
-        password, setPassword,
+        userData, setUserData,
         products, setProducts,
         productIdEdit, setProductIdEdit,
         imageUpload, setImageUpload,

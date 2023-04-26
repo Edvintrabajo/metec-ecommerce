@@ -6,13 +6,6 @@
   flex-direction: column; 
 }
 
-#register-form{
-  width: 200px;
-  border: 2px solid black;
-  padding: 2em;
-  border-radius: 15px;
-}
-
 #register-message-container {
   position: absolute;
   top: 0;
@@ -97,3 +90,6 @@ https://uiverse.io/Nawsome/cowardly-squid-50
 
 /* CARD */
 /* https://uiverse.io/alexruix/moody-goose-93 */
+
+/* INPUT FILE */
+/* https://uiverse.io/Yaya12085/yellow-goat-62 */

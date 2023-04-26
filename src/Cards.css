@@ -1,7 +1,7 @@
 
 /* RATING */
 
- .rating {
+ /* .rating {
   display: flex;
   flex-direction: row-reverse;
   --stroke: #666;
@@ -41,7 +41,6 @@
 .rating input:checked + svg,
 .rating label:has(input:checked) ~ label svg {
   transition: 0s;
-  /* Hopefully firefox gets :has support soon w/o feature flag */
   animation: idle 4s linear infinite, yippee 0.75s backwards;
   fill: var(--fill);
   stroke: var(--fill);
@@ -85,4 +84,4 @@
     transform: scale(1.2);
     fill: var(--fill);
   }
-}
+} */

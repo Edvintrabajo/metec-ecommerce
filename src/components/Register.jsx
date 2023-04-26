@@ -1,14 +1,15 @@
 import React from "react";
 import { useContext } from "react";
 import { Context } from "../context/Context";
-import { signUp } from "../controllers/register-login/functions";
+import { signUp, setCurUserData } from "../controllers/register-login/functions";
 import { auth } from "../config/firebase";
 import { Card, Input, Button, Typography } from "@material-tailwind/react";
 
 function Register() {
-  const { email, setEmail, password, setPassword } = useContext(Context);
-  console.log(auth?.currentUser?.email);
-
+  const { userData, setUserData } = useContext(Context);
+  const btns = ['register-button', 'register-google-button']
+  // console.log(auth?.currentUser?.email);
+  
   return (
     <div className="flex justify-center items-center w-full min-h-screen">
       <Card color="transparent" shadow={false} className="text-center border-2 p-4 bg-white">
@@ -19,35 +20,43 @@ function Register() {
           Enter your details to register.
         </Typography>
         <form
+          id="register-form"
           className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96"
           onSubmit={(e) => {
             e.preventDefault();
-            signUp(email, password);
+            setCurUserData(userData, setUserData, 'register');
+            signUp(userData, setUserData, btns);
             // console.log(auth?.currentUser?.email);
           }}
         >
           <div className="mb-4 flex flex-col gap-6">
             <Input
+              id="register-email"
               size="lg"
               label="Email"
               type="email"
-              onChange={(e) => setEmail(e.target.value)}
+              // onChange={(e) => setEmail(e.target.value)}
               required
             />
             <Input
+              id="register-password"
               type="password"
               size="lg"
               label="Password"
-              onChange={(e) => setPassword(e.target.value)}
+              // onChange={(e) => setPassword(e.target.value)}
               required
             />
           </div>
 
           <div className="flex flex-col">
-            <Button className="mt-6 mb-4 p-4" fullWidth type="submit">
+            <Button
+              id="register-button" 
+              className="mt-6 mb-4 p-4" 
+              type="submit">
               Register
             </Button>
             <Button
+              id="register-google-button"
               variant="outlined"
               color="blue-gray"
               className="flex  justify-center items-center gap-3"

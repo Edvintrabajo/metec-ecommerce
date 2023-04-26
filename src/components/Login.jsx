@@ -1,14 +1,15 @@
 import React from "react";
 import { useContext } from "react";
 import { Context } from "../context/Context";
-import { signIn } from "../controllers/register-login/functions";
+import { signIn, setCurUserData } from "../controllers/register-login/functions";
 import { auth } from "../config/firebase";
 import { Card, Input, Button, Typography } from "@material-tailwind/react";
 
 function Login() {
-  const { email, setEmail, password, setPassword } = useContext(Context);
-  const login = () => signIn(email, password);
-  
+  const { userData, setUserData } = useContext(Context);
+  const btns = ['login-button', 'login-google-button']
+  // console.log(auth?.currentUser?.email);
+
   return (
     <div className="flex justify-center items-center w-full min-h-screen">
       <Card color="transparent" shadow={false} className="text-center border-2 p-4 bg-white">
@@ -19,34 +20,40 @@ function Login() {
           Enter your details to login.
         </Typography>
         <form
+          id="login-form"
           className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96"
           onSubmit={(e) => {
             e.preventDefault();
-            login();
+            setCurUserData(userData, setUserData, 'login');
+            signIn(userData, setUserData, btns)
           }}
         >
           <div className="mb-4 flex flex-col gap-6">
             <Input
+              id="login-email"
               size="lg"
               label="Email"
               type="email"
-              onChange={(e) => setEmail(e.target.value)}
               required
             />
             <Input
+              id="login-password"
               type="password"
               size="lg"
               label="Password"
-              onChange={(e) => setPassword(e.target.value)}
               required
             />
           </div>
 
           <div className="flex flex-col">
-            <Button className="mt-6 mb-4 p-4" fullWidth type="submit">
+            <Button 
+              id="login-button"
+              className="mt-6 mb-4 p-4" 
+              type="submit">
               Login
             </Button>
             <Button
+              id="login-google-button"
               variant="outlined"
               color="blue-gray"
               className="flex  justify-center items-center gap-3"

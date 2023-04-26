@@ -28,12 +28,15 @@ const checkErrorCodes = (error) => {
         case 'auth/user-not-found':
           errMsg = 'User not found'
           break;
-        case 'auth/wrong-password':
-          errMsg = 'Wrong password'
+        case 'auth/too-many-requests':
+          errMsg = 'too many failed attempts, please try again later'
           break;
         // Custom error codes
         case "metec/email-not-verified":
           errMsg = "Email not verified, please check your inbox"
+          break;
+        case 'auth/wrong-password':
+          errMsg = 'Wrong password'
           break;
         // default:
         //   errMsg = 'Something went wrong'
