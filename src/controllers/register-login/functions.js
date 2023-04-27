@@ -41,6 +41,7 @@ export const signUp = async (userData, setUserData, btns) => {
   } 
   finally {
     setUserData(userData = {});
+    enableBtns(btns)
   }
 
 };
@@ -94,7 +95,7 @@ export const logOut = async () => {
 };
 
 const showMsg = (msg, valid, redir = null) => {
-  const msgContainer = document.querySelector("#register-message-container");
+  const msgContainer = document.querySelector("#message-container");
 
   addCheckCards(msgContainer, valid, msg);
 
@@ -113,7 +114,7 @@ const addCheckCards = (container, valid, msg) => {
     img.src = "./src/icons/check.svg";
     div.style.backgroundColor = "rgb(101, 242, 101)";
   }
-  div.classList.add("register-message");
+  div.classList.add("message-body");
   h2.innerHTML = msg;
 
   div.appendChild(img);
@@ -125,7 +126,7 @@ const addCheckCards = (container, valid, msg) => {
 };
 
 const overshadowEffect = (container, redir = null) => {
-  const div = container.querySelector(".register-message");
+  const div = container.querySelector(".message-body");
   let timer = 2;
   const interval = setInterval(() => {
     timer -= 0.0025;

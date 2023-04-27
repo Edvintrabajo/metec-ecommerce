@@ -76,9 +76,10 @@ function Login() {
         </form>
       </Card>
 
-      <div id="register-message-container"></div>
-
-    </div>
+      <div 
+        id="message-container"
+        className="absolute top-0 left-0 w-full h-full bg-b-rgba-4 text-white items-center justify-center hidden"></div>
+      </div>
   );
 }
 
