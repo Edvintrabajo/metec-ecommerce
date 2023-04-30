@@ -8,7 +8,14 @@ import { getDocs,
     updateDoc
  } from 'firebase/firestore'
 
+ import { storage } from '../../config/firebase'
+import { ref, uploadBytes, getDownloadURL, deleteObject } from 'firebase/storage'
+import {v4} from 'uuid'
+
 const productsCollection = collection(db, 'products')
+
+// OPTIMIZAR GET PRODUCTS - Función que guarde los productos en un estado para que en caso de que
+// ocrra un error no se pierdan los datos y se puedan mostrar en la tabla de forma que se reflefe
 
 export const getProducts = async (setProducts) => {
     try{
@@ -20,91 +27,168 @@ export const getProducts = async (setProducts) => {
     }
 }
 
-export const addProduct = async (name, brand, price, stock, description, ratings, category, type, image, url) => {
+export const addProduct = async (data, setData, setProducts) => {
+    const imageRefName = `images/${data.imageUpload.name + v4()}`
+    const imageRef = ref(storage, imageRefName)
+    await uploadBytes(imageRef, data.imageUpload)
+    const url = await getDownloadURL(imageRef)
+
     try {
         await addDoc(productsCollection, {
-            name,
-            brand,
-            price: Number(price),
-            stock: Number(stock),
-            description,
-            ratings: Number(ratings),
-            category,
-            type,
-            image,
-            url
-        })
-    } catch (error) {
-        console.log(error)
-    } finally {
-        reload()
-    }
-}
-
-export const deleteProduct = async (id) => {
-    try{
-        const productDoc = doc(db, 'products', id)
-        await deleteDoc(productDoc)
-    } catch (error) {
-        console.log(error)
-    } finally {
-        reload()
-    }
-}
-
-export const updateProduct = async (id, name, brand, price, stock, description, ratings, category, type, image, url) => {
-    try{
-        const productDoc = doc(db, 'products', id)
-
-        console.log(ratings, typeof(ratings))
-
-        await updateDoc(productDoc, {
-            name,
-            brand,
-            price: Number(price),
-            stock: Number(stock),
-            description,
-            ratings: Number(ratings),
-            category,
-            type,
-            image,
-            url
+            name: data.name,
+            brand: data.brand,
+            price: data.price,
+            stock: data.stock,
+            description: data.description,
+            ratings: data.ratings,
+            category: data.category,
+            type: data.type,
+            url,
+            imageRefName
         })
     } catch (error) {
         console.log(error)
     } 
     finally {
-        reload()
+        getProducts(setProducts);
+        resetData(data, setData);
     }
 }
 
-export const displayForm = () => {
-    const editForm = document.querySelector('#edit-product-form')
+export const deleteProduct = async (id, setProducts) => {
+    try{
+        const productDoc = doc(db, 'products', id)
+        const productData = await getDoc(productDoc)
+        const imageRefName = ref(storage, productData.data().imageRefName)
+        await deleteObject(imageRefName)
+        await deleteDoc(productDoc)
+    } catch (error) {
+        console.log(error)
+    } 
+    finally {
+        getProducts(setProducts);
+    }
+}
+
+export const updateProduct = async (id, setProducts, data, setData, oldImageRefName) => {
+    const productDoc = doc(db, 'products', id)
     
-    if (editForm.style.display == 'flex') {
-        editForm.style.display = 'none'
-    } else {
-        editForm.style.display = 'flex'
+    if (data.imageUpload == null) {
+        try{    
+            await updateDoc(productDoc, {
+                name: data.name,
+                brand: data.brand,
+                price: data.price,
+                stock: data.stock,
+                description: data.description,
+                ratings: data.ratings,
+                category: data.category,
+                type: data.type,
+            })
+        } catch (error) {
+            console.log(error)
+        } 
+        finally {
+            getProducts(setProducts);
+            resetData(data, setData);
+        }
+    } 
+    else{
+        const imageRefName = `images/${data.imageUpload.name + v4()}`
+        const imageRefUpload = ref(storage, imageRefName)
+
+        await uploadBytes(imageRefUpload, data.imageUpload)
+        const url = await getDownloadURL(imageRefUpload)
+        
+        try{    
+            await updateDoc(productDoc, {
+                name: data.name,
+                brand: data.brand,
+                price: data.price,
+                stock: data.stock,
+                description: data.description,
+                ratings: data.ratings,
+                category: data.category,
+                type: data.type,
+                url,
+                imageRefName
+            })
+            try
+            {
+                const imageRef = ref(storage, oldImageRefName)
+                await deleteObject(imageRef)
+            }
+            catch (error) {
+                console.log(error)
+            }
+
+        } catch (error) {
+            console.log(error)
+        } 
+        finally {
+            getProducts(setProducts);
+            resetData(data, setData);
+        }
+
     }
 }
 
-const reload = () => {
-    window.location.reload()
+export const displayForm = (id) => {
+    const container = document.getElementById(id)
+    if (container.style.display == 'flex') {
+        container.style.display = 'none'
+    } else {
+        container.style.display = 'flex'
+    }
 }
 
+export const addData = (data, setData) => {
+    setData(data.name = document.getElementById('name').value)
+    setData(data.brand = document.getElementById('brand').value)
+    setData(data.price = Number(document.getElementById('price').value))
+    setData(data.stock = Number(document.getElementById('stock').value))
+    setData(data.description = document.getElementById('description').value)
+    setData(data.ratings = Number(document.getElementById('ratings').value))
+    setData(data.category = document.getElementById('category').value)
+    setData(data.type = document.getElementById('type').value)
+    setData(data.imageUpload = document.getElementById('image').files[0])
+}
 
-export const updateStates = async (id, setName, setBrand, setPrice, setStock, setDescription, setRatings, setCategory, setType, setImage, setUrl) => {
+export const addDataEdit = (dataEdit, setDataEdit) => {
+    setDataEdit(dataEdit.name = document.getElementById('editName').value)
+    setDataEdit(dataEdit.brand = document.getElementById('editBrand').value)
+    setDataEdit(dataEdit.price = Number(document.getElementById('editPrice').value))
+    setDataEdit(dataEdit.stock = Number(document.getElementById('editStock').value))
+    setDataEdit(dataEdit.description = document.getElementById('editDescription').value)
+    setDataEdit(dataEdit.ratings = Number(document.getElementById('editRatings').value))
+    setDataEdit(dataEdit.category = document.getElementById('editCategory').value)
+    setDataEdit(dataEdit.type = document.getElementById('editType').value)
+    setDataEdit(dataEdit.imageUpload = document.getElementById('editImage').files[0])
+}
+
+export const getStates = async (id, data, setData) => {
     const productDoc = doc(db, 'products', id)
     const productData = await getDoc(productDoc)
-    
-    setName(productData.data().name)
-    setBrand(productData.data().brand)
-    setPrice(productData.data().price)
-    setStock(productData.data().stock)
-    setDescription(productData.data().description)
-    setRatings(productData.data().ratings)
-    setCategory(productData.data().category)
-    setType(productData.data().type)
-    setImage(productData.data().image)
-    setUrl(productData.data().url)
+    // DATA: name, brand, price, stock, description, ratings, category, type, imageRefName, url
+    setData(data = productData.data())
+    showData(data)
 }
+
+export const resetForm = (id) => {
+    document.getElementById(id).reset()
+}
+
+const resetData = (data, setData) => {
+    setData(data = {})
+}
+
+const showData = (data) => {
+    document.getElementById('editName').value = data.name
+    document.getElementById('editBrand').value = data.brand
+    document.getElementById('editPrice').value = data.price
+    document.getElementById('editStock').value = data.stock
+    document.getElementById('editDescription').value = data.description
+    document.getElementById('editRatings').value = data.ratings
+    document.getElementById('editCategory').value = data.category
+    document.getElementById('editType').value = data.type
+  }

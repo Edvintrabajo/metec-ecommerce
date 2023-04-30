@@ -5,12 +5,13 @@ import {
   getProducts,
   deleteProduct,
   displayForm,
-  updateStates
+  getStates,
 } from "../controllers/products/products.functions";
 import Product from "./Product";
-
+import AddButton from "./AddButton";
+import MainpageTitle from "./MainPageTitle";
 function ProductList() {
-  const { products, setProducts, setProductIdEdit } = useContext(Context);
+  const { products, setProducts } = useContext(Context);
 
   // IMPORTANTE:
   // Se debe dejar el get products en el useEffect para que
@@ -21,21 +22,21 @@ function ProductList() {
   useEffect(() => {
     getProducts(setProducts);
   }, []);
-    
-  
-  return (
-    <div>
-      <h1>Product List</h1>
 
-      <div id="products-cards-container">
+  return (
+    <div className="w-full">
+      <AddButton />
+      <MainpageTitle />
+      <div
+        id="products-cards-container"
+        className="flex w-full flex-wrap items-center justify-evenly pt-2"
+      >
         {products.map((product) => (
           <Product
             key={product.id}
             product={product}
-            deleteProduct={deleteProduct}
             displayForm={displayForm}
-            setProductIdEdit={setProductIdEdit}
-            updateStates={updateStates}
+            getStates={getStates}
           />
         ))}
       </div>
