@@ -1,5 +1,4 @@
 import React from "react";
-import "../Cards.css";
 import { deleteOrder, updateOrder } from "../controllers/orders/orders.functions";
 
 function Order({ order }) {

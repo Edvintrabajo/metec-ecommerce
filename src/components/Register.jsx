@@ -1,15 +1,15 @@
 import React from "react";
 import { useContext } from "react";
 import { Context } from "../context/Context";
-import { signUp } from "../controllers/register/register.functions";
+import { signUp, setCurUserData } from "../controllers/register-login/functions";
 import { auth } from "../config/firebase";
 import { Card, Input, Button, Typography } from "@material-tailwind/react";
 
 function Register() {
-  const { email, setEmail, password, setPassword } = useContext(Context);
-  const register = () => signUp(email, password);
+  const { userData, setUserData } = useContext(Context);
+  const btns = ['register-button', 'register-google-button']
   // console.log(auth?.currentUser?.email);
-  console.log(email)
+  
   return (
     <div className="flex justify-center items-center w-full min-h-screen">
       <Card color="transparent" shadow={false} className="text-center border-2 p-4 bg-white">
@@ -20,37 +20,47 @@ function Register() {
           Enter your details to register.
         </Typography>
         <form
+          id="register-form"
           className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96"
           onSubmit={(e) => {
             e.preventDefault();
-            register();
+            setCurUserData(userData, setUserData, 'register');
+            signUp(userData, setUserData, btns);
+            // console.log(auth?.currentUser?.email);
           }}
         >
           <div className="mb-4 flex flex-col gap-6">
             <Input
+              id="register-email"
               size="lg"
               label="Email"
               type="email"
-              onChange={(e) => setEmail(e.target.value)}
+              // onChange={(e) => setEmail(e.target.value)}
               required
             />
             <Input
+              id="register-password"
               type="password"
               size="lg"
               label="Password"
-              onChange={(e) => setPassword(e.target.value)}
+              // onChange={(e) => setPassword(e.target.value)}
               required
             />
           </div>
 
           <div className="flex flex-col">
-            <Button className="mt-6 mb-4 p-4" fullWidth type="submit">
+            <Button
+              id="register-button" 
+              className="mt-6 mb-4 p-4" 
+              type="submit">
               Register
             </Button>
             <Button
+              id="register-google-button"
               variant="outlined"
               color="blue-gray"
               className="flex  justify-center items-center gap-3"
+              type="button"
             >
               <img src={"./src/icons/google.svg"} alt="metamask" className="h-6 w-6" />
               Continue with Google
@@ -70,9 +80,10 @@ function Register() {
         </form>
       </Card>
 
-      <div id="register-message-container"></div>
-
-    </div>
+      <div 
+        id="message-container"
+        className="absolute top-0 left-0 w-full h-full bg-b-rgba-4 text-white items-center justify-center hidden"></div>
+      </div>
   );
 }
 
