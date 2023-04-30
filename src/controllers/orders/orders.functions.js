@@ -1,44 +1,28 @@
 export const getOrders = () => {
-    const orders = localStorage.getItem('orders');
-    if (orders) {
-        return JSON.parse(orders);
-    }
-    return [];
+    const cookies = document.cookie.split('; ');
+    const cookie = cookies.find(cookie => cookie.startsWith('orders='));
+    if (cookie === undefined) return [];
+    const encodedOrders = cookie.split('=')[1];
+    return JSON.parse(decodeURIComponent(encodedOrders));
 }
 
-export const setOrder = (order) => {
-    const orders = getOrders();
-    order = {
-        id: orders.length + 1,
-        ...order
-    }
-    orders.push(order);
-    localStorage.setItem('orders', JSON.stringify(orders));
-    window.location.reload();
+export const setOrder = (newOrder) => {
+    const existingOrders = getOrders();
+    const updatedOrders = [...existingOrders, newOrder];
+    const encodedOrders = encodeURIComponent(JSON.stringify(updatedOrders));
+    document.cookie = `orders=${encodedOrders}; max-age=${30 * 24 * 60 * 60}; path=/; SameSite=Lax`;
 }
 
 export const deleteOrder = (id) => {
     const orders = getOrders();
-    const newOrders = orders.filter(order => order.id !== id);
-    localStorage.setItem('orders', JSON.stringify(newOrders));
+    orders.splice(id, 1);
+    const encodedOrders = encodeURIComponent(JSON.stringify(orders));
+    document.cookie = `orders=${encodedOrders}; max-age=${30 * 24 * 60 * 60}; path=/; SameSite=Lax`;
 }
 
-export const updateOrder = (id, order) => {
+export const updateOrder = (id, newOrder) => {
     const orders = getOrders();
-    const newOrders = orders.map((item) => {
-        if (item.id === id) {
-            return {
-                ...item,
-                ...order
-            }
-        }
-        return item;
-    });
-    localStorage.setItem('orders', JSON.stringify(newOrders));
-}
-
-export const getOrder = (id) => {
-    const orders = getOrders();
-    const order = orders.find(order => order.id === id);
-    return order;
+    orders[id] = newOrder;
+    const encodedOrders = encodeURIComponent(JSON.stringify(orders));
+    document.cookie = `orders=${encodedOrders}; max-age=${30 * 24 * 60 * 60}; path=/; SameSite=Lax`;
 }

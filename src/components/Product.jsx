@@ -6,9 +6,20 @@ import { MdModeEdit } from 'react-icons/md';
 import { MdOutlineShoppingCart } from 'react-icons/md';
 import { setOrder } from "../controllers/orders/orders.functions";
 
+<<<<<<< HEAD
 function Product({ product, displayForm, getStates }) {
   const { setProductIdEdit, setImageRefName, data, setData } =
     useContext(Context);
+=======
+function Product({product, displayForm, getStates}) {
+  const { setProductIdEdit, setImageRefName, data, setData, setOrders, orders } = useContext(Context);
+
+  const handleAddOrder = (newOrder) => {
+    const updatedOrders = [...orders, newOrder];
+    setOrders(updatedOrders);
+    setOrder(updatedOrders);
+  };
+>>>>>>> 96a59a27fcee4489aacb012e712772a5362e19f9
 
   return (
     // NEW-CARD
@@ -33,6 +44,7 @@ function Product({ product, displayForm, getStates }) {
         
         <div className='flex justify-end  w-1/2'>
           
+<<<<<<< HEAD
           {/* USER-VIEW */}
           <button 
             className="border-2  border-info shadow-low-info hover:shadow-high-info flex p-2 rounded-full transition-all text-info hover:text-white hover:bg-info"
@@ -52,6 +64,40 @@ function Product({ product, displayForm, getStates }) {
           >
             <BsFillTrashFill />
           </button>
+=======
+          <div className='flex justify-end  w-1/2'>
+            
+            {/* USER-VIEW */}
+            <button 
+              className="border-2  border-info shadow-low-info hover:shadow-high-info flex p-2 rounded-full transition-all text-info hover:text-white hover:bg-info"
+              onClick={() => handleAddOrder({idproduct: product.id, name: product.name, price: product.price, image: product.url, unidades: 1})}
+              >
+              <MdOutlineShoppingCart />      
+            </button>
+
+            {/* ADMIN-VIEW */}
+            {/* <button 
+              className="border-2 border-danger shadow-low-danger hover:shadow-high-danger mr-2 flex p-2 rounded-full transition-all text-danger hover:text-white hover:bg-danger" 
+              onClick={() => {
+                displayForm('delete-product-form')
+                setProductIdEdit(product.id)
+                getStates(product.id, data, setData)
+              }}>
+              <BsFillTrashFill />      
+            </button>
+            
+            <button
+              className='border-2 border-edit shadow-low-edit hover:shadow-high-edit flex p-2 rounded-full transition-all text-edit hover:text-white hover:bg-edit' 
+              onClick={() => {
+                displayForm('edit-product-form')
+                setProductIdEdit(product.id)
+                setImageRefName(product.imageRefName)
+                getStates(product.id, data, setData)
+              }}>
+              <MdModeEdit />
+            </button> */}
+          </div>
+>>>>>>> 96a59a27fcee4489aacb012e712772a5362e19f9
 
           <button
             className="flex rounded-full border-2 border-edit p-2 text-edit shadow-low-edit transition-all hover:bg-edit hover:text-white hover:shadow-high-edit"
