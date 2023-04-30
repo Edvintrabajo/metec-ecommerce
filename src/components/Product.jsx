@@ -8,7 +8,13 @@ import { setOrder } from "../controllers/orders/orders.functions";
 import '../Cards.css';
 
 function Product({product, displayForm, getStates}) {
-  const { setProductIdEdit, setImageRefName, data, setData } = useContext(Context)
+  const { setProductIdEdit, setImageRefName, data, setData, setOrders, orders } = useContext(Context);
+
+  const handleAddOrder = (newOrder) => {
+    const updatedOrders = [...orders, newOrder];
+    setOrders(updatedOrders);
+    setOrder(updatedOrders);
+  };
 
   return (
       // NEW-CARD
@@ -34,7 +40,7 @@ function Product({product, displayForm, getStates}) {
             {/* USER-VIEW */}
             <button 
               className="border-2  border-info shadow-low-info hover:shadow-high-info flex p-2 rounded-full transition-all text-info hover:text-white hover:bg-info"
-              onClick={() => setOrder({idproduct: product.id, name: product.name, price: product.price, image: product.url, unidades: 1})}
+              onClick={() => handleAddOrder({idproduct: product.id, name: product.name, price: product.price, image: product.url, unidades: 1})}
               >
               <MdOutlineShoppingCart />      
             </button>

@@ -1,11 +1,19 @@
 import React from "react";
 import Order from "./Order";
+import { useContext } from "react";
+import { Context } from "../context/Context";
+import { useEffect } from "react";
 import { getOrders } from "../controllers/orders/orders.functions";
+import { v4 as uuidv4 } from "uuid";
 
-function ShoppingCart({ orders }) {
+function ShoppingCart() {
 
-  console.log(getOrders())
+  const { setOrders, orders } = useContext(Context);
 
+  useEffect(() => {
+    getOrders(setOrders);
+  }, [setOrders]);
+  
   return (
     <div className="ShoppingCart">
 
@@ -13,7 +21,7 @@ function ShoppingCart({ orders }) {
         
         {orders.map((order) => (
             <Order
-              key={order.id}
+              key={uuidv4()}
               order={order}
             />
           ))}

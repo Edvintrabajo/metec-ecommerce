@@ -21,6 +21,9 @@ export function ContextProvider(props) {
     
     // EDIT PRODUCT
     const [productIdEdit, setProductIdEdit] = useState('')
+
+    // ORDERS & SET ORDERS
+    const [orders, setOrders] = useState([])
     
     // STATES & FUNCTIONS
     const states = {
@@ -32,7 +35,8 @@ export function ContextProvider(props) {
         imageRefName, setImageRefName,
         url, setUrl,
         data, setData,
-    } 
+        orders, setOrders
+    }
 
     return (
         <Context.Provider value={states}>
