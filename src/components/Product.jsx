@@ -6,11 +6,6 @@ import { MdModeEdit } from 'react-icons/md';
 import { MdOutlineShoppingCart } from 'react-icons/md';
 import { setOrder } from "../controllers/orders/orders.functions";
 
-<<<<<<< HEAD
-function Product({ product, displayForm, getStates }) {
-  const { setProductIdEdit, setImageRefName, data, setData } =
-    useContext(Context);
-=======
 function Product({product, displayForm, getStates}) {
   const { setProductIdEdit, setImageRefName, data, setData, setOrders, orders } = useContext(Context);
 
@@ -19,7 +14,6 @@ function Product({product, displayForm, getStates}) {
     setOrders(updatedOrders);
     setOrder(updatedOrders);
   };
->>>>>>> 96a59a27fcee4489aacb012e712772a5362e19f9
 
   return (
     // NEW-CARD
@@ -43,28 +37,6 @@ function Product({product, displayForm, getStates}) {
         </div>
         
         <div className='flex justify-end  w-1/2'>
-          
-<<<<<<< HEAD
-          {/* USER-VIEW */}
-          <button 
-            className="border-2  border-info shadow-low-info hover:shadow-high-info flex p-2 rounded-full transition-all text-info hover:text-white hover:bg-info"
-            onClick={() => setOrder({idproduct: product.id, name: product.name, price: product.price, image: product.url, unidades: 1})}
-            >
-            <MdOutlineShoppingCart />      
-          </button>
-        
-          {/* ADMIN-VIEW */}
-          {/* <button
-            className="mr-2 flex rounded-full border-2 border-danger p-2 text-danger shadow-low-danger transition-all hover:bg-danger hover:text-white hover:shadow-high-danger"
-            onClick={() => {
-              displayForm("delete-product-form");
-              setProductIdEdit(product.id);
-              getStates(product.id, data, setData);
-            }}
-          >
-            <BsFillTrashFill />
-          </button>
-=======
           <div className='flex justify-end  w-1/2'>
             
             {/* USER-VIEW */}
@@ -97,7 +69,6 @@ function Product({product, displayForm, getStates}) {
               <MdModeEdit />
             </button> */}
           </div>
->>>>>>> 96a59a27fcee4489aacb012e712772a5362e19f9
 
           <button
             className="flex rounded-full border-2 border-edit p-2 text-edit shadow-low-edit transition-all hover:bg-edit hover:text-white hover:shadow-high-edit"
@@ -109,7 +80,7 @@ function Product({product, displayForm, getStates}) {
             }}
           >
             <MdModeEdit />
-          </button> */}
+          </button>
         </div>
       </div>
     </div>
