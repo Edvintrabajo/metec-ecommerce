@@ -7,12 +7,14 @@ import { MdOutlineShoppingCart } from 'react-icons/md';
 import { setOrder } from "../controllers/orders/orders.functions";
 
 function Product({product, displayForm, getStates}) {
-  const { setProductIdEdit, setImageRefName, data, setData, setOrders, orders } = useContext(Context);
+  const { setProductIdEdit, setImageRefName, data, setData, setOrders, orders, setCountOrders, setTotalPrice } = useContext(Context);
 
   const handleAddOrder = (newOrder) => {
     const updatedOrders = [...orders, newOrder];
     setOrders(updatedOrders);
-    setOrder(updatedOrders);
+    setOrder(newOrder);
+    setCountOrders(updatedOrders.length);
+    setTotalPrice(updatedOrders.reduce((acc, order) => acc + order.price, 0));
   };
 
   return (
@@ -48,17 +50,7 @@ function Product({product, displayForm, getStates}) {
             </button>
 
             {/* ADMIN-VIEW */}
-            {/* <button 
-              className="border-2 border-danger shadow-low-danger hover:shadow-high-danger mr-2 flex p-2 rounded-full transition-all text-danger hover:text-white hover:bg-danger" 
-              onClick={() => {
-                displayForm('delete-product-form')
-                setProductIdEdit(product.id)
-                getStates(product.id, data, setData)
-              }}>
-              <BsFillTrashFill />      
-            </button>
-            
-            <button
+            {/* <button
               className='border-2 border-edit shadow-low-edit hover:shadow-high-edit flex p-2 rounded-full transition-all text-edit hover:text-white hover:bg-edit' 
               onClick={() => {
                 displayForm('edit-product-form')
@@ -67,20 +59,8 @@ function Product({product, displayForm, getStates}) {
                 getStates(product.id, data, setData)
               }}>
               <MdModeEdit />
-            </button> */}
+            </button>  */}
           </div>
-
-          <button
-            className="flex rounded-full border-2 border-edit p-2 text-edit shadow-low-edit transition-all hover:bg-edit hover:text-white hover:shadow-high-edit"
-            onClick={() => {
-              displayForm("edit-product-form");
-              setProductIdEdit(product.id);
-              setImageRefName(product.imageRefName);
-              getStates(product.id, data, setData);
-            }}
-          >
-            <MdModeEdit />
-          </button>
         </div>
       </div>
     </div>

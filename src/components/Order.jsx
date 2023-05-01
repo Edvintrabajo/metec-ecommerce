@@ -1,9 +1,23 @@
 import React from "react";
-import { deleteOrder, updateOrder } from "../controllers/orders/orders.functions";
+import { deleteOrder, updateOrder, getOrderIndex } from "../controllers/orders/orders.functions";
+import { Context } from "../context/Context";
+import { useContext } from "react";
 
 function Order({ order }) {
+
+  const { setOrders, orders, setCountOrders, setTotalPrice } = useContext(Context);
+
+  const handleDeleteOrder = (id) => {
+    const index = getOrderIndex(id);
+    const updatedOrders = orders.filter((order) => order.id !== id);
+    setOrders(updatedOrders);
+    deleteOrder(index);
+    setCountOrders(orders.length - 1);
+    setTotalPrice(updatedOrders.reduce((acc, order) => acc + order.price, 0));
+  };
+
   return (
-    <div className="ShoppingCart__item p2 flex">
+    <div className="ShoppingCart__item p2 flex mb-5">
       <div className="col">
         <div className="ShoppingCart__item__image h-20 w-20">
           <img
@@ -21,7 +35,7 @@ function Order({ order }) {
             <p>{ order.price } €</p>
           </div>
           <div className="flex w-1/3 items-end">
-            <button className="h-10 text-center" onClick={ deleteOrder(order.id) }>X</button>
+            <button className="h-10 text-center" onClick={ () => handleDeleteOrder(order.id) }>X</button>
           </div>
         </div>
       </div>

@@ -11,8 +11,8 @@ function ShoppingCart() {
   const { setOrders, orders } = useContext(Context);
 
   useEffect(() => {
-    getOrders(setOrders);
-  }, [setOrders]);
+    setOrders(getOrders());
+  }, []);
   
   return (
     <div className="ShoppingCart">

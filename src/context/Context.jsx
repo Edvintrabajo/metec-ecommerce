@@ -1,4 +1,5 @@
 import { createContext, useState } from "react";
+import { getOrdersCount, getTotalOrders } from "../controllers/orders/orders.functions";
 
 export const Context = createContext()
 
@@ -23,6 +24,12 @@ export function ContextProvider(props) {
 
     // ORDERS & SET ORDERS
     const [orders, setOrders] = useState([])
+
+    // COUNT ORDERS
+    const [countOrders, setCountOrders] = useState(getOrdersCount())
+
+    // TOTAL PRICE
+    const [totalPrice, setTotalPrice] = useState(getTotalOrders())
     
     // STATES & FUNCTIONS
     const states = {
@@ -33,7 +40,9 @@ export function ContextProvider(props) {
         imageRefName, setImageRefName,
         url, setUrl,
         data, setData,
-        orders, setOrders
+        orders, setOrders,
+        countOrders, setCountOrders,
+        totalPrice, setTotalPrice
     }
 
     return (

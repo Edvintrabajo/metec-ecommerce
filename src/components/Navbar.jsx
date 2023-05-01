@@ -1,7 +1,12 @@
 import React from "react";
 import ShoppingCart from "./ShoppingCart";
+import { getOrdersCount } from "../controllers/orders/orders.functions";
+import { useContext } from "react";
+import { Context } from "../context/Context";
 
 function Navbar() {
+
+  const { countOrders, totalPrice } = useContext(Context);
 
   return (
     <div className="navbar border-neutral-500 border-2 p-4 px-4 rounded-3xl flex">
@@ -34,9 +39,9 @@ function Navbar() {
             className="mt-3 card card-compact dropdown-content w-72 bg-base-100 shadow"
           >
             <div className="card-body">
-              <span className="font-bold text-lg">1 Items</span>
+              <span className="font-bold text-lg">{ countOrders } Items</span>
               <ShoppingCart />
-              <span className="text-info mt-4">Subtotal: $20</span>
+              <span className="text-info">Subtotal: ${ totalPrice }</span>
               <div className="card-actions">
                 <button className="btn btn-primary btn-block">Checkout</button>
               </div>
