@@ -10,8 +10,9 @@ import {
 import Product from "./Product";
 import AddButton from "./AddButton";
 import MainpageTitle from "./MainPageTitle";
+
 function ProductList() {
-  const { products, setProducts } = useContext(Context);
+  const { products, setProducts, isAuthtorized } = useContext(Context);
 
   // IMPORTANTE:
   // Se debe dejar el get products en el useEffect para que
@@ -25,7 +26,8 @@ function ProductList() {
 
   return (
     <div className="w-full">
-      <AddButton />
+      {isAuthtorized ? <AddButton /> : <></>}
+
       <MainpageTitle />
       <div
         id="products-cards-container"
