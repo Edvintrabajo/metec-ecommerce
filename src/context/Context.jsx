@@ -6,6 +6,9 @@ export const Context = createContext()
 export function ContextProvider(props) {
     // USER REGISTER & LOGIN
     const [userData, setUserData] = useState({})
+
+    // USER IS AUTHORIZED
+    const [isAuthtorized, setIsAuthtorized] = useState(false)
     
     // LIST OF PRODUCTS
     const [products, setProducts] = useState([])
@@ -42,7 +45,8 @@ export function ContextProvider(props) {
         data, setData,
         orders, setOrders,
         countOrders, setCountOrders,
-        totalPrice, setTotalPrice
+        totalPrice, setTotalPrice,
+        isAuthtorized, setIsAuthtorized
     }
 
     return (
