@@ -6,10 +6,12 @@ import { Context } from "../context/Context";
 import { BiUser } from "react-icons/bi";
 import { MdOutlineShoppingCart } from "react-icons/md";
 import { auth } from "../config/firebase";
+import { FiLogIn } from "react-icons/fi"
+import { AiOutlineForm } from "react-icons/ai";
 
 function Navbar() {
   const { countOrders, totalPrice } = useContext(Context);
-  
+
   return (
     <div className="navbar flex rounded-3xl border-2 border-neutral-500 p-4 px-4">
       <div className="flex-1">
@@ -43,39 +45,72 @@ function Navbar() {
           </div>
         </div>
         <div className="dropdown-end dropdown ml-5">
-          <label
-            tabIndex={0}
-            className="btn-ghost btn-circle avatar btn border-neutral-500 transition-all hover:border-transparent"
-          >
-            <div className="w-10 rounded-full p-3">
-              {auth?.currentUser?.email ? (
-                <img
-                  src={"./src/img/logo-metec.png"}
-                  alt="avatar"
-                  className="rounded-full"
-                />
-              ) : (
-                <BiUser className=" m-auto scale-150" />
-              )}
-            </div>
-          </label>
-          <ul
-            tabIndex={0}
-            className="dropdown-content menu rounded-box menu-compact mt-3 w-52 bg-base-100 p-2 shadow"
-          >
-            <li>
-              <a className="justify-between">
-                Profile
-                <span className="badge">New</span>
-              </a>
-            </li>
-            <li>
-              <a>Settings</a>
-            </li>
-            <li>
-              <a>Logout</a>
-            </li>
-          </ul>
+          {auth?.currentUser?.email ? (
+            <>
+              <label
+                tabIndex={0}
+                className="btn-ghost btn-circle avatar btn border-neutral-500 transition-all hover:border-transparent"
+              >
+                <div className="w-10 rounded-full p-3">
+                  <img
+                    src={"./src/img/logo-metec.png"}
+                    alt="avatar"
+                    className="rounded-full"
+                  />
+                </div>
+              </label>
+              <ul
+                tabIndex={0}
+                className="dropdown-content menu rounded-box menu-compact mt-3 w-52 bg-base-100 p-2 shadow"
+              >
+                <li>
+                  <a className="justify-between">
+                    Profile
+                    <span className="badge">New</span>
+                  </a>
+                </li>
+                <li>
+                  <a>Settings</a>
+                </li>
+                <li>
+                  <a>Logout</a>
+                </li>
+              </ul>
+            </>
+          ) : (
+            <>
+              <label
+                tabIndex={0}
+                className="btn-ghost btn-circle avatar btn border-neutral-500 transition-all hover:border-transparent"
+              >
+                <div className="w-10 rounded-full p-3">
+                  <BiUser className=" m-auto scale-150" />
+                </div>
+              </label>
+              <ul
+                tabIndex={0}
+                className="dropdown-content menu rounded-box menu-compact mt-3 w-52 bg-base-100 p-2 shadow"
+              >
+                <li>
+                  <a
+                    href="/login"
+                    className="justify-between"
+                  >
+                    Sign in
+                  <FiLogIn className="text-white scale-150"/>
+                  </a>
+                </li>
+                <li>
+                  <a 
+                    href="/login"
+                    className="justify-between">
+                      Sign up
+                      <AiOutlineForm className="text-white scale-150"/>
+                  </a>
+                </li>
+              </ul>
+            </>
+          )}
         </div>
       </div>
     </div>
