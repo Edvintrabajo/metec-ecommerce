@@ -7,9 +7,18 @@ import { MdOutlineShoppingCart } from "react-icons/md";
 import { auth } from "../config/firebase";
 import { FiLogIn } from "react-icons/fi"
 import { AiOutlineForm } from "react-icons/ai";
+import { sendOrders } from "../controllers/orders/orders.functions";
 
 function Navbar() {
   const { countOrders, totalPrice } = useContext(Context);
+
+  const handleSendOrders = () => {
+    sendOrders();
+  };
+
+  const handleLogOut = () => {
+    auth.signOut();
+  };
 
   return (
     <div className="navbar flex rounded-3xl border-2 border-neutral-500 p-4 px-4">
@@ -38,7 +47,7 @@ function Navbar() {
               <ShoppingCart />
               <span className="text-info">Subtotal: ${totalPrice}</span>
               <div className="card-actions">
-                <button className="btn-primary btn-block btn">Checkout</button>
+                <button className="btn-primary btn-block btn" onClick={() => handleSendOrders()}>Checkout</button>
               </div>
             </div>
           </div>
@@ -72,7 +81,7 @@ function Navbar() {
                   <a>Settings</a>
                 </li>
                 <li>
-                  <a>Logout</a>
+                  <a onClick={() => handleLogOut()}>Logout</a>
                 </li>
               </ul>
             </>

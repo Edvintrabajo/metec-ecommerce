@@ -8,7 +8,7 @@ import { getDocs,
     updateDoc
  } from 'firebase/firestore'
 
- import { storage } from '../../config/firebase'
+import { storage } from '../../config/firebase'
 import { ref, uploadBytes, getDownloadURL, deleteObject } from 'firebase/storage'
 import {v4} from 'uuid'
 

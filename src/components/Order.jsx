@@ -2,6 +2,8 @@ import React from "react";
 import { deleteOrder, updateOrder, getOrderIndex } from "../controllers/orders/orders.functions";
 import { Context } from "../context/Context";
 import { useContext } from "react";
+import { getOrdersCount, getTotalOrders } from "../controllers/orders/orders.functions";
+
 
 function Order({ order }) {
 
@@ -12,8 +14,10 @@ function Order({ order }) {
     const updatedOrders = orders.filter((order) => order.id !== id);
     setOrders(updatedOrders);
     deleteOrder(index);
-    setCountOrders(orders.length - 1);
-    setTotalPrice(updatedOrders.reduce((acc, order) => acc + order.price, 0));
+    var count = getOrdersCount();
+    setCountOrders(count);
+    var total = getTotalOrders();
+    setTotalPrice(total);
   };
 
   return (

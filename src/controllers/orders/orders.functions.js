@@ -1,4 +1,15 @@
 import { v4 as uuidv4 } from "uuid";
+import { db } from '../../config/firebase'
+import { getDocs,
+    getDoc,
+    collection,
+    addDoc,
+    deleteDoc,
+    doc,
+    updateDoc
+} from 'firebase/firestore'
+
+import { auth } from "../../config/firebase";
 
 export const getOrders = () => {
     const cookies = document.cookie;
@@ -25,16 +36,16 @@ export const setOrder = (newOrder) => {
     document.cookie = `orders=${encodedOrders}; max-age=${30 * 24 * 60 * 60}; path=/; SameSite=Lax`;
 }
 
-export const deleteOrder = (id) => {
+export const deleteOrder = (index) => {
     const orders = getOrders();
-    orders.splice(id, 1);
+    orders.splice(index, 1);
     const encodedOrders = encodeURIComponent(JSON.stringify(orders));
     document.cookie = `orders=${encodedOrders}; max-age=${30 * 24 * 60 * 60}; path=/; SameSite=Lax`;
 }
 
-export const updateOrder = (id, newOrder) => {
+export const updateOrder = (index, newOrder) => {
     const orders = getOrders();
-    orders[id] = newOrder;
+    orders[index] = newOrder;
     const encodedOrders = encodeURIComponent(JSON.stringify(orders));
     document.cookie = `orders=${encodedOrders}; max-age=${30 * 24 * 60 * 60}; path=/; SameSite=Lax`;
 }
@@ -86,4 +97,49 @@ export const addOrderQuantity = (index) => {
 
 export const clearOrders = () => {
     document.cookie = `orders=; max-age=0; path=/; SameSite=Lax`;
+}
+
+export const sendOrders = async () => {
+    const orders = getOrders();
+
+    if (orders.length === 0) {
+        return;
+    }
+    
+    const date = new Date();
+    const day = date.getDate();
+    const month = date.getMonth() + 1;
+    const year = date.getFullYear();
+    const hour = date.getHours();
+    const minutes = date.getMinutes();
+    const fullDate = `${day < 10 ? '0' + day : day}/${month < 10 ? '0' + month : month}/${year} ${hour < 10 ? '0' + hour : hour}:${minutes < 10 ? '0' + minutes : minutes}`;
+
+    const ordersCollection = collection(db, 'orders');
+
+    const productos = orders.map(order => {
+        return {
+            id: order.idproduct,
+            name: order.name,
+            unidades: order.unidades,
+            price : order.price
+        }
+    })
+
+    const jsonProductos = JSON.stringify(productos);
+
+    const cart = {
+        iduser: auth.currentUser.uid,
+        email: auth.currentUser.email,
+        items: getOrdersCount(),
+        total: getTotalOrders(),
+        date: fullDate,
+        orders: jsonProductos
+    }
+    
+    try {
+        await addDoc(ordersCollection, cart);
+        clearOrders();
+    } catch (error) {
+        console.log(error);
+    }
 }
