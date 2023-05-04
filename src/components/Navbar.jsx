@@ -8,6 +8,7 @@ import { auth } from "../config/firebase";
 import { FiLogIn } from "react-icons/fi"
 import { AiOutlineForm } from "react-icons/ai";
 import { sendOrders } from "../controllers/orders/orders.functions";
+import { logOut } from "../controllers/register-login/functions";
 
 function Navbar() {
   const { countOrders, totalPrice } = useContext(Context);
@@ -17,7 +18,7 @@ function Navbar() {
   };
 
   const handleLogOut = () => {
-    auth.signOut();
+    logOut();
   };
 
   return (

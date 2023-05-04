@@ -49,6 +49,7 @@ export const signUp = async (userData, setUserData, btns) => {
 export const signIn = async (userData, setUserData, btns) => {
   const user = auth.currentUser;
   const { email, password } = userData;
+  console.log(user, email, password)
   if (user) {
     user.reload().then(async () => {
       if (!user.emailVerified) {

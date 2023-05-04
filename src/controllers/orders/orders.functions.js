@@ -105,7 +105,7 @@ export const sendOrders = async () => {
     if (orders.length === 0) {
         return;
     }
-    
+
     const date = new Date();
     const day = date.getDate();
     const month = date.getMonth() + 1;
@@ -133,7 +133,7 @@ export const sendOrders = async () => {
         items: getOrdersCount(),
         total: getTotalOrders(),
         date: fullDate,
-        orders: jsonProductos
+        products: jsonProductos
     }
     
     try {
