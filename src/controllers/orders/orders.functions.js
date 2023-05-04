@@ -51,7 +51,6 @@ export const getOrdersCount = () => {
     return count;
 }
 
-// tener en cuenta las unidades
 export const getTotalOrders = () => {
     const orders = getOrders();
     const total = orders.reduce((acc, order) => acc + order.unidades * order.price, 0);
