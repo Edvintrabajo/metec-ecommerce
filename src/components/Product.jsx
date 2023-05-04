@@ -2,7 +2,7 @@ import React, { useEffect, useContext } from "react";
 import { Context } from "../context/Context";
 import { BsFillTrashFill } from "react-icons/bs";
 import { MdModeEdit, MdOutlineShoppingCart } from "react-icons/md";
-import { setOrder } from "../controllers/orders/orders.functions";
+import { setOrder, checkOrder, getOrdersCount, getTotalOrders } from "../controllers/orders/orders.functions";
 import { evalRatings } from "../controllers/products/products.functions";
 
 function Product({ product, displayForm, getStates }) {
@@ -19,13 +19,26 @@ function Product({ product, displayForm, getStates }) {
   } = useContext(Context);
 
   const handleAddOrder = (newOrder) => {
-    const updatedOrders = [...orders, newOrder];
-    setOrders(updatedOrders);
-    setOrder(newOrder);
-    setCountOrders(updatedOrders.length);
-    setTotalPrice(updatedOrders.reduce((acc, order) => acc + order.price, 0));
+    if (checkOrder(newOrder.idproduct) === -1) {
+      const updatedOrders = [...orders, newOrder];
+      setOrder(newOrder);
+      setOrders(updatedOrders);
+      var count = getOrdersCount();
+      setCountOrders(count);
+      var total = getTotalOrders();
+      setTotalPrice(total);
+    } else {
+      setOrder(newOrder);
+      const updatedOrders = [...orders];
+      updatedOrders[checkOrder(newOrder.idproduct)].unidades++;
+      setOrders(updatedOrders);
+      var count = getOrdersCount();
+      setCountOrders(count);
+      var total = getTotalOrders();
+      setTotalPrice(total);
+    }
   };
-
+        
   return (
     // NEW-CARD
 

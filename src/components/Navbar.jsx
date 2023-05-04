@@ -1,6 +1,5 @@
 import React from "react";
 import ShoppingCart from "./ShoppingCart";
-import { getOrdersCount } from "../controllers/orders/orders.functions";
 import { useContext } from "react";
 import { Context } from "../context/Context";
 import { BiUser } from "react-icons/bi";
