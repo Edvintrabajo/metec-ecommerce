@@ -28,7 +28,7 @@ function Product({ product, displayForm, getStates }) {
   return (
     // NEW-CARD
 
-    <div className="relative m-6 h-80 w-60 overflow-visible rounded-xl bg-white p-4 text-black">
+    <div className="relative mb-10 mx-6 h-80 w-60 overflow-visible rounded-xl bg-white p-4 text-black">
       <div className="flex h-1/2 w-full justify-center rounded-lg bg-white p-2 align-middle shadow-low-info transition-all hover:-translate-y-(25%) hover:shadow-high-info">
         <img
           className=" w-2/3 rounded-2xl"
