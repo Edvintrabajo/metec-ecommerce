@@ -5,46 +5,63 @@ import { useContext } from "react";
 import { Context } from "../context/Context";
 import { BiUser } from "react-icons/bi";
 import { MdOutlineShoppingCart } from "react-icons/md";
+import { auth } from "../config/firebase";
+
 function Navbar() {
-
   const { countOrders, totalPrice } = useContext(Context);
-
+  
   return (
-    <div className="navbar border-neutral-500 border-2 p-4 px-4 rounded-3xl flex">
+    <div className="navbar flex rounded-3xl border-2 border-neutral-500 p-4 px-4">
       <div className="flex-1">
-        <a className="normal-case text-4xl">METEC</a>
+        <a className="text-4xl normal-case">METEC</a>
       </div>
       <div className="flex-none">
-        <div className="dropdown dropdown-end">
-          <label tabIndex={0} className="btn btn-ghost btn-circle border-neutral-500 transition-all hover:border-transparent">
+        <div className="dropdown-end dropdown">
+          <label
+            tabIndex={0}
+            className="btn-ghost btn-circle btn border-neutral-500 transition-all hover:border-transparent"
+          >
             <div className="indicator rounded-full p-3">
-                <MdOutlineShoppingCart className="scale-150"/>
-              <span className="badge badge-sm indicator-item border-neutral-500">{ countOrders }</span>
+              <MdOutlineShoppingCart className="scale-150" />
+              <span className="badge badge-sm indicator-item border-neutral-500">
+                {countOrders}
+              </span>
             </div>
           </label>
           <div
             tabIndex={0}
-            className="mt-3 card card-compact dropdown-content w-72 bg-base-100 shadow"
+            className="card dropdown-content card-compact mt-3 w-72 bg-base-100 shadow"
           >
             <div className="card-body">
-              <span className="font-bold text-lg">{ countOrders } Items</span>
+              <span className="text-lg font-bold">{countOrders} Items</span>
               <ShoppingCart />
-              <span className="text-info">Subtotal: ${ totalPrice }</span>
+              <span className="text-info">Subtotal: ${totalPrice}</span>
               <div className="card-actions">
-                <button className="btn btn-primary btn-block">Checkout</button>
+                <button className="btn-primary btn-block btn">Checkout</button>
               </div>
             </div>
           </div>
         </div>
-        <div className="dropdown dropdown-end ml-5">
-          <label tabIndex={0} className="btn btn-ghost btn-circle avatar border-neutral-500 transition-all hover:border-transparent">
+        <div className="dropdown-end dropdown ml-5">
+          <label
+            tabIndex={0}
+            className="btn-ghost btn-circle avatar btn border-neutral-500 transition-all hover:border-transparent"
+          >
             <div className="w-10 rounded-full p-3">
-              <BiUser className=" scale-150 m-auto" />
+              {auth?.currentUser?.email ? (
+                <img
+                  src={"./src/img/logo-metec.png"}
+                  alt="avatar"
+                  className="rounded-full"
+                />
+              ) : (
+                <BiUser className=" m-auto scale-150" />
+              )}
             </div>
           </label>
           <ul
             tabIndex={0}
-            className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+            className="dropdown-content menu rounded-box menu-compact mt-3 w-52 bg-base-100 p-2 shadow"
           >
             <li>
               <a className="justify-between">
