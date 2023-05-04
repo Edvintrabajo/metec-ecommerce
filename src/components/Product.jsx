@@ -3,6 +3,7 @@ import { Context } from "../context/Context";
 import { BsFillTrashFill } from "react-icons/bs";
 import { MdModeEdit, MdOutlineShoppingCart } from "react-icons/md";
 import { setOrder } from "../controllers/orders/orders.functions";
+import { evalRatings } from "../controllers/products/products.functions";
 
 function Product({ product, displayForm, getStates }) {
   const {
@@ -28,7 +29,7 @@ function Product({ product, displayForm, getStates }) {
   return (
     // NEW-CARD
 
-    <div className="relative mb-10 mx-6 h-80 w-60 overflow-visible rounded-xl bg-white p-4 text-black">
+    <div className="relative mx-6 mb-10 w-60 overflow-visible rounded-xl bg-white p-4 text-black">
       <div className="flex h-1/2 w-full justify-center rounded-lg bg-white p-2 align-middle shadow-low-info transition-all hover:-translate-y-(25%) hover:shadow-high-info">
         <img
           className=" w-2/3 rounded-2xl"
@@ -38,8 +39,10 @@ function Product({ product, displayForm, getStates }) {
       </div>
       <div className="p-2 pb-6">
         <h3 className="text-title text-lg font-black">{product.name}</h3>
-        <p className="text-sm">{product.description}</p>
-        <p>Ratings: {product.ratings}/10</p>
+        <p className="h-10 overflow-y-auto text-sm">{product.description}</p>
+        <p className="pt-3 text-3xl text-yellow-500">
+          {evalRatings(product.ratings)}
+        </p>
       </div>
       <div className="flex w-full items-center justify-center border-t-2 pt-3">
         <div className="w-1/2 text-left">
