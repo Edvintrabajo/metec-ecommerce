@@ -91,16 +91,16 @@ function Navbar() {
                 tabIndex={0}
                 className="dropdown-content menu rounded-box menu-compact mt-3 w-52 bg-base-100 p-2 shadow"
               >
-                <li>
+                <li className="hover:text-edit">
                   <a
                     href="/login"
                     className="justify-between"
                   >
                     Sign in
-                  <FiLogIn className="text-white scale-150"/>
+                    <FiLogIn className="text-white scale-150"/>
                   </a>
                 </li>
-                <li>
+                <li className="hover:text-info">
                   <a 
                     href="/login"
                     className="justify-between">
