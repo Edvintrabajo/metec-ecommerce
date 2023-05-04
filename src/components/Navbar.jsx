@@ -3,7 +3,7 @@ import ShoppingCart from "./ShoppingCart";
 import { getOrdersCount } from "../controllers/orders/orders.functions";
 import { useContext } from "react";
 import { Context } from "../context/Context";
-
+import { BiUser } from "react-icons/bi";
 function Navbar() {
 
   const { countOrders, totalPrice } = useContext(Context);
@@ -50,8 +50,8 @@ function Navbar() {
         </div>
         <div className="dropdown dropdown-end ml-5">
           <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-            <div className="w-10 rounded-full">
-              <img src="./src/img/logo-metec.png" className=""/>
+            <div className="w-10 rounded-full p-3 bg-blue-gray-700">
+              <BiUser className=" scale-150" />
             </div>
           </label>
           <ul
