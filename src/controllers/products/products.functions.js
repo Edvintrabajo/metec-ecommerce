@@ -242,6 +242,5 @@ export const evalRatings = (ratings) => {
             msg.push('☆')
             break;
     }
-    console.log(msg)
     return msg
 }
