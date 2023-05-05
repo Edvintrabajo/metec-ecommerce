@@ -17,7 +17,7 @@ function DeleteProduct() {
     >
       <Card
         id="delete-product-container"
-        className="fixed top-60 z-20 flex w-80 items-center justify-center border-2 bg-white p-4 text-center shadow-high-danger"
+        className="fixed top-64 z-20 flex w-80 items-center justify-center border-2 bg-white p-4 text-center shadow-high-danger tablet:w-96 tablet:h-52 laptop:w-1/3"
         color="transparent"
         shadow={false}
       >

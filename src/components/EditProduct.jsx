@@ -18,7 +18,7 @@ function EditProduct() {
       id="edit-product-form"
       className="absolute top-0 left-0 z-10 hidden h-full w-full items-center justify-center bg-b-rgba-4"
     >
-      <Card className="fixed top-3 z-20 w-3/4">
+      <Card className="fixed top-28 z-20 w-3/4 tablet:w-11/12 tablet:top-64 laptop:w-7/12">
         <form
           id="edit-product-container"
           className="flex w-full flex-wrap items-center justify-evenly p-4"
@@ -43,7 +43,7 @@ function EditProduct() {
           >
             Edit Product
           </Typography>
-          <div className="flex h-52 w-4/5 flex-wrap items-center justify-center">
+          <div className="flex h-52 w-4/5 flex-wrap items-center justify-center tablet:w-2/5">
             <Input id="editName" type="text" label="Name" required />
             <Input id="editBrand" type="text" label="Brand" required />
             <Input
@@ -63,7 +63,7 @@ function EditProduct() {
               max={10000}
             />
           </div>
-          <div className="mb-4 flex h-52 w-4/5 flex-wrap items-center justify-center">
+          <div className="mb-4 flex h-52 w-4/5 flex-wrap items-center justify-center tablet:w-2/5 tablet:mb-0">
             <Input
               id="editDescription"
               type="text"
@@ -99,7 +99,7 @@ function EditProduct() {
               id="editImage"
               type="file"
               accept="image/png, image/jpeg, image/jpg"
-              className="w-5/6"
+              className="w-5/6 tablet:w-2/3 laptop:w-1/2"
             />
           </div>
 
