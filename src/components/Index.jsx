@@ -11,8 +11,6 @@ import { verifyUserStatus } from "../controllers/admins/admins.functions";
 function Index() {
   const { setIsAuthtorized } = useContext(Context);
 
-  console.log(auth?.currentUser?.email);
-
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
       if (user) {
