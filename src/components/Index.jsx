@@ -6,15 +6,19 @@ import EditProduct from "./EditProduct";
 import Navbar from "./Navbar";
 import DeleteProduct from "./DeleteProduct";
 import { auth } from "../config/firebase";
-import { isAdmin } from "../controllers/admins/admins.functions";
+import { verifyUserStatus } from "../controllers/admins/admins.functions";
 
 function Index() {
   const { setIsAuthtorized } = useContext(Context);
 
+  console.log(auth?.currentUser?.email);
+
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
       if (user) {
-        setIsAuthtorized(isAdmin(user.email));
+        user.reload().then(() => {
+          verifyUserStatus(setIsAuthtorized);
+        });
       } else {
         setIsAuthtorized(false);
       }
@@ -28,6 +32,10 @@ function Index() {
       <AddProduct />
       <EditProduct />
       <DeleteProduct />
+      <div
+        id="message-container"
+        className="absolute top-0 left-0 hidden h-full w-full items-center justify-center bg-b-rgba-4 text-white"
+      ></div>
     </div>
   );
 }
