@@ -20,6 +20,9 @@ module.exports = withMT({
         'low-cancel': '0 10px 20px rgba(84, 27, 138, 0.2)',
         'high-cancel': '0 10px 20px rgba(84, 27, 138, 0.4)',
         'main-card': '0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)',
+        'low-box-shadow': '0 10px 20px rgba(0, 0, 0, 0.3)',
+        'high-box-shadow': '0 10px 20px rgba(0, 0, 0, 0.6)',
+        'multiple-box-shadow': 'rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px',
       },
       translate: {
         '(25%)': '25%',
@@ -49,11 +52,6 @@ module.exports = withMT({
       'laptop': '1000px',
       'desktop': '1600px',
     },
-    boxShadow: {
-      'low-box-shadow': '0 10px 20px rgba(0, 0, 0, 0.3)',
-      'high-box-shadow': '0 10px 20px rgba(0, 0, 0, 0.6)',
-      'multiple-box-shadow': 'rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px',
-    }
   },
   plugins: [require("daisyui")],
 })
