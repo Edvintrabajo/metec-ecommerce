@@ -191,32 +191,57 @@ const showData = (data) => {
 }
 
 export const evalRatings = (ratings) => {
-    let msg = ""
+    let msg = []
     
     switch (ratings) {
         case 1:
         case 2:
-            msg =  '★☆☆☆☆';
+            msg.push('★')
+            msg.push('☆')
+            msg.push('☆')
+            msg.push('☆')
+            msg.push('☆')
             break;
         case 3:
         case 4:
-            msg =  '★★☆☆☆';
+            msg.push('★')
+            msg.push('★')
+            msg.push('☆')
+            msg.push('☆')
+            msg.push('☆')
             break;
         case 5:
         case 6:
-            msg =  '★★★☆☆';
+            msg.push('★')
+            msg.push('★')
+            msg.push('★')
+            msg.push('☆')
+            msg.push('☆')
             break;
         case 7:
         case 8:
-            msg =  '★★★★☆';
+            msg.push('★')
+            msg.push('★')
+            msg.push('★')
+            msg.push('★')
+            msg.push('☆')
             break;
         case 9:
         case 10:
-            msg =  '★★★★★';
+            msg.push('★')
+            msg.push('★')
+            msg.push('★')
+            msg.push('★')
+            msg.push('★')
             break;
         default:
-            msg =  '☆☆☆☆☆';
+            msg.push('☆')
+            msg.push('☆')
+            msg.push('☆')
+            msg.push('☆')
+            msg.push('☆')
             break;
     }
+    console.log(msg)
     return msg
 }

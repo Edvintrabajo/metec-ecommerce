@@ -4,15 +4,14 @@ import { BsFillTrashFill } from "react-icons/bs";
 import { MdModeEdit, MdOutlineShoppingCart } from "react-icons/md";
 import { setOrder, checkOrder, getOrdersCount, getTotalOrders } from "../controllers/orders/orders.functions";
 import { evalRatings } from "../controllers/products/products.functions";
+import {v4} from 'uuid'
 
 function Product({ product, displayForm, getStates }) {
   const {
     setProductIdEdit,
     setImageRefName,
-    data,
-    setData,
-    setOrders,
-    orders,
+    data, setData,
+    orders, setOrders,
     setCountOrders,
     setTotalPrice,
     isAuthtorized,
@@ -53,9 +52,15 @@ function Product({ product, displayForm, getStates }) {
       <div className="p-2 pb-6">
         <h3 className="text-title text-lg font-black">{product.name}</h3>
         <p className="h-10 overflow-y-auto text-sm">{product.description}</p>
-        <p className="pt-3 text-3xl text-yellow-500">
-          {evalRatings(product.ratings)}
-        </p>
+        <div className="flex">
+          {evalRatings(product.ratings).map((star) => (
+            <p key={star + v4()} 
+              className="pt-3 mr-1 text-3xl text-yellow-600 cursor-pointer transition-all hover:-translate-y-2 hover:scale-125">
+              {star}
+            </p>
+          ))}
+        </div>
+        
       </div>
       <div className="flex w-full items-center justify-center border-t-2 pt-3">
         <div className="w-1/2 text-left">
