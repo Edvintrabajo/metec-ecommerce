@@ -10,10 +10,16 @@ import { AiOutlineForm } from "react-icons/ai";
 import { sendOrders } from "../controllers/orders/orders.functions";
 import { logOut } from "../controllers/register-login/functions";
 
+
 function Navbar() {
   const { countOrders, totalPrice } = useContext(Context);
 
   const handleSendOrders = () => {
+    if (auth?.currentUser === null) {
+      alert("You must be logged to checkout");
+      window.location.href = "/login";
+      return;
+    }
     sendOrders();
   };
 

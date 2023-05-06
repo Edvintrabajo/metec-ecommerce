@@ -4,12 +4,13 @@ import { Context } from "../context/Context";
 import { useContext } from "react";
 import { getOrdersCount, getTotalOrders } from "../controllers/orders/orders.functions";
 import { BsFillTrashFill } from "react-icons/bs";
+import { auth } from "../config/firebase";
 
 function Order({ order }) {
 
   const { setOrders, orders, setCountOrders, setTotalPrice } = useContext(Context);
 
-  const handleDeleteOrder = (id) => {
+  const handleDeleteOrder = (id) => {  
     const index = getOrderIndex(id);
     const updatedOrders = orders.filter((order) => order.id !== id);
     setOrders(updatedOrders);

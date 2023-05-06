@@ -18,14 +18,16 @@ function ShoppingCart() {
     <div className="ShoppingCart mt-2">
 
       <div className="ShoppingCart__items">
-        
-        {orders.map((order) => (
+        {orders.length === 0 ? (
+          <p className="text-base font-semibold mb-4 text-center">No products in the cart</p>
+        ) : (
+          orders.map((order) => (
             <Order
               key={uuidv4()}
               order={order}
             />
-          ))}
-        
+          ))
+        )}
       </div>
       <hr className=""/>
     </div>

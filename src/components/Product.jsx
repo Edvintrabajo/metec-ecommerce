@@ -5,6 +5,7 @@ import { MdModeEdit, MdOutlineShoppingCart } from "react-icons/md";
 import { setOrder, checkOrder, getOrdersCount, getTotalOrders } from "../controllers/orders/orders.functions";
 import { evalRatings } from "../controllers/products/products.functions";
 import { v4 } from "uuid";
+import { auth } from "../config/firebase";
 
 function Product({ product, displayForm, getStates }) {
   const {
