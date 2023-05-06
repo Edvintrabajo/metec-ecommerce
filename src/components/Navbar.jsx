@@ -21,7 +21,7 @@ function Navbar() {
       return;
     }
     sendOrders();
-    alert("Your order was successful");
+    alert("Your order was successful maked");
     setOrders([]);
   };
 
