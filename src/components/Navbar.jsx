@@ -70,7 +70,7 @@ function Navbar() {
               >
                 <div className="w-10 rounded-full">
                   <img
-                    src={"./src/img/user-image.webp"}
+                    src={`https://robohash.org/${auth?.currentUser?.email}`}
                     alt="avatar"
                     className="rounded-full scale-125"
                   />
