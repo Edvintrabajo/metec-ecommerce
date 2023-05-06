@@ -27,7 +27,6 @@ export const setOrder = (newOrder) => {
     const orders = getOrders();
     const orderIndex = checkOrder(newOrder.idproduct);
     if (orderIndex === -1) {
-        newOrder = { ...newOrder, id: uuidv4() };
         orders.push(newOrder);
     } else {
         orders[orderIndex].unidades += newOrder.unidades;

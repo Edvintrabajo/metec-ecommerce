@@ -4,7 +4,7 @@ import { BsFillTrashFill } from "react-icons/bs";
 import { MdModeEdit, MdOutlineShoppingCart } from "react-icons/md";
 import { setOrder, checkOrder, getOrdersCount, getTotalOrders } from "../controllers/orders/orders.functions";
 import { evalRatings } from "../controllers/products/products.functions";
-import {v4} from 'uuid'
+import { v4 } from "uuid";
 
 function Product({ product, displayForm, getStates }) {
   const {
@@ -18,6 +18,7 @@ function Product({ product, displayForm, getStates }) {
   } = useContext(Context);
 
   const handleAddOrder = (newOrder) => {
+    newOrder = { ...newOrder, id: v4() };
     if (checkOrder(newOrder.idproduct) === -1) {
       const updatedOrders = [...orders, newOrder];
       setOrder(newOrder);
