@@ -10,6 +10,7 @@ import {
 import Product from "./Product";
 import AddButton from "./AddButton";
 import MainpageTitle from "./MainPageTitle";
+import Filters from "./Filters";
 
 function ProductList() {
   const { products, setProducts, isAuthtorized } = useContext(Context);
@@ -27,7 +28,9 @@ function ProductList() {
   return (
     <div className="w-full">
       {isAuthtorized ? <AddButton /> : <></>}
-
+      <div className="mr-5">
+          <Filters />
+      </div>
       <MainpageTitle title="Trending Top"/>
       <div
         id="products-cards-container"
