@@ -3,6 +3,7 @@ import { useContext } from "react";
 import { Context } from "../context/Context";
 import {
   getProducts,
+  getTenProducts,
   deleteProduct,
   displayForm,
   getStates,
@@ -22,7 +23,8 @@ function ProductList() {
   // Por tanto despues de añadir algun producto, se debe recargar la pagina para verlo
 
   useEffect(() => {
-    getProducts(setProducts);
+    // getProducts(setProducts);
+    getTenProducts(setProducts);
   }, []);
 
   return (
@@ -44,6 +46,18 @@ function ProductList() {
             getStates={getStates}
           />
         ))}
+
+        <div id="showAllProducts" className="w-full justify-center hidden">
+          <button
+            className="w-20 rounded-md border-2 border-cancel bg-cancel p-1 text-white shadow-low-cancel transition-all hover:bg-white hover:text-cancel hover:shadow-high-cancel"
+            type="button"
+            onClick={() => {
+              getProducts(setProducts);
+            }}
+          >
+            Ver más
+          </button>
+        </div>
       </div>
     </div>
   );
