@@ -44,7 +44,6 @@ module.exports = withMT({
         'b-rgba-8': 'rgba(0, 0, 0, 0.8)',
         'b-rgba-9': 'rgba(0, 0, 0, 0.9)',
         'b-rgba-10': 'rgba(0, 0, 0, 1)',
-        
       },
     },
     screens: {
@@ -52,6 +51,15 @@ module.exports = withMT({
       'tablet': '600px',
       'laptop': '1000px',
       'desktop': '1600px',
+    },
+    animation: {
+      'text-wave': 'textWave 6s infinite',
+    },
+    keyframes: {
+      textWave: {
+        '0%, 16.667%, 100%': { opacity: '1' },
+        '33.333%, 83.333%': { opacity: '0' },
+      }
     },
   },
   plugins: [require("daisyui")],
