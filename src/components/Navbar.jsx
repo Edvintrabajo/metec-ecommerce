@@ -12,7 +12,7 @@ import { logOut } from "../controllers/register-login/functions";
 
 
 function Navbar() {
-  const { countOrders, totalPrice } = useContext(Context);
+  const { countOrders, totalPrice, setOrders } = useContext(Context);
 
   const handleSendOrders = () => {
     if (auth?.currentUser === null) {
@@ -21,6 +21,7 @@ function Navbar() {
       return;
     }
     sendOrders();
+    setOrders([]);
   };
 
   const handleLogOut = () => {
