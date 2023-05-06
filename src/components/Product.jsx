@@ -44,9 +44,10 @@ function Product({ product, displayForm, getStates }) {
     <div className="relative mx-5 mb-14 w-60 overflow-visible rounded-xl bg-white p-4 text-black shadow-low-box-shadow">
       <div className="flex h-1/2 w-full justify-center rounded-lg bg-white p-2 align-middle border border-low-info transition-all hover:-translate-y-(25%) hover:shadow-high-info hover:border-transparent">
         <img
-          className=" h-40 rounded-2xl"
+          className="h-40 rounded-2xl cursor-pointer"
           src={product.url}
           alt={product.name}
+          onClick={() => {window.open(product.url, "_blank")}}
         />
       </div>
       <div className="p-2 pb-6">
