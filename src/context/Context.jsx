@@ -1,10 +1,14 @@
 import { createContext, useState } from "react";
+import { getOrdersCount, getTotalOrders } from "../controllers/orders/orders.functions";
 
 export const Context = createContext()
 
 export function ContextProvider(props) {
     // USER REGISTER & LOGIN
     const [userData, setUserData] = useState({})
+
+    // USER IS AUTHORIZED
+    const [isAuthtorized, setIsAuthtorized] = useState(false)
     
     // LIST OF PRODUCTS
     const [products, setProducts] = useState([])
@@ -20,6 +24,15 @@ export function ContextProvider(props) {
     
     // EDIT PRODUCT
     const [productIdEdit, setProductIdEdit] = useState('')
+
+    // ORDERS & SET ORDERS
+    const [orders, setOrders] = useState([])
+
+    // COUNT ORDERS
+    const [countOrders, setCountOrders] = useState(getOrdersCount())
+
+    // TOTAL PRICE
+    const [totalPrice, setTotalPrice] = useState(getTotalOrders())
     
     // STATES & FUNCTIONS
     const states = {
@@ -30,7 +43,11 @@ export function ContextProvider(props) {
         imageRefName, setImageRefName,
         url, setUrl,
         data, setData,
-    } 
+        orders, setOrders,
+        countOrders, setCountOrders,
+        totalPrice, setTotalPrice,
+        isAuthtorized, setIsAuthtorized
+    }
 
     return (
         <Context.Provider value={states}>

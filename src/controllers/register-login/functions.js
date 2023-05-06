@@ -19,6 +19,7 @@ export const signUp = async (userData, setUserData, btns) => {
       sendEmailVerification(user)
         .then(() => {
             if (user && !user.emailVerified) {
+              auth.signOut();
               showMsg("Please verify your email address to complete registration", true, "/login");
             }
             if (!user) {
@@ -47,51 +48,48 @@ export const signUp = async (userData, setUserData, btns) => {
 };
 
 export const signIn = async (userData, setUserData, btns) => {
-  const user = auth.currentUser;
   const { email, password } = userData;
-  if (user) {
-    user.reload().then(async () => {
-      if (!user.emailVerified) {
-        const errMsg = checkErrorCodes("metec/email-not-verified");
-        showMsg(errMsg, false);      
-      }
-      else {
-        disableBtns(btns)
-        try {
-          await signInWithEmailAndPassword(auth, email, password)
-          .then(() => {
-            showMsg("Logged in successfully", true, "/");
-          })
-          .catch((error) => {
-            const errMsg = checkErrorCodes(error.code);
-            showMsg(errMsg, false);
-          });
-        } 
-        catch(error) {
-          const errMsg = checkErrorCodes("An unespected error occured while logging in, please try again later");
+  
+  disableBtns(btns)
+  
+  try {
+    await signInWithEmailAndPassword(auth, email, password)
+    .then(() => {
+      const user = auth.currentUser;
+      user.reload().then(() => {
+        if (user.emailVerified) {
+          showMsg("Logged in successfully", true, "/");
+        }
+        else {
+          auth.signOut();
+          const errMsg = checkErrorCodes("metec/email-not-verified");
           showMsg(errMsg, false);
         }
-        finally {
-          enableBtns(btns)
-        }
-      }
-    });
-  } else {
-    const errMsg = checkErrorCodes("auth/user-not-found");
-    showMsg(errMsg, false);
-  }
-  setUserData(userData = {});
-};
-
-export const logOut = async () => {
-  await signOut(auth)
-    .then(() => {
-      showMsg("Logged out successfully", true);
+      });
     })
     .catch((error) => {
       const errMsg = checkErrorCodes(error.code);
       showMsg(errMsg, false);
     });
+  } 
+  catch(error) {
+    const errMsg = checkErrorCodes("An unespected error occured while logging in, please try again later");
+    showMsg(errMsg, false);
+  }
+  finally {
+    enableBtns(btns)
+    setUserData(userData = {});
+  }
+};
+
+export const logOut = async () => {
+  auth.signOut().then(() => {
+    showMsg("Logged out successfully, see you soon", true, "/login");
+  })
+  .catch((error) => {
+    const errMsg = checkErrorCodes(error.code);
+    showMsg(errMsg, false);
+  });
 };
 
 const showMsg = (msg, valid, redir = null) => {

@@ -20,6 +20,9 @@ module.exports = withMT({
         'low-cancel': '0 10px 20px rgba(84, 27, 138, 0.2)',
         'high-cancel': '0 10px 20px rgba(84, 27, 138, 0.4)',
         'main-card': '0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)',
+        'low-box-shadow': '0 10px 20px rgba(0, 0, 0, 0.3)',
+        'high-box-shadow': '0 10px 20px rgba(0, 0, 0, 0.6)',
+        'multiple-box-shadow': 'rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px',
       },
       translate: {
         '(25%)': '25%',
@@ -29,6 +32,7 @@ module.exports = withMT({
         'danger': '#EF4444',
         'warning': '#F59E0B',
         'info': '#3B82F6',
+        'low-info': 'rgba(59, 130, 246, 0.4)',
         'edit': '#10B981',
         'b-rgba-1': 'rgba(0, 0, 0, 0.1)',
         'b-rgba-2': 'rgba(0, 0, 0, 0.2)',
@@ -40,7 +44,6 @@ module.exports = withMT({
         'b-rgba-8': 'rgba(0, 0, 0, 0.8)',
         'b-rgba-9': 'rgba(0, 0, 0, 0.9)',
         'b-rgba-10': 'rgba(0, 0, 0, 1)',
-        
       },
     },
     screens: {
@@ -49,11 +52,15 @@ module.exports = withMT({
       'laptop': '1000px',
       'desktop': '1600px',
     },
-    boxShadow: {
-      'low-box-shadow': '0 10px 20px rgba(0, 0, 0, 0.3)',
-      'high-box-shadow': '0 10px 20px rgba(0, 0, 0, 0.6)',
-      'multiple-box-shadow': 'rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px',
-    }
+    animation: {
+      'text-wave': 'textWave 6s infinite',
+    },
+    keyframes: {
+      textWave: {
+        '0%, 16.667%, 100%': { opacity: '1' },
+        '33.333%, 83.333%': { opacity: '0' },
+      }
+    },
   },
   plugins: [require("daisyui")],
 })

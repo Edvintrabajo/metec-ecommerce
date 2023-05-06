@@ -18,10 +18,10 @@ function EditProduct() {
       id="edit-product-form"
       className="absolute top-0 left-0 z-10 hidden h-full w-full items-center justify-center bg-b-rgba-4"
     >
-      <Card className="w-2/3">
+      <Card className="fixed top-28 z-20 w-3/4 tablet:w-11/12 tablet:top-64 laptop:w-7/12">
         <form
           id="edit-product-container"
-          className="z-20 flex w-full flex-wrap items-center justify-evenly p-4"
+          className="flex w-full flex-wrap items-center justify-evenly p-4"
           onSubmit={(e) => {
             e.preventDefault();
             addDataEdit(data, setData);
@@ -37,68 +37,73 @@ function EditProduct() {
           }}
         >
           <Typography
-            className=" w-full p-4 text-edit"
+            className=" w-full p-4 text-center text-edit"
             variant="h4"
             color="blue-gray"
           >
             Edit Product
           </Typography>
-          <div className="mb-4 flex h-72 w-2/5 flex-wrap items-center justify-center">
-            <label htmlFor="">Name</label>
-            <Input id="editName" name="editName" type="text" required />
-            <label htmlFor="">Brand</label>
-            <Input id="editBrand" name="editBrand" type="text" required />
-            <label htmlFor="">Price</label>
+          <div className="flex h-52 w-4/5 flex-wrap items-center justify-center tablet:w-2/5">
+            <Input id="editName" type="text" label="Name" required />
+            <Input id="editBrand" type="text" label="Brand" required />
             <Input
               id="editPrice"
-              name="editPrice"
               type="number"
+              label="Price"
               required
               min={0}
               max={10000}
             />
-            <label htmlFor="">Stock</label>
             <Input
               id="editStock"
-              name="editStock"
               type="number"
               required
+              label="Stock"
               min={0}
               max={10000}
             />
           </div>
-          <div className="mb-4 flex h-72 w-2/5 flex-wrap items-center justify-center">
-            <label htmlFor="">Description</label>
+          <div className="mb-4 flex h-52 w-4/5 flex-wrap items-center justify-center tablet:w-2/5 tablet:mb-0">
             <Input
               id="editDescription"
-              name="editDescription"
               type="text"
+              label="Description"
               required
             />
-            <label htmlFor="">Ratings</label>
             <Input
               id="editRatings"
-              name="editRatings"
               type="number"
+              label="Ratings"
               required
               min={0}
               max={10}
             />
-            <label htmlFor="">Category</label>
-            <Input id="editCategory" name="editCategory" type="text" required />
-            <label htmlFor="">Type</label>
-            <Input id="editType" name="editType" type="text" required />
+            <select
+              id="editCategory"
+              required
+              className="w-full rounded-md border border-neutral-400 text-neutral-500 bg-white p-2 text-sm"
+            >
+              <option value="Component">Component</option>
+              <option value="Computer">Computer</option>
+              <option value="Smartphone">Smartphone</option>
+              <option value="Tablet">Tablet</option>
+              <option value="TV">TVs</option>
+              <option value="Peripheral">Peripheral</option>
+            </select>
+
+            <Input id="editType" type="text" label="Type" required />
           </div>
-          <div className=" w-4/6">
+
+          <div className="flex w-full justify-center p-2">
             <input
               id="editImage"
-              name="editImage"
               type="file"
               accept="image/png, image/jpeg, image/jpg"
+              className="w-5/6 tablet:w-2/3 laptop:w-1/2"
             />
           </div>
 
-          <div className="mt-4 flex w-1/2 justify-evenly">
+          <div className="mt-5 flex w-full justify-evenly">
             <button
               className="w-20 rounded-md border-2 border-edit bg-edit p-1 text-white shadow-low-edit transition-all hover:bg-white hover:text-edit hover:shadow-high-edit"
               type="submit"

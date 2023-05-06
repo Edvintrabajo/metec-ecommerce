@@ -8,14 +8,11 @@ import { getDocs,
     updateDoc
  } from 'firebase/firestore'
 
- import { storage } from '../../config/firebase'
+import { storage } from '../../config/firebase'
 import { ref, uploadBytes, getDownloadURL, deleteObject } from 'firebase/storage'
 import {v4} from 'uuid'
 
 const productsCollection = collection(db, 'products')
-
-// OPTIMIZAR GET PRODUCTS - Función que guarde los productos en un estado para que en caso de que
-// ocrra un error no se pierdan los datos y se puedan mostrar en la tabla de forma que se reflefe
 
 export const getProducts = async (setProducts) => {
     try{
@@ -191,4 +188,59 @@ const showData = (data) => {
     document.getElementById('editRatings').value = data.ratings
     document.getElementById('editCategory').value = data.category
     document.getElementById('editType').value = data.type
-  }
+}
+
+export const evalRatings = (ratings) => {
+    let msg = []
+    
+    switch (ratings) {
+        case 1:
+        case 2:
+            msg.push('★')
+            msg.push('☆')
+            msg.push('☆')
+            msg.push('☆')
+            msg.push('☆')
+            break;
+        case 3:
+        case 4:
+            msg.push('★')
+            msg.push('★')
+            msg.push('☆')
+            msg.push('☆')
+            msg.push('☆')
+            break;
+        case 5:
+        case 6:
+            msg.push('★')
+            msg.push('★')
+            msg.push('★')
+            msg.push('☆')
+            msg.push('☆')
+            break;
+        case 7:
+        case 8:
+            msg.push('★')
+            msg.push('★')
+            msg.push('★')
+            msg.push('★')
+            msg.push('☆')
+            break;
+        case 9:
+        case 10:
+            msg.push('★')
+            msg.push('★')
+            msg.push('★')
+            msg.push('★')
+            msg.push('★')
+            break;
+        default:
+            msg.push('☆')
+            msg.push('☆')
+            msg.push('☆')
+            msg.push('☆')
+            msg.push('☆')
+            break;
+    }
+    return msg
+}

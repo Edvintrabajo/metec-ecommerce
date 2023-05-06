@@ -17,10 +17,10 @@ function AddProduct() {
       id="create-product-form"
       className="absolute top-0 left-0 z-10 hidden h-full w-full items-center justify-center bg-b-rgba-4"
     >
-      <Card className="w-2/3">
+      <Card className="fixed top-28 z-20 w-3/4 tablet:w-11/12 tablet:top-64 laptop:w-7/12">
         <form
           id="create-product-container"
-          className="z-20 flex w-full flex-wrap items-center justify-evenly p-4"
+          className="flex w-full flex-wrap items-center justify-evenly p-4"
           onSubmit={(e) => {
             e.preventDefault();
             addData(data, setData);
@@ -30,13 +30,13 @@ function AddProduct() {
           }}
         >
           <Typography
-            className=" w-full p-4 text-info"
+            className=" w-full p-4 text-center text-info"
             variant="h4"
             color="blue-gray"
           >
             Add Product
           </Typography>
-          <div className="mb-4 flex h-52 w-2/5 flex-wrap items-center justify-center">
+          <div className="flex h-52 w-4/5 flex-wrap items-center justify-center tablet:w-2/5">
             <Input id="name" label="Name" type="text" required />
             <Input id="brand" label="Brand" type="text" required />
             <Input
@@ -56,7 +56,7 @@ function AddProduct() {
               max={10000}
             />
           </div>
-          <div className="mb-4 flex h-52 w-2/5 flex-wrap items-center justify-center">
+          <div className="mb-4 flex h-52 w-4/5 flex-wrap items-center justify-center tablet:w-2/5 tablet:mb-0">
             <Input id="description" label="Description" type="text" required />
             <Input
               id="ratings"
@@ -65,21 +65,35 @@ function AddProduct() {
               required
               min={0}
               max={10}
+              className="w-full"
             />
-            <Input id="category" label="Category" type="text" required />
+            <select
+              id="category"
+              required
+              label="Category"
+              className="w-full rounded-md border border-neutral-400 text-neutral-500 bg-white p-2 text-sm"
+            >
+              <option value="Component">Component</option>
+              <option value="Computer">Computer</option>
+              <option value="Smartphone">Smartphone</option>
+              <option value="Tablet">Tablet</option>
+              <option value="TV">TVs</option>
+              <option value="Peripheral">Peripheral</option>
+            </select>
             <Input id="type" label="Type" type="text" required />
           </div>
 
-          <div className=" w-4/6">
+          <div className="flex w-full justify-center p-2">
             <input
               id="image"
               type="file"
               required
-              accept="image/png, image/jpeg, image/jpg"
+              accept="image/png, image/jpeg, image/jpg, image/webp"
+              className="w-5/6 tablet:w-2/3 laptop:w-1/2"
             />
           </div>
 
-          <div className="mt-4 flex w-1/2 justify-evenly">
+          <div className="mt-5 flex w-full justify-evenly">
             <button
               className="w-20 rounded-md border-2 border-info bg-info p-1 text-white shadow-low-info transition-all hover:bg-white hover:text-info hover:shadow-high-info"
               type="submit"

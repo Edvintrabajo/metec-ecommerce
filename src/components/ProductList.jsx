@@ -10,8 +10,10 @@ import {
 import Product from "./Product";
 import AddButton from "./AddButton";
 import MainpageTitle from "./MainPageTitle";
+import Filters from "./Filters";
+
 function ProductList() {
-  const { products, setProducts } = useContext(Context);
+  const { products, setProducts, isAuthtorized } = useContext(Context);
 
   // IMPORTANTE:
   // Se debe dejar el get products en el useEffect para que
@@ -25,8 +27,11 @@ function ProductList() {
 
   return (
     <div className="w-full">
-      <AddButton />
-      <MainpageTitle />
+      {isAuthtorized ? <AddButton /> : <></>}
+      <div className="mr-5">
+          <Filters />
+      </div>
+      <MainpageTitle title="Trending Top"/>
       <div
         id="products-cards-container"
         className="flex w-full flex-wrap items-center justify-evenly pt-2"

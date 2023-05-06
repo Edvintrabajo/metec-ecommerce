@@ -17,7 +17,7 @@ function DeleteProduct() {
     >
       <Card
         id="delete-product-container"
-        className=" z-20 flex w-96 items-center justify-center border-2 bg-white p-4 text-center shadow-high-danger"
+        className="fixed top-64 z-20 flex w-80 items-center justify-center border-2 bg-white p-4 text-center shadow-high-danger tablet:w-96 tablet:h-52 laptop:w-1/3"
         color="transparent"
         shadow={false}
       >
@@ -28,7 +28,7 @@ function DeleteProduct() {
           If you delete this product, you will not be able to recover it. Are
           you sure you want to delete this product?
         </Typography>
-        <div className="mt-4 flex w-1/2 justify-between">
+        <div className="mt-4 flex w-full justify-evenly">
           <button
             className="w-20 rounded-md border-2 border-danger bg-danger p-1 text-white shadow-low-danger transition-all hover:bg-white hover:text-danger hover:shadow-high-danger"
             onClick={() => {
@@ -49,8 +49,6 @@ function DeleteProduct() {
           </button>
         </div>
       </Card>
-
-      {/* <div id="delete-message-container"></div> */}
     </div>
   );
 }
