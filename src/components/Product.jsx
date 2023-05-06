@@ -43,7 +43,7 @@ function Product({ product, displayForm, getStates }) {
   return (
     // NEW-CARD
 
-    <div className="relative mx-5 mb-14 w-60 overflow-visible rounded-xl bg-white p-4 text-black shadow-low-box-shadow">
+    <div className="relative mx-5 mb-14 w-64 h-[380px] overflow-visible rounded-xl bg-white p-4 text-black shadow-low-box-shadow tablet:mx-5 laptop:mx-5 laptop:mb-10">
       <div className="flex h-1/2 w-full justify-center rounded-lg bg-white p-2 align-middle border border-low-info transition-all hover:-translate-y-(25%) hover:shadow-high-info hover:border-transparent">
         <img
           className="h-40 rounded-2xl cursor-pointer"
@@ -52,18 +52,17 @@ function Product({ product, displayForm, getStates }) {
           onClick={() => {window.open(product.url, "_blank")}}
         />
       </div>
-      <div className="p-2 pb-6">
-        <h3 className="text-title text-lg font-black">{product.name}</h3>
-        <p className="h-10 overflow-y-auto text-sm">{product.description}</p>
-        <div className="flex">
+      <div className="p-2 h-[90px]">
+        <h3 className="text-title text-base font-black m-h-12">{product.name}</h3>
+        <p className="h-12 overflow-y-auto text-sm">{product.description}</p>
+      </div>
+      <div className="flex">
           {evalRatings(product.ratings).map((star) => (
             <p key={star + v4()} 
-              className="pt-3 mr-1 text-3xl text-yellow-600 cursor-pointer transition-all hover:-translate-y-2 hover:scale-125">
+              className="mr-1 text-3xl text-yellow-600 cursor-pointer transition-all hover:-translate-y-2 hover:scale-125">
               {star}
             </p>
           ))}
-        </div>
-        
       </div>
       <div className="flex w-full items-center justify-center border-t-2 pt-3">
         <div className="w-1/2 text-left">
