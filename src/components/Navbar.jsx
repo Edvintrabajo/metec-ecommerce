@@ -21,6 +21,7 @@ function Navbar() {
       return;
     }
     sendOrders();
+    alert("Your order was successful");
     setOrders([]);
   };
 
