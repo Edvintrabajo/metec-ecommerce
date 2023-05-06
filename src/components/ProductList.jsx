@@ -28,7 +28,7 @@ function ProductList() {
     <div className="w-full">
       {isAuthtorized ? <AddButton /> : <></>}
 
-      <MainpageTitle title="Top Ratings"/>
+      <MainpageTitle title="Trending Top"/>
       <div
         id="products-cards-container"
         className="flex w-full flex-wrap items-center justify-evenly pt-2"
