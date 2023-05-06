@@ -3,7 +3,7 @@ import { deleteOrder, updateOrder, getOrderIndex } from "../controllers/orders/o
 import { Context } from "../context/Context";
 import { useContext } from "react";
 import { getOrdersCount, getTotalOrders } from "../controllers/orders/orders.functions";
-
+import { BsFillTrashFill } from "react-icons/bs";
 
 function Order({ order }) {
 
@@ -22,24 +22,25 @@ function Order({ order }) {
 
   return (
     <div className="ShoppingCart__item p2 flex mb-5">
-      <div className="col">
-        <div className="ShoppingCart__item__image h-20 w-20">
+      <div className="col bg-white rounded-l-lg p-2 border-y border-l">
+        <div className="ShoppingCart__item__image h-20 w-20 flex justify-center items-center"
+        >
           <img
-            className="rounded-lg"
+            className="rounded-lg h-16"
             src={order.image}
             alt="product"
           />
         </div>
       </div>
-      <div className="flex flex-1 justify-center">
-        <div className="ShoppingCart__item__details flex h-20 w-3/4 flex-row text-left">
-          <div className="flex w-2/3 flex-col align-middle">
-            <p>{ order.name }</p>
-            <p>Unidades: { order.unidades }</p>
-            <p>{ order.price } €</p>
+      <div className="flex flex-1 justify-center border-y border-r rounded-r-lg">
+        <div className="ShoppingCart__item__details flex w-full p-2 flex-row text-left">
+          <div className="flex w-11/12 flex-col align-middle">
+            <p className=" text-base font-semibold">{ order.name }</p>
+            <p>Units: { order.unidades }</p>
+            <p>{ order.price },00 €</p>
           </div>
-          <div className="flex w-1/3 items-end">
-            <button className="h-10 text-center" onClick={ () => handleDeleteOrder(order.id) }>X</button>
+          <div className="flex w-1/12 mr-1 items-end pb-2">
+            <button className="text-center" onClick={ () => handleDeleteOrder(order.id) }><BsFillTrashFill /></button>
           </div>
         </div>
       </div>

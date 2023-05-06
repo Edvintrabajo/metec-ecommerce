@@ -15,7 +15,7 @@ function ShoppingCart() {
   }, []);
   
   return (
-    <div className="ShoppingCart">
+    <div className="ShoppingCart mt-2">
 
       <div className="ShoppingCart__items">
         
@@ -27,6 +27,7 @@ function ShoppingCart() {
           ))}
         
       </div>
+      <hr className=""/>
     </div>
   );
 }

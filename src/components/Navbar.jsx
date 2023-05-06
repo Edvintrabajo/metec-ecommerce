@@ -43,12 +43,13 @@ function Navbar() {
           </label>
           <div
             tabIndex={0}
-            className="card dropdown-content card-compact mt-3 w-72 bg-base-100 shadow"
+            className="card dropdown-content card-compact mt-3 w-72 bg-base-100 shadow-2xl"
           >
             <div className="card-body">
               <span className="text-lg font-bold">{countOrders} Items</span>
+              <hr />
               <ShoppingCart />
-              <span className="text-info">Subtotal: ${totalPrice}</span>
+              <span className="text-info">Subtotal: {totalPrice},00 €</span>
               <div className="card-actions">
                 <button
                   className="btn-primary btn-block btn"
@@ -65,7 +66,7 @@ function Navbar() {
             <>
               <label
                 tabIndex={0}
-                className="btn-ghost btn-circle avatar btn border-neutral-500 transition-all hover:border-transparent"
+                className="btn-ghost btn-circle avatar btn border-neutral-500 transition-all hover:border-transparent shadow-2xl"
               >
                 <div className="w-10 rounded-full">
                   <img
@@ -97,7 +98,7 @@ function Navbar() {
             <>
               <label
                 tabIndex={0}
-                className="btn-ghost btn-circle avatar btn border-neutral-500 transition-all hover:border-transparent"
+                className="btn-ghost btn-circle avatar btn border-neutral-500 transition-all hover:border-transparent shadow-2xl"
               >
                 <div className="w-10 rounded-full p-3">
                   <BiUser className=" m-auto scale-150" />
