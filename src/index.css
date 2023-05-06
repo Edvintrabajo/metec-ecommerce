@@ -23,6 +23,9 @@
     color: #213547;
     background-color: #ffffff;
   }
+  .burger-span {
+    background-color: black;
+  }
 }
 
 /* ::-webkit-scrollbar {
