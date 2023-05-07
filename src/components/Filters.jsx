@@ -43,7 +43,7 @@ function Filters() {
           <MenuItem onClick={() => {hideFilters('filter-container'),getProductsByCategory(setProducts, "Computer"), setCurrentCategory("Computer")}}>Computer</MenuItem>
           <MenuItem onClick={() => {hideFilters('filter-container'),getProductsByCategory(setProducts, "Smartphone"), setCurrentCategory("Smartphone")}}>Smartphone</MenuItem>
           <MenuItem onClick={() => {hideFilters('filter-container'),getProductsByCategory(setProducts, "Tablet"), setCurrentCategory("Tablet")}}>Tablet</MenuItem>
-          <MenuItem onClick={() => {hideFilters('filter-container'),getProductsByCategory(setProducts, "TVs"), setCurrentCategory("TVs")}}>TVs</MenuItem>
+          <MenuItem onClick={() => {hideFilters('filter-container'),getProductsByCategory(setProducts, "TV"), setCurrentCategory("TV")}}>TVs</MenuItem>
           <MenuItem onClick={() => {hideFilters('filter-container'),getProductsByCategory(setProducts, "Peripheral"), setCurrentCategory("Peripheral")}}>Peripheral</MenuItem>
         </MenuList>
       </Menu>
