@@ -10,7 +10,7 @@ import { showFilters, hideFilters } from "../controllers/filters/filters.functio
 import { getProductsByCategory } from "../controllers/products/products.functions";
 function Filters() {
 
-  const { setProducts } = useContext(Context);
+  const { setProducts, setCurrentCategory } = useContext(Context);
 
   return (
     <div 
@@ -39,12 +39,12 @@ function Filters() {
           </label>
         </MenuHandler>
         <MenuList className="mt-2">
-          <MenuItem onClick={() => {hideFilters('filter-container'),getProductsByCategory(setProducts, "Component")}}>Component</MenuItem>
-          <MenuItem onClick={() => {hideFilters('filter-container'),getProductsByCategory(setProducts, "Computer")}}>Computer</MenuItem>
-          <MenuItem onClick={() => {hideFilters('filter-container'),getProductsByCategory(setProducts, "Smartphone")}}>Smartphone</MenuItem>
-          <MenuItem onClick={() => {hideFilters('filter-container'),getProductsByCategory(setProducts, "Tablet")}}>Tablet</MenuItem>
-          <MenuItem onClick={() => {hideFilters('filter-container'),getProductsByCategory(setProducts, "TVs")}}>TVs</MenuItem>
-          <MenuItem onClick={() => {hideFilters('filter-container'),getProductsByCategory(setProducts, "Peripheral")}}>Peripheral</MenuItem>
+          <MenuItem onClick={() => {hideFilters('filter-container'),getProductsByCategory(setProducts, "Component"), setCurrentCategory("Component")}}>Component</MenuItem>
+          <MenuItem onClick={() => {hideFilters('filter-container'),getProductsByCategory(setProducts, "Computer"), setCurrentCategory("Computer")}}>Computer</MenuItem>
+          <MenuItem onClick={() => {hideFilters('filter-container'),getProductsByCategory(setProducts, "Smartphone"), setCurrentCategory("Smartphone")}}>Smartphone</MenuItem>
+          <MenuItem onClick={() => {hideFilters('filter-container'),getProductsByCategory(setProducts, "Tablet"), setCurrentCategory("Tablet")}}>Tablet</MenuItem>
+          <MenuItem onClick={() => {hideFilters('filter-container'),getProductsByCategory(setProducts, "TVs"), setCurrentCategory("TVs")}}>TVs</MenuItem>
+          <MenuItem onClick={() => {hideFilters('filter-container'),getProductsByCategory(setProducts, "Peripheral"), setCurrentCategory("Peripheral")}}>Peripheral</MenuItem>
         </MenuList>
       </Menu>
     </div>

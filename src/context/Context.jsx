@@ -13,6 +13,9 @@ export function ContextProvider(props) {
     // LIST OF PRODUCTS
     const [products, setProducts] = useState([])
 
+    // CURRENT CATEGORY
+    const [currentCategory, setCurrentCategory] = useState('')
+
     // ADD PRODUCT
     // Data Form Object 
     const [data, setData] = useState({})
@@ -22,7 +25,7 @@ export function ContextProvider(props) {
     const [imageRefName, setImageRefName] = useState(null) // path to image in firebase storage
     const [url, setUrl] = useState('')
     
-    // EDIT PRODUCT
+    // PRODUCT ID
     const [productIdEdit, setProductIdEdit] = useState('')
 
     // ORDERS & SET ORDERS
@@ -38,6 +41,7 @@ export function ContextProvider(props) {
     const states = {
         userData, setUserData,
         products, setProducts,
+        currentCategory, setCurrentCategory,
         productIdEdit, setProductIdEdit,
         imageUpload, setImageUpload,
         imageRefName, setImageRefName,
@@ -46,7 +50,7 @@ export function ContextProvider(props) {
         orders, setOrders,
         countOrders, setCountOrders,
         totalPrice, setTotalPrice,
-        isAuthtorized, setIsAuthtorized
+        isAuthtorized, setIsAuthtorized,
     }
 
     return (

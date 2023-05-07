@@ -32,7 +32,7 @@ function Navbar() {
   return (
     <div className="navbar flex rounded-3xl border-2 border-neutral-400 p-4 px-4">
       <div className="flex-1">
-        <a className="text-5xl tracking-tighter font-semibold relative before:content-['METEC'] before:bg-gradient-to-br before:from-[#00DBDE] before:to-[#FC00FF] before:absolute before:inset-0 before:bg-clip-text before:text-transparent before:animate-text-wave">
+        <a href="/" className="text-5xl tracking-tighter font-semibold relative before:content-['METEC'] before:bg-gradient-to-br before:from-[#00DBDE] before:to-[#FC00FF] before:absolute before:inset-0 before:bg-clip-text before:text-transparent before:animate-text-wave">
           <h1>METEC</h1>
         </a>
       </div>

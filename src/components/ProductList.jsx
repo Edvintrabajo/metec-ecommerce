@@ -14,7 +14,7 @@ import MainpageTitle from "./MainPageTitle";
 import Filters from "./Filters";
 
 function ProductList() {
-  const { products, setProducts, isAuthtorized } = useContext(Context);
+  const { products, setProducts, isAuthtorized, setCurrentCategory } = useContext(Context);
 
   // IMPORTANTE:
   // Se debe dejar el get products en el useEffect para que
@@ -23,8 +23,8 @@ function ProductList() {
   // Por tanto despues de añadir algun producto, se debe recargar la pagina para verlo
 
   useEffect(() => {
-    // getProducts(setProducts);
     getTenProducts(setProducts);
+    setCurrentCategory("Trending Top");
   }, []);
 
   return (
@@ -33,7 +33,7 @@ function ProductList() {
       <div className="mr-5">
           <Filters />
       </div>
-      <MainpageTitle title="Trending Top"/>
+      <MainpageTitle />
       <div
         id="products-cards-container"
         className="flex w-full flex-wrap items-center justify-evenly pt-2"
