@@ -8,14 +8,6 @@ const router = createBrowserRouter([
       path: "/",
       element: <Index />,
     },
-    // {
-    //   path: "/admin",
-    //   element: <IndexAdmin />,
-    // },
-    // {
-    //   path: "/login",
-    //   element: <Login />,
-    // },
     {
       path: "/register",
       element: <Register />,
