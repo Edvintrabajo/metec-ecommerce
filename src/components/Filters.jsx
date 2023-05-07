@@ -30,7 +30,7 @@ function Filters() {
               <span className="burger-span bg-white block absolute w-full h-1 rounded-lg opacity-100 left-0 top-full origin-[left, center] -translate-y-full"></span>
           </label>
         </MenuHandler>
-        <MenuList className="mt-1">
+        <MenuList className="mt-2">
           <MenuItem>Menu Item 1</MenuItem>
           <MenuItem>Menu Item 2</MenuItem>
           <MenuItem>Menu Item 3</MenuItem>
