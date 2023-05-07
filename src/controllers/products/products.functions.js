@@ -19,6 +19,20 @@ export const getProducts = async (setProducts) => {
         const data = await getDocs(productsCollection)
         const filterData = data.docs.map((doc) => ({id: doc.id, ...doc.data()}))
         setProducts(filterData)
+        document.getElementById('showAllProducts').style.display = 'none'
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export const getTenProducts = async (setProducts) => {
+    try{
+        const data = await getDocs(productsCollection)
+        const filterData = data.docs.map((doc) => ({id: doc.id, ...doc.data()}))
+        // obtener los 10 primeros
+        filterData.splice(10)
+        setProducts(filterData)
+        document.getElementById('showAllProducts').style.display = 'flex'
     } catch (error) {
         console.log(error)
     }
