@@ -9,12 +9,12 @@ import {
   getStates,
 } from "../controllers/products/products.functions";
 import Product from "./Product";
-import AddButton from "./AddButton";
 import MainpageTitle from "./MainPageTitle";
 import Filters from "./Filters";
+import AddButton from "./AddButton";
 
 function ProductList() {
-  const { products, setProducts, isAuthtorized, setCurrentCategory } = useContext(Context);
+  const { products, setProducts, setCurrentCategory, isAuthtorized } = useContext(Context);
 
   // IMPORTANTE:
   // Se debe dejar el get products en el useEffect para que
@@ -29,11 +29,11 @@ function ProductList() {
 
   return (
     <div className="w-full">
-      {isAuthtorized ? <AddButton /> : <></>}
-      <div className="mr-5">
-          <Filters />
-      </div>
+      
+      <Filters />
       <MainpageTitle />
+      {isAuthtorized ? <AddButton /> : <></>}
+      
       <div
         id="products-cards-container"
         className="flex w-full flex-wrap items-center justify-evenly pt-2"

@@ -14,7 +14,7 @@ function Filters() {
 
   return (
     <div 
-      className="absolute top-36 left-10">
+      className="absolute top-36 left-10 mt-1">
       <Menu 
         placement="bottom-start"
         animate={{
