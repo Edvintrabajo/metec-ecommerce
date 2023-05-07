@@ -5,7 +5,9 @@ import { getDocs,
     addDoc,
     deleteDoc,
     doc,
-    updateDoc
+    updateDoc,
+    query,
+    where
  } from 'firebase/firestore'
 
 import { storage } from '../../config/firebase'
@@ -33,6 +35,17 @@ export const getTenProducts = async (setProducts) => {
         filterData.splice(10)
         setProducts(filterData)
         document.getElementById('showAllProducts').style.display = 'flex'
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export const getProductsByCategory = async (setProducts, category) => {
+    try{
+        const categoryQuery = query(productsCollection, where('category', '==', category))
+        const data = await getDocs(categoryQuery)
+        const filterData = data.docs.map((doc) => ({id: doc.id, ...doc.data()}))
+        setProducts(filterData)
     } catch (error) {
         console.log(error)
     }
