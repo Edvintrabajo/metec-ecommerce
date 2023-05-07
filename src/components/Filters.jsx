@@ -1,3 +1,5 @@
+import React, { useContext } from "react";
+import { Context } from "../context/Context";
 import {
   Menu,
   MenuHandler,
@@ -5,8 +7,11 @@ import {
   MenuItem,
 } from "@material-tailwind/react";
 import { showFilters, hideFilters } from "../controllers/filters/filters.functions";
-
+import { getProductsByCategory } from "../controllers/products/products.functions";
 function Filters() {
+
+  const { setProducts } = useContext(Context);
+
   return (
     <div 
       className="absolute top-36 left-10">
@@ -34,12 +39,12 @@ function Filters() {
           </label>
         </MenuHandler>
         <MenuList className="mt-2">
-          <a className=" outline-none" href="/component"><MenuItem>Component</MenuItem></a>
-          <a className=" outline-none" href="/computer"><MenuItem>Computer</MenuItem></a>
-          <a className=" outline-none" href="/smartphone"><MenuItem>Smartphone</MenuItem></a>
-          <a className=" outline-none" href="/tablet"><MenuItem>Tablet</MenuItem></a>
-          <a className=" outline-none" href="/tvs"><MenuItem>TVs</MenuItem></a>
-          <a className=" outline-none" href="/peripheral"><MenuItem>Peripheral</MenuItem></a>
+          <MenuItem onClick={() => {hideFilters('filter-container'),getProductsByCategory(setProducts, "Component")}}>Component</MenuItem>
+          <MenuItem onClick={() => {hideFilters('filter-container'),getProductsByCategory(setProducts, "Computer")}}>Computer</MenuItem>
+          <MenuItem onClick={() => {hideFilters('filter-container'),getProductsByCategory(setProducts, "Smartphone")}}>Smartphone</MenuItem>
+          <MenuItem onClick={() => {hideFilters('filter-container'),getProductsByCategory(setProducts, "Tablet")}}>Tablet</MenuItem>
+          <MenuItem onClick={() => {hideFilters('filter-container'),getProductsByCategory(setProducts, "TVs")}}>TVs</MenuItem>
+          <MenuItem onClick={() => {hideFilters('filter-container'),getProductsByCategory(setProducts, "Peripheral")}}>Peripheral</MenuItem>
         </MenuList>
       </Menu>
     </div>
