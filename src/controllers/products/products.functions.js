@@ -8,9 +8,7 @@ import { getDocs,
     updateDoc,
     query,
     where,
-    orderBy,
-    limit,
-    startAfter
+    orderBy
  } from 'firebase/firestore'
 
 import { storage } from '../../config/firebase'
@@ -18,46 +16,45 @@ import { ref, uploadBytes, getDownloadURL, deleteObject } from 'firebase/storage
 import {v4} from 'uuid'
 
 const productsCollection = collection(db, 'products')
+export const productsPerPage = 10
 
-export const getProducts = async (setProducts, setTotalPage) => {
+export const getProducts = async (setProducts, setCurrentTenProducts) => {
     try{
         const data = await getDocs(productsCollection)
         const filterData = data.docs.map((doc) => ({id: doc.id, ...doc.data()}))
         setProducts(filterData)
-        setTotalPage(Math.ceil(filterData.length / 10))
+        setCurrentTenProducts(filterData.slice(0, 10))
     } catch (error) {
         console.log(error)
     }
 }
 
-export const getTrendingTop = async (setProducts, setTotalPage) => {
+export const getTrendingTop = async (setProducts, setCurrentTenProducts) => {
     // Cambio a futuro: Cambiar a maypr el limite de 5 a 10
     try{        
-        const trendingTopQuery = query(productsCollection, where('ratings', '>=', 5), orderBy('ratings', 'desc'), limit(10))
+        const trendingTopQuery = query(productsCollection, where('ratings', '>=', 5), orderBy('ratings', 'desc'))
         const data = await getDocs(trendingTopQuery)
         const filterData = data.docs.map((doc) => ({id: doc.id, ...doc.data()}))
         setProducts(filterData)
-        setTotalPage(Math.ceil(filterData.length / 10))
+        setCurrentTenProducts(filterData.slice(0, 10))
     } catch (error) {
         console.log(error)
     }
 }
 
-export const getProductsByCategory = async (setProducts, setTotalPage, category) => {
+export const getProductsByCategory = async (setProducts, category, setCurrentTenProducts) => {
     try{
-        // ORDER DE QUERY BY NAME DESC
-        const categoryQuery = query(productsCollection, where('category', '==', category), orderBy('name', 'asc'), limit(10))
-        // const categoryQuery = query(productsCollection, where('category', '==', category), limit(10))
+        const categoryQuery = query(productsCollection, where('category', '==', category), orderBy('name', 'asc'))
         const data = await getDocs(categoryQuery)
         const filterData = data.docs.map((doc) => ({id: doc.id, ...doc.data()}))
         setProducts(filterData)
-        setTotalPage(Math.ceil(filterData.length / 10))
+        setCurrentTenProducts(filterData.slice(0, 10))
     } catch (error) {
         console.log(error)
     }
 }
 
-export const addProduct = async (data, setData, setProducts, setTotalPage) => {
+export const addProduct = async (data, setData, setProducts, setCurrentTenProducts) => {
     const imageRefName = `images/${data.imageUpload.name + v4()}`
     const imageRef = ref(storage, imageRefName)
     await uploadBytes(imageRef, data.imageUpload)
@@ -80,12 +77,12 @@ export const addProduct = async (data, setData, setProducts, setTotalPage) => {
         console.log(error)
     } 
     finally {
-        getProducts(setProducts, setTotalPage);
+        getProducts(setProducts, setCurrentTenProducts);
         resetData(data, setData);
     }
 }
 
-export const deleteProduct = async (id, setProducts, setTotalPage) => {
+export const deleteProduct = async (id, setProducts, setCurrentTenProducts) => {
     try{
         const productDoc = doc(db, 'products', id)
         const productData = await getDoc(productDoc)
@@ -96,11 +93,11 @@ export const deleteProduct = async (id, setProducts, setTotalPage) => {
         console.log(error)
     } 
     finally {
-        getProducts(setProducts, setTotalPage);
+        getProducts(setProducts, setCurrentTenProducts);
     }
 }
 
-export const updateProduct = async (id, setProducts, data, setData, oldImageRefName, setTotalPage) => {
+export const updateProduct = async (id, setProducts, data, setData, oldImageRefName, setCurrentTenProducts) => {
     const productDoc = doc(db, 'products', id)
     
     if (data.imageUpload == null) {
@@ -119,7 +116,7 @@ export const updateProduct = async (id, setProducts, data, setData, oldImageRefN
             console.log(error)
         } 
         finally {
-            getProducts(setProducts, setTotalPage);
+            getProducts(setProducts, setCurrentTenProducts);
             resetData(data, setData);
         }
     } 
@@ -156,7 +153,7 @@ export const updateProduct = async (id, setProducts, data, setData, oldImageRefN
             console.log(error)
         } 
         finally {
-            getProducts(setProducts, setTotalPage);
+            getProducts(setProducts, setCurrentTenProducts);
             resetData(data, setData);
         }
 
@@ -283,24 +280,54 @@ const last = (array) => {
     return array[array.length - 1]
 }
 
-export const next = (products, setProducts, currentPage, setCurrentPage, setTotalPage, category) => {
+export const next = async (setProducts, currentTenProducts, setCurrentTenProducts, category) => {
     try{
-        let nextDataQuery;
+        let dataQuery;
+        const lastElement = last(currentTenProducts)
+
         if (category == 'Trending Top') {
-            nextDataQuery = query(productsCollection, where('ratings', '>=', 5), orderBy('ratings', 'desc'), startAfter(last(products)), limit(10))
+            dataQuery = query(productsCollection, where('ratings', '>=', 5), orderBy('ratings', 'desc'))
         } else {
-            nextDataQuery = query(productsCollection, orderBy('name', 'desc'), startAfter(last(products)), limit(10))
+            dataQuery = query(productsCollection, orderBy('name', 'desc'))
         }
 
-        const data = getDocs(nextDataQuery)
-        const filterData = data.docs.map((doc) => ({id: doc.id, ...doc.data()}))
+        const data = await getDocs(dataQuery)
+        const filterData = data.docs.map(doc => ({...doc.data(), id: doc.id}))
 
-        setProducts(filterData)
-        setCurrentPage(currentPage + 1)
-        setTotalPage(Math.ceil(filterData.length / 10))
+        filterData.map((product, index) => {
+            if (product.id == lastElement.id) {
+                setProducts(filterData)
+                setCurrentTenProducts(filterData.slice(index + 1, index + productsPerPage + 1))
+            }
+        })
 
     } catch (error) {
         console.log(error)
     }
 }
 
+export const prev = async (setProducts, currentTenProducts, setCurrentTenProducts, category) => {
+    try{
+        let dataQuery;
+        const firstElement = currentTenProducts[0]
+
+        if (category == 'Trending Top') {
+            dataQuery = query(productsCollection, where('ratings', '>=', 5), orderBy('ratings', 'desc'))
+        } else {
+            dataQuery = query(productsCollection, orderBy('name', 'desc'))
+        }
+
+        const data = await getDocs(dataQuery)
+        const filterData = data.docs.map(doc => ({...doc.data(), id: doc.id}))
+
+        filterData.map((product, index) => {
+            if (product.id == firstElement.id) {
+                setProducts(filterData)
+                setCurrentTenProducts(filterData.slice(index - productsPerPage, index))
+            }
+        })
+
+    } catch (error) {
+        console.log(error)
+    }
+}
