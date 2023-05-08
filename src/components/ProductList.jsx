@@ -14,7 +14,7 @@ import AddButton from "./AddButton";
 import Pagination from "./Pagination";
 
 function ProductList() {
-  const { products, setProducts, isAuthtorized, setTotalPage } = useContext(Context);
+  const { setProducts, isAuthtorized, currentTenProducts, setCurrentTenProducts } = useContext(Context);
 
   // IMPORTANTE:
   // Se debe dejar el get products en el useEffect para que
@@ -23,7 +23,7 @@ function ProductList() {
   // Por tanto despues de añadir algun producto, se debe recargar la pagina para verlo
 
   useEffect(() => {
-    getTrendingTop(setProducts, setTotalPage);
+    getTrendingTop(setProducts, setCurrentTenProducts);
   }, []);
 
   return (
@@ -37,7 +37,7 @@ function ProductList() {
         id="products-cards-container"
         className="flex w-full flex-wrap items-center justify-evenly pt-2"
       >
-        {products.map((product) => (
+        {currentTenProducts.map((product) => (
           <Product
             key={product.id}
             product={product}
