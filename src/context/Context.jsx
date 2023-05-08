@@ -14,7 +14,13 @@ export function ContextProvider(props) {
     const [products, setProducts] = useState([])
 
     // CURRENT CATEGORY
-    const [currentCategory, setCurrentCategory] = useState('')
+    const [currentCategory, setCurrentCategory] = useState('Trending Top')
+
+    // CURRENT PAGE
+    const [currentPage, setCurrentPage] = useState(1)
+
+    // TOTAL PAGE
+    const [totalPage, setTotalPage] = useState(1)
 
     // ADD PRODUCT
     // Data Form Object 
@@ -42,6 +48,8 @@ export function ContextProvider(props) {
         userData, setUserData,
         products, setProducts,
         currentCategory, setCurrentCategory,
+        currentPage, setCurrentPage,
+        totalPage, setTotalPage,
         productIdEdit, setProductIdEdit,
         imageUpload, setImageUpload,
         imageRefName, setImageRefName,

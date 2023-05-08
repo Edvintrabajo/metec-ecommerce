@@ -10,7 +10,7 @@ import {
 import { Card, Typography, Input } from "@material-tailwind/react";
 
 function EditProduct() {
-  const { productIdEdit, setProducts, data, setData, imageRefName } =
+  const { productIdEdit, setProducts, data, setData, imageRefName, setTotalPage } =
     useContext(Context);
 
   return (
@@ -30,7 +30,8 @@ function EditProduct() {
               setProducts,
               data,
               setData,
-              imageRefName
+              imageRefName,
+              setTotalPage
             );
             displayForm("edit-product-form");
             resetForm("edit-product-container");

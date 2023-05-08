@@ -7,10 +7,10 @@ import {
   MenuItem,
 } from "@material-tailwind/react";
 import { showFilters, hideFilters } from "../controllers/filters/filters.functions";
-import { getProductsByCategory } from "../controllers/products/products.functions";
+import { getProductsByCategory, getProducts, getTrendingTop } from "../controllers/products/products.functions";
 function Filters() {
 
-  const { setProducts, setCurrentCategory } = useContext(Context);
+  const { setProducts, setCurrentCategory, setTotalPage } = useContext(Context);
 
   return (
     <div 
@@ -39,12 +39,15 @@ function Filters() {
           </label>
         </MenuHandler>
         <MenuList className="mt-2">
-          <MenuItem onClick={() => {hideFilters('filter-container'),getProductsByCategory(setProducts, "Component"), setCurrentCategory("Component")}}>Component</MenuItem>
-          <MenuItem onClick={() => {hideFilters('filter-container'),getProductsByCategory(setProducts, "Computer"), setCurrentCategory("Computer")}}>Computer</MenuItem>
-          <MenuItem onClick={() => {hideFilters('filter-container'),getProductsByCategory(setProducts, "Smartphone"), setCurrentCategory("Smartphone")}}>Smartphone</MenuItem>
-          <MenuItem onClick={() => {hideFilters('filter-container'),getProductsByCategory(setProducts, "Tablet"), setCurrentCategory("Tablet")}}>Tablet</MenuItem>
-          <MenuItem onClick={() => {hideFilters('filter-container'),getProductsByCategory(setProducts, "TV"), setCurrentCategory("TV")}}>TVs</MenuItem>
-          <MenuItem onClick={() => {hideFilters('filter-container'),getProductsByCategory(setProducts, "Peripheral"), setCurrentCategory("Peripheral")}}>Peripheral</MenuItem>
+          <MenuItem onClick={() => {hideFilters('filter-container'),getProducts(setProducts, setTotalPage), setCurrentCategory("All")}}>All</MenuItem>
+          <MenuItem onClick={() => {hideFilters('filter-container'),getTrendingTop(setProducts, setTotalPage), setCurrentCategory("Trending Top")}}>Trending Top</MenuItem>
+          <hr onClick={() => {hideFilters('filter-container')}} className="my-2 outline-none"/>
+          <MenuItem onClick={() => {hideFilters('filter-container'),getProductsByCategory(setProducts, setTotalPage, "Component"), setCurrentCategory("Component")}}>Component</MenuItem>
+          <MenuItem onClick={() => {hideFilters('filter-container'),getProductsByCategory(setProducts, setTotalPage, "Computer"), setCurrentCategory("Computer")}}>Computer</MenuItem>
+          <MenuItem onClick={() => {hideFilters('filter-container'),getProductsByCategory(setProducts, setTotalPage, "Smartphone"), setCurrentCategory("Smartphone")}}>Smartphone</MenuItem>
+          <MenuItem onClick={() => {hideFilters('filter-container'),getProductsByCategory(setProducts, setTotalPage, "Tablet"), setCurrentCategory("Tablet")}}>Tablet</MenuItem>
+          <MenuItem onClick={() => {hideFilters('filter-container'),getProductsByCategory(setProducts, setTotalPage, "TV"), setCurrentCategory("TV")}}>TVs</MenuItem>
+          <MenuItem onClick={() => {hideFilters('filter-container'),getProductsByCategory(setProducts, setTotalPage, "Peripheral"), setCurrentCategory("Peripheral")}}>Peripheral</MenuItem>
         </MenuList>
       </Menu>
     </div>
