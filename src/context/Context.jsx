@@ -13,6 +13,9 @@ export function ContextProvider(props) {
     // LIST OF PRODUCTS
     const [products, setProducts] = useState([])
 
+    // CURRENT PRODUCTS
+    const [currentTenProducts, setCurrentTenProducts] = useState([])
+
     // CURRENT CATEGORY
     const [currentCategory, setCurrentCategory] = useState('Trending Top')
 
@@ -47,6 +50,7 @@ export function ContextProvider(props) {
     const states = {
         userData, setUserData,
         products, setProducts,
+        currentTenProducts, setCurrentTenProducts,
         currentCategory, setCurrentCategory,
         currentPage, setCurrentPage,
         totalPage, setTotalPage,
