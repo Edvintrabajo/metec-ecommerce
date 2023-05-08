@@ -6,16 +6,26 @@ import {
   MenuList,
   MenuItem,
 } from "@material-tailwind/react";
-import { showFilters, hideFilters } from "../controllers/filters/filters.functions";
-import { getProductsByCategory, getProducts, getTrendingTop } from "../controllers/products/products.functions";
+import {
+  showFilters,
+  hideFilters,
+} from "../controllers/filters/filters.functions";
+import {
+  getProductsByCategory,
+  getProducts,
+  getTrendingTop,
+} from "../controllers/products/products.functions";
 function Filters() {
-
-  const { setProducts, setCurrentCategory, setTotalPage } = useContext(Context);
+  const {
+    setProducts,
+    setCurrentCategory,
+    setCurrentTenProducts,
+    setCurrentPage,
+  } = useContext(Context);
 
   return (
-    <div 
-      className="absolute top-36 left-10 mt-1">
-      <Menu 
+    <div className="absolute top-36 left-10 mt-1">
+      <Menu
         placement="bottom-start"
         animate={{
           mount: { y: 0 },
@@ -24,30 +34,133 @@ function Filters() {
       >
         <MenuHandler>
           <label
-              id="burger-container"
-              className="relative w-10 h-8 bg-transparent cursor-pointer block " 
-              htmlFor="burger">
-              <input 
-                  type="checkbox" 
-                  id="burger"
-                  className="hidden" 
-                  onClick={() => {showFilters('filter-container')}}
-                  />
-              <span className="burger-span bg-white block absolute w-full h-1 rounded-lg opacity-100 left-0 top-0 origin-[left, center]"></span>
-              <span className="burger-span bg-white block absolute w-full h-1 rounded-lg opacity-100 left-0 top-1/2 origin-[left, center] -translate-y-1/2"></span>
-              <span className="burger-span bg-white block absolute w-full h-1 rounded-lg opacity-100 left-0 top-full origin-[left, center] -translate-y-full"></span>
+            id="burger-container"
+            className="relative block h-8 w-10 cursor-pointer bg-transparent "
+            htmlFor="burger"
+          >
+            <input
+              type="checkbox"
+              id="burger"
+              className="hidden"
+              onClick={() => {
+                showFilters("filter-container");
+              }}
+            />
+            <span className="burger-span origin-[left, center] absolute left-0 top-0 block h-1 w-full rounded-lg bg-white opacity-100"></span>
+            <span className="burger-span origin-[left, center] absolute left-0 top-1/2 block h-1 w-full -translate-y-1/2 rounded-lg bg-white opacity-100"></span>
+            <span className="burger-span origin-[left, center] absolute left-0 top-full block h-1 w-full -translate-y-full rounded-lg bg-white opacity-100"></span>
           </label>
         </MenuHandler>
         <MenuList className="mt-2">
-          <MenuItem onClick={() => {hideFilters('filter-container'),getProducts(setProducts, setTotalPage), setCurrentCategory("All")}}>All</MenuItem>
-          <MenuItem onClick={() => {hideFilters('filter-container'),getTrendingTop(setProducts, setTotalPage), setCurrentCategory("Trending Top")}}>Trending Top</MenuItem>
-          <hr onClick={() => {hideFilters('filter-container')}} className="my-2 outline-none"/>
-          <MenuItem onClick={() => {hideFilters('filter-container'),getProductsByCategory(setProducts, setTotalPage, "Component"), setCurrentCategory("Component")}}>Component</MenuItem>
-          <MenuItem onClick={() => {hideFilters('filter-container'),getProductsByCategory(setProducts, setTotalPage, "Computer"), setCurrentCategory("Computer")}}>Computer</MenuItem>
-          <MenuItem onClick={() => {hideFilters('filter-container'),getProductsByCategory(setProducts, setTotalPage, "Smartphone"), setCurrentCategory("Smartphone")}}>Smartphone</MenuItem>
-          <MenuItem onClick={() => {hideFilters('filter-container'),getProductsByCategory(setProducts, setTotalPage, "Tablet"), setCurrentCategory("Tablet")}}>Tablet</MenuItem>
-          <MenuItem onClick={() => {hideFilters('filter-container'),getProductsByCategory(setProducts, setTotalPage, "TV"), setCurrentCategory("TV")}}>TVs</MenuItem>
-          <MenuItem onClick={() => {hideFilters('filter-container'),getProductsByCategory(setProducts, setTotalPage, "Peripheral"), setCurrentCategory("Peripheral")}}>Peripheral</MenuItem>
+          <MenuItem
+            onClick={() => {
+              hideFilters("filter-container"),
+              setCurrentCategory("All");
+              getProducts(setProducts, setCurrentTenProducts),
+              setCurrentPage(1);
+            }}
+          >
+            All
+          </MenuItem>
+          <MenuItem
+            onClick={() => {
+              hideFilters("filter-container"),
+              setCurrentCategory("Trending Top");
+              getTrendingTop(setProducts, setCurrentTenProducts),
+              setCurrentPage(1);
+            }}
+          >
+            Trending Top
+          </MenuItem>
+          <hr
+            onClick={() => {
+              hideFilters("filter-container");
+            }}
+            className="my-2 outline-none"
+          />
+          <MenuItem
+            onClick={() => {
+              hideFilters("filter-container"),
+              setCurrentCategory("Component"),
+              getProductsByCategory(
+                setProducts,
+                "Component",
+                setCurrentTenProducts
+              ),
+              setCurrentPage(1);
+            }}
+          >
+            Component
+          </MenuItem>
+          <MenuItem
+            onClick={() => {
+              hideFilters("filter-container"),
+              setCurrentCategory("Computer");
+              getProductsByCategory(
+                setProducts,
+                "Computer",
+                setCurrentTenProducts
+              ),
+              setCurrentPage(1);
+            }}
+          >
+            Computer
+          </MenuItem>
+          <MenuItem
+            onClick={() => {
+              hideFilters("filter-container"),
+              setCurrentCategory("Smartphone");
+              getProductsByCategory(
+                setProducts,
+                "Smartphone",
+                setCurrentTenProducts
+              ),
+              setCurrentPage(1);
+            }}
+          >
+            Smartphone
+          </MenuItem>
+          <MenuItem
+            onClick={() => {
+              hideFilters("filter-container"),
+              setCurrentCategory("Tablet");
+              getProductsByCategory(
+                setProducts,
+                "Tablet",
+                setCurrentTenProducts
+              ),
+              setCurrentPage(1);
+            }}
+          >
+            Tablet
+          </MenuItem>
+          <MenuItem
+            onClick={() => {
+              hideFilters("filter-container"),
+              setCurrentCategory("TV");
+              getProductsByCategory(
+                setProducts, 
+                "TV",
+                setCurrentTenProducts),
+              setCurrentPage(1);
+          }}
+          >
+            TVs
+          </MenuItem>
+          <MenuItem
+            onClick={() => {
+              hideFilters("filter-container"),
+              setCurrentCategory("Peripheral");
+              getProductsByCategory(
+                setProducts,
+                "Peripheral",
+                setCurrentTenProducts
+              ),
+              setCurrentPage(1);
+            }}
+          >
+            Peripheral
+          </MenuItem>
         </MenuList>
       </Menu>
     </div>
