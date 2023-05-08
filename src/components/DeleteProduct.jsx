@@ -8,7 +8,7 @@ import {
 import { Card, Typography } from "@material-tailwind/react";
 
 function DeleteProduct() {
-  const { productIdEdit, setProducts, setTotalPage } = useContext(Context);
+  const { productIdEdit, setProducts, setCurrentTenProducts } = useContext(Context);
 
   return (
     <div
@@ -32,7 +32,7 @@ function DeleteProduct() {
           <button
             className="w-20 rounded-md border-2 border-danger bg-danger p-1 text-white shadow-low-danger transition-all hover:bg-white hover:text-danger hover:shadow-high-danger"
             onClick={() => {
-              deleteProduct(productIdEdit, setProducts, setTotalPage);
+              deleteProduct(productIdEdit, setProducts, setCurrentTenProducts);
               displayForm("delete-product-form");
             }}
           >
