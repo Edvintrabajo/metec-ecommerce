@@ -20,7 +20,8 @@ export const productsPerPage = 10
 
 export const getProducts = async (setProducts, setCurrentTenProducts) => {
     try{
-        const data = await getDocs(productsCollection)
+        const dataQuery = query(productsCollection, orderBy('name', 'desc'))
+        const data = await getDocs(dataQuery)
         const filterData = data.docs.map((doc) => ({id: doc.id, ...doc.data()}))
         setProducts(filterData)
         setCurrentTenProducts(filterData.slice(0, 10))
