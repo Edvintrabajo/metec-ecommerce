@@ -10,7 +10,7 @@ import {
 import { Card, Typography, Input } from "@material-tailwind/react";
 
 function AddProduct() {
-  const { setProducts, data, setData, setCurrentTenProducts } = useContext(Context);
+  const { setProducts, data, setData, setCurrentTenProducts, setCurrentPage, setCurrentCategory } = useContext(Context);
 
   return (
     <div
@@ -25,6 +25,8 @@ function AddProduct() {
             e.preventDefault();
             addData(data, setData);
             addProduct(data, setData, setProducts, setCurrentTenProducts);
+            setCurrentPage(1)
+            setCurrentCategory("All")
             displayForm("create-product-form");
             resetForm("create-product-container");
           }}

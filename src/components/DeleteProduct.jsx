@@ -8,7 +8,13 @@ import {
 import { Card, Typography } from "@material-tailwind/react";
 
 function DeleteProduct() {
-  const { productIdEdit, setProducts, setCurrentTenProducts } = useContext(Context);
+  const {
+    productIdEdit,
+    setProducts,
+    setCurrentTenProducts,
+    setCurrentPage,
+    setCurrentCategory,
+  } = useContext(Context);
 
   return (
     <div
@@ -17,7 +23,7 @@ function DeleteProduct() {
     >
       <Card
         id="delete-product-container"
-        className="fixed top-64 z-20 flex w-80 items-center justify-center border-2 bg-white p-4 text-center shadow-high-danger tablet:w-96 tablet:h-52 laptop:w-1/3"
+        className="fixed top-64 z-20 flex w-80 items-center justify-center border-2 bg-white p-4 text-center shadow-high-danger tablet:h-52 tablet:w-96 laptop:w-1/3"
         color="transparent"
         shadow={false}
       >
@@ -34,6 +40,8 @@ function DeleteProduct() {
             onClick={() => {
               deleteProduct(productIdEdit, setProducts, setCurrentTenProducts);
               displayForm("delete-product-form");
+              setCurrentPage(1);
+              setCurrentCategory("All");
             }}
           >
             Delete

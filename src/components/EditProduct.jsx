@@ -10,15 +10,23 @@ import {
 import { Card, Typography, Input } from "@material-tailwind/react";
 
 function EditProduct() {
-  const { productIdEdit, setProducts, data, setData, imageRefName, setCurrentTenProducts } =
-    useContext(Context);
+  const {
+    productIdEdit,
+    setProducts,
+    data,
+    setData,
+    imageRefName,
+    setCurrentTenProducts,
+    setCurrentPage,
+    setCurrentCategory,
+  } = useContext(Context);
 
   return (
     <div
       id="edit-product-form"
       className="absolute top-0 left-0 z-10 hidden h-full w-full items-center justify-center bg-b-rgba-4"
     >
-      <Card className="fixed top-28 z-20 w-3/4 tablet:w-11/12 tablet:top-64 laptop:w-7/12">
+      <Card className="fixed top-28 z-20 w-3/4 tablet:top-64 tablet:w-11/12 laptop:w-7/12">
         <form
           id="edit-product-container"
           className="flex w-full flex-wrap items-center justify-evenly p-4"
@@ -33,6 +41,8 @@ function EditProduct() {
               imageRefName,
               setCurrentTenProducts
             );
+            setCurrentPage(1);
+            setCurrentCategory("All");
             displayForm("edit-product-form");
             resetForm("edit-product-container");
           }}
@@ -64,7 +74,7 @@ function EditProduct() {
               max={10000}
             />
           </div>
-          <div className="mb-4 flex h-52 w-4/5 flex-wrap items-center justify-center tablet:w-2/5 tablet:mb-0">
+          <div className="mb-4 flex h-52 w-4/5 flex-wrap items-center justify-center tablet:mb-0 tablet:w-2/5">
             <Input
               id="editDescription"
               type="text"
@@ -82,7 +92,7 @@ function EditProduct() {
             <select
               id="editCategory"
               required
-              className="w-full rounded-md border border-neutral-400 text-neutral-500 bg-white p-2 text-sm"
+              className="w-full rounded-md border border-neutral-400 bg-white p-2 text-sm text-neutral-500"
             >
               <option value="Component">Component</option>
               <option value="Computer">Computer</option>

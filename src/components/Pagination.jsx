@@ -22,7 +22,7 @@ function Pagination() {
         {currentPage == 1 ? (
           <li>
             <a
-              className="mx-1 flex h-9 w-9 cursor-default items-center justify-center rounded-full border border-blue-gray-400 bg-transparent p-0 text-sm text-blue-gray-500 transition duration-150 ease-in-out"
+              className="mx-1 flex h-9 w-9 cursor-default items-center justify-center rounded-full border border-blue-gray-100 bg-transparent p-0 text-sm text-blue-gray-500 transition duration-150 ease-in-out"
               aria-label="Previous"
             >
               <span className="material-icons text-sm"><FcPrevious className=""/></span>
@@ -31,7 +31,7 @@ function Pagination() {
         ) : (
           <li>
             <a
-              className="shadow-high-info mx-1 flex h-9 w-9 cursor-pointer items-center justify-center rounded-full border border-blue-gray-productsPerPage0 bg-transparent p-0 text-sm text-blue-gray-500 transition duration-150 ease-in-out hover:bg-white"
+              className="shadow-high-info mx-1 flex h-9 w-9 cursor-pointer items-center justify-center rounded-full border border-blue-gray-productsPerPage0 bg-transparent p-0 text-sm text-blue-gray-500 transition duration-150 ease-in-out hover:bg-white hover:scale-110"
               aria-label="Previous"
               onClick={() => {
                 prev(setProducts, currentTenProducts, setCurrentTenProducts, currentCategory); 
@@ -52,7 +52,7 @@ function Pagination() {
         {currentPage >= totalPage ? (
           <li>
             <a
-              className="mx-1 flex h-9 w-9 cursor-default items-center justify-center rounded-full border border-blue-gray-400 bg-transparent p-0 text-sm text-blue-gray-500 transition duration-150 ease-in-out"
+              className="mx-1 flex h-9 w-9 cursor-default items-center justify-center rounded-full border border-blue-gray-100 bg-transparent p-0 text-sm text-blue-gray-500 transition duration-150 ease-in-out"
               aria-label="Previous"
             >
               <FcNext />
@@ -61,7 +61,7 @@ function Pagination() {
         ) : (
           <li>
             <a
-              className="shadow-high-info mx-1 flex h-9 w-9 cursor-pointer items-center justify-center rounded-full border border-blue-gray-100 bg-transparent p-0 text-sm text-blue-gray-500 transition duration-150 ease-in-out hover:bg-white"
+              className="shadow-btn-box-shadow mx-1 flex h-9 w-9 cursor-pointer items-center justify-center rounded-full border border-blue-gray-100 bg-transparent p-0 text-sm text-blue-gray-500 transition duration-150 ease-in-out hover:bg-white hover:scale-110"
               aria-label="Next"
               onClick={() => {
                 next(setProducts, currentTenProducts, setCurrentTenProducts, currentCategory);
