@@ -24,7 +24,7 @@ function Filters() {
   } = useContext(Context);
 
   return (
-    <div className="absolute top-36 left-10 mt-1">
+    <div className="absolute top-44 left-10 mt-1">
       <Menu
         placement="bottom-start"
         animate={{

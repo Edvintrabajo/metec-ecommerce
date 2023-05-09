@@ -1,24 +1,20 @@
 import React from "react";
 import { useContext } from "react";
 import { Context } from "../context/Context";
-import {
-  signIn,
-  setCurUserData,
-} from "../controllers/register-login/functions";
-import { auth } from "../config/firebase";
+import { signIn, setCurUserData } from "../controllers/register-login/functions";
 import { Card, Input, Button, Typography } from "@material-tailwind/react";
+import CustomParticles from "../components/CustomParticles";
+import LogComponent from "./LogComponent";
 
 function Login() {
   const { userData, setUserData } = useContext(Context);
   const btns = ["login-button", "login-google-button"];
 
   return (
-    <div className="flex min-h-screen w-full items-center justify-center">
-      <Card
-        color="transparent"
-        shadow={false}
-        className="border-2 bg-white p-4 text-center"
-      >
+    <div className="relative flex min-h-screen w-full items-center justify-center">
+      <CustomParticles size={0} />
+      <LogComponent url={"/src/img/robot.png"}/>
+      <Card color="transparent" shadow={false} className="border-2 bg-white p-4 text-center z-20">
         <Typography variant="h4" color="blue-gray">
           Sign In
         </Typography>

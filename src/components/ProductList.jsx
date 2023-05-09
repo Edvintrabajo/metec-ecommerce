@@ -30,7 +30,9 @@ function ProductList() {
     <div className="w-full">
       
       <Filters />
+      
       <MainpageTitle />
+      
       {isAuthtorized ? <AddButton /> : <></>}
       
       <div

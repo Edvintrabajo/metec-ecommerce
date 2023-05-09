@@ -3,7 +3,7 @@ import { useCallback } from "react";
 import Particles from "react-particles";
 import { loadFull } from "tsparticles";
 
-function CustomParticles() {
+function CustomParticles({size = 80}) {
     const particlesInit = useCallback(async (engine) => {
         // console.log(engine);
         // you can initiate the tsParticles instance (engine) here, adding custom shapes or presets
@@ -122,7 +122,7 @@ function CustomParticles() {
                       }
                   },
                   "size": {
-                      "value": 80
+                      "value": size,
                   },
                   "move": {
                       "speed": 10,

@@ -17,7 +17,7 @@ function Pagination() {
   }, [products]);
 
   return (
-    <nav className="flex w-full justify-center p-4">
+    <nav className="flex w-full justify-center p-4 my-4 laptop:mt-16">
       <ul className="flex">
         {currentPage == 1 ? (
           <li>

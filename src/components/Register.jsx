@@ -2,17 +2,19 @@ import React from "react";
 import { useContext } from "react";
 import { Context } from "../context/Context";
 import { signUp, setCurUserData } from "../controllers/register-login/functions";
-import { auth } from "../config/firebase";
 import { Card, Input, Button, Typography } from "@material-tailwind/react";
+import CustomParticles from "../components/CustomParticles";
+import LogComponent from "./LogComponent";
 
 function Register() {
   const { userData, setUserData } = useContext(Context);
   const btns = ['register-button', 'register-google-button']
-  // console.log(auth?.currentUser?.email);
   
   return (
-    <div className="flex justify-center items-center w-full min-h-screen">
-      <Card color="transparent" shadow={false} className="text-center border-2 p-4 bg-white">
+    <div className="relative flex justify-center items-center w-full min-h-screen">
+      <CustomParticles size={0} />
+      <LogComponent url={"/src/img/cohete.png"} />
+      <Card color="transparent" shadow={false} className="text-center border-2 p-4 bg-white z-20">
         <Typography variant="h4" color="blue-gray">
           Sign Up
         </Typography>
@@ -35,7 +37,6 @@ function Register() {
               size="lg"
               label="Email"
               type="email"
-              // onChange={(e) => setEmail(e.target.value)}
               required
             />
             <Input
@@ -43,7 +44,6 @@ function Register() {
               type="password"
               size="lg"
               label="Password"
-              // onChange={(e) => setPassword(e.target.value)}
               required
             />
           </div>

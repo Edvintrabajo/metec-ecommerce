@@ -8,6 +8,7 @@ import DeleteProduct from "./DeleteProduct";
 import { auth } from "../config/firebase";
 import { verifyUserStatus } from "../controllers/admins/admins.functions";
 import { hideFilters } from "../controllers/filters/filters.functions";
+import Footer from "./Footer";
 
 function Index() {
   const { setIsAuthtorized } = useContext(Context);
@@ -31,13 +32,16 @@ function Index() {
       <AddProduct />
       <EditProduct />
       <DeleteProduct />
+      <Footer />
       <div
         id="message-container"
         className="absolute top-0 left-0 hidden h-full w-full items-center justify-center bg-b-rgba-4 text-white"
       ></div>
       <div
         id="filter-container"
-        onClick={() => {hideFilters('filter-container')}}
+        onClick={() => {
+          hideFilters("filter-container");
+        }}
         className="absolute top-0 left-0 hidden h-full w-full items-center justify-center bg-b-rgba-4 text-white"
       ></div>
     </div>

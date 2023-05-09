@@ -5,7 +5,7 @@ import { Button } from "@material-tailwind/react";
 function AddButton() {
   return (
     <button
-      className="absolute mt-4 top-32 right-5 flex items-center justify-between rounded-lg bg-info p-3 shadow-low-info transition-all duration-300 ease-in-out hover:border-info hover:bg-white hover:text-info hover:shadow-high-info tablet:right-5 tablet:p-2 tablet:w-20"
+      className="absolute top-44 right-10 flex items-center justify-between rounded-lg bg-info p-3 shadow-low-info transition-all duration-300 ease-in-out hover:border-info hover:bg-white hover:text-info hover:shadow-high-info tablet:p-2 tablet:w-20"
       onClick={() => {
         displayForm("create-product-form");
       }}
