@@ -55,11 +55,17 @@ module.exports = withMT({
     },
     animation: {
       'text-wave': 'textWave 6s infinite',
+      'shake-y': 'shakkeY 10s infinite ease-in-out',
     },
     keyframes: {
       textWave: {
         '0%, 16.667%, 100%': { opacity: '1' },
         '33.333%, 83.333%': { opacity: '0' },
+      },
+      shakkeY: {
+        '0%, 100%': { transform: 'translateY(0)' },
+        '10%, 30%, 50%, 70%, 90%': { transform: 'translateY(-10px)' },
+        '20%, 40%, 60%, 80%': { transform: 'translateY(10px)' },
       }
     },
   },
