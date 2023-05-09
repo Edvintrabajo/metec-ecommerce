@@ -1,6 +1,17 @@
+const OnKeyEscHide = (id) => {
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            hideFilters(id);
+        }
+    });
+}
+
 export const showFilters = (id) => {
     const filters = document.getElementById(id);
     let timer = 0;
+
+    // Show filters on key esc
+    OnKeyEscHide(id);
 
     filters.style.display = 'block';
 
@@ -18,7 +29,7 @@ export const showFilters = (id) => {
 export const hideFilters = (id) => {
     const filters = document.getElementById(id);
     let timer = 1;
-    
+
     const interval = setInterval(() => {
         timer -= 0.1;
         filters.style.opacity = timer;
