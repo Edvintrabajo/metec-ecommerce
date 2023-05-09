@@ -23,6 +23,7 @@ module.exports = withMT({
         'low-box-shadow': '0 10px 20px rgba(0, 0, 0, 0.3)',
         'high-box-shadow': '0 10px 20px rgba(0, 0, 0, 0.6)',
         'multiple-box-shadow': 'rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px',
+        'btn-box-shadow': '0px 0px 46px 0px rgba(59, 130, 246, 1)',
       },
       translate: {
         '(25%)': '25%',
