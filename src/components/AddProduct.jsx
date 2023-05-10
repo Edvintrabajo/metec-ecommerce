@@ -1,34 +1,23 @@
 import React from "react";
 import { useContext } from "react";
 import { Context } from "../context/Context";
-import {
-  displayForm,
-  addProduct,
-  addData,
-  resetForm,
-} from "../controllers/products/products.functions";
+import { addProduct, resetForm } from "../controllers/products/products.functions";
 import { Card, Typography, Input } from "@material-tailwind/react";
 
-function AddProduct() {
-  const { setProducts, data, setData, setCurrentTenProducts, setCurrentPage, setCurrentCategory } = useContext(Context);
+function AddProduct({handleOpen}) {
+  const { setProducts, setCurrentTenProducts, setCurrentPage, setCurrentCategory } = useContext(Context);
 
   return (
-    <div
-      id="create-product-form"
-      className="absolute top-0 left-0 z-10 hidden h-full w-full items-center justify-center bg-b-rgba-4"
-    >
-      <Card className="fixed top-28 z-20 w-3/4 tablet:w-11/12 tablet:top-64 laptop:w-7/12">
+      <Card>
         <form
           id="create-product-container"
           className="flex w-full flex-wrap items-center justify-evenly p-4"
           onSubmit={(e) => {
             e.preventDefault();
-            addData(data, setData);
-            addProduct(data, setData, setProducts, setCurrentTenProducts);
+            addProduct(setProducts, setCurrentTenProducts);
             setCurrentPage(1)
             setCurrentCategory("All")
-            displayForm("create-product-form");
-            resetForm("create-product-container");
+            handleOpen();
           }}
         >
           <Typography
@@ -38,11 +27,11 @@ function AddProduct() {
           >
             Add Product
           </Typography>
-          <div className="flex h-52 w-4/5 flex-wrap items-center justify-center tablet:w-2/5">
-            <Input id="name" label="Name" type="text" required />
-            <Input id="brand" label="Brand" type="text" required />
+          <div className="flex h-52 w-4/5 flex-wrap items-center justify-center laptop:w-2/5">
+            <Input id="Name" label="Name" type="text" required />
+            <Input id="Brand" label="Brand" type="text" required />
             <Input
-              id="price"
+              id="Price"
               label="Price"
               type="number"
               required
@@ -50,7 +39,7 @@ function AddProduct() {
               max={10000}
             />
             <Input
-              id="stock"
+              id="Stock"
               label="Stock"
               type="number"
               required
@@ -58,10 +47,10 @@ function AddProduct() {
               max={10000}
             />
           </div>
-          <div className="mb-4 flex h-52 w-4/5 flex-wrap items-center justify-center tablet:w-2/5 tablet:mb-0">
-            <Input id="description" label="Description" type="text" required />
+          <div className="mb-4 flex h-52 w-4/5 flex-wrap items-center justify-center laptop:w-2/5 tablet:mb-0">
+            <Input id="Description" label="Description" type="text" required />
             <Input
-              id="ratings"
+              id="Ratings"
               label="Ratings"
               type="number"
               required
@@ -70,7 +59,7 @@ function AddProduct() {
               className="w-full"
             />
             <select
-              id="category"
+              id="Category"
               required
               label="Category"
               className="w-full rounded-md border border-neutral-400 text-neutral-500 bg-white p-2 text-sm"
@@ -82,15 +71,15 @@ function AddProduct() {
               <option value="TV">TVs</option>
               <option value="Peripheral">Peripheral</option>
             </select>
-            <Input id="type" label="Type" type="text" required />
+            <Input id="Type" label="Type" type="text" required />
           </div>
 
           <div className="flex w-full justify-center p-2">
             <input
-              id="image"
+              id="Image"
               type="file"
               required
-              accept="image/png, image/jpeg, image/jpg, image/webp"
+              accept="image/webp"
               className="w-5/6 tablet:w-2/3 laptop:w-1/2"
             />
           </div>
@@ -107,7 +96,7 @@ function AddProduct() {
               className="w-20 rounded-md border-2 border-cancel bg-cancel p-1 text-white shadow-low-cancel transition-all hover:bg-white hover:text-cancel hover:shadow-high-cancel"
               type="button"
               onClick={() => {
-                displayForm("create-product-form");
+                handleOpen()
                 resetForm("create-product-container");
               }}
             >
@@ -116,7 +105,7 @@ function AddProduct() {
           </div>
         </form>
       </Card>
-    </div>
+    
   );
 }
 

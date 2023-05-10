@@ -1,20 +1,10 @@
 import React, { useContext } from "react";
 import { Context } from "../context/Context";
-import {
-  Menu,
-  MenuHandler,
-  MenuList,
-  MenuItem,
-} from "@material-tailwind/react";
-import {
-  showFilters,
-  hideFilters,
-} from "../controllers/filters/filters.functions";
-import {
-  getProductsByCategory,
-  getProducts,
-  getTrendingTop,
-} from "../controllers/products/products.functions";
+import { Menu, MenuHandler, MenuList, MenuItem } from "@material-tailwind/react";
+import { showFilters, hideFilters } from "../controllers/filters/filters.functions";
+import { getProductsByCategory, getProducts, getTrendingTop, scrollToTopSmooth } 
+from "../controllers/products/products.functions";
+
 function Filters() {
   const {
     setProducts,
@@ -24,7 +14,7 @@ function Filters() {
   } = useContext(Context);
 
   return (
-    <div className="absolute top-44 left-10 mt-1 tablet:left-14">
+    <div>
       <Menu
         placement="bottom-start"
         animate={{
@@ -54,20 +44,22 @@ function Filters() {
         <MenuList className="mt-2">
           <MenuItem
             onClick={() => {
-              hideFilters("filter-container"),
+              hideFilters("filter-container");
               setCurrentCategory("All");
-              getProducts(setProducts, setCurrentTenProducts),
+              getProducts(setProducts, setCurrentTenProducts);
               setCurrentPage(1);
+              scrollToTopSmooth();
             }}
           >
             All
           </MenuItem>
           <MenuItem
             onClick={() => {
-              hideFilters("filter-container"),
+              hideFilters("filter-container");
               setCurrentCategory("Trending Top");
-              getTrendingTop(setProducts, setCurrentTenProducts),
+              getTrendingTop(setProducts, setCurrentTenProducts);
               setCurrentPage(1);
+              scrollToTopSmooth();
             }}
           >
             Trending Top
@@ -80,83 +72,62 @@ function Filters() {
           />
           <MenuItem
             onClick={() => {
-              hideFilters("filter-container"),
-              setCurrentCategory("Component"),
-              getProductsByCategory(
-                setProducts,
-                "Component",
-                setCurrentTenProducts
-              ),
+              hideFilters("filter-container");
+              setCurrentCategory("Component");
+              getProductsByCategory(setProducts, "Component", setCurrentTenProducts);
               setCurrentPage(1);
+              scrollToTopSmooth();
             }}
           >
             Component
           </MenuItem>
           <MenuItem
             onClick={() => {
-              hideFilters("filter-container"),
+              hideFilters("filter-container");
               setCurrentCategory("Computer");
-              getProductsByCategory(
-                setProducts,
-                "Computer",
-                setCurrentTenProducts
-              ),
+              getProductsByCategory(setProducts, "Computer", setCurrentTenProducts);
               setCurrentPage(1);
+              scrollToTopSmooth();
             }}
           >
             Computer
           </MenuItem>
           <MenuItem
             onClick={() => {
-              hideFilters("filter-container"),
-              setCurrentCategory("Smartphone");
-              getProductsByCategory(
-                setProducts,
-                "Smartphone",
-                setCurrentTenProducts
-              ),
+              hideFilters("filter-container"), setCurrentCategory("Smartphone");
+              getProductsByCategory(setProducts, "Smartphone", setCurrentTenProducts);
               setCurrentPage(1);
+              scrollToTopSmooth();
             }}
           >
             Smartphone
           </MenuItem>
           <MenuItem
             onClick={() => {
-              hideFilters("filter-container"),
-              setCurrentCategory("Tablet");
-              getProductsByCategory(
-                setProducts,
-                "Tablet",
-                setCurrentTenProducts
-              ),
+              hideFilters("filter-container"), setCurrentCategory("Tablet");
+              getProductsByCategory(setProducts, "Tablet", setCurrentTenProducts);
               setCurrentPage(1);
+              scrollToTopSmooth();
             }}
           >
             Tablet
           </MenuItem>
           <MenuItem
             onClick={() => {
-              hideFilters("filter-container"),
-              setCurrentCategory("TV");
-              getProductsByCategory(
-                setProducts, 
-                "TV",
-                setCurrentTenProducts),
+              hideFilters("filter-container"), setCurrentCategory("TV");
+              getProductsByCategory(setProducts, "TV", setCurrentTenProducts);
               setCurrentPage(1);
-          }}
+              scrollToTopSmooth();
+            }}
           >
             TVs
           </MenuItem>
           <MenuItem
             onClick={() => {
-              hideFilters("filter-container"),
-              setCurrentCategory("Peripheral");
-              getProductsByCategory(
-                setProducts,
-                "Peripheral",
-                setCurrentTenProducts
-              ),
+              hideFilters("filter-container"), setCurrentCategory("Peripheral");
+              getProductsByCategory(setProducts, "Peripheral", setCurrentTenProducts);
               setCurrentPage(1);
+              scrollToTopSmooth();
             }}
           >
             Peripheral
