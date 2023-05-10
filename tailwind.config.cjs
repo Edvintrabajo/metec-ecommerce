@@ -57,7 +57,7 @@ module.exports = withMT({
       'text-wave': 'textWave 6s infinite',
       'shake-y': 'shakkeY 10s infinite ease-in-out',
       'opacity-on': 'opacityOn 0.5s ease-in',
-      'greeting': 'greeting 1s ease-in-out infinite alternate',
+      'slow-opacity-on': 'slowOpacityOn 1s ease-in',
     },
     keyframes: {
       textWave: {
@@ -73,10 +73,11 @@ module.exports = withMT({
         '0%': { opacity: '0'},
         '100%': { opacity: '1' },
       },
-      greeting: {
-        '0%': { transform: 'rotate(0deg)' },
-        '100%': { transform: 'rotate(10deg)' },
-      },
+      slowOpacityOn: {
+        '0%, 50%': { opacity: '0'},
+        
+        '100%': { opacity: '1' },
+      }
 
     },
   },

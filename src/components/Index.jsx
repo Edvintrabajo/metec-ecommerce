@@ -26,7 +26,7 @@ function Index() {
   }, []);
 
   return (
-    <div className="relative flex min-h-screen flex-col items-center justify-start p-4">
+    <div className="relative flex min-h-screen flex-col items-center justify-start p-4 animate-slow-opacity-on">
       <Navbar />
       <ProductList />
       <AddProduct />

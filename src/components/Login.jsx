@@ -14,7 +14,7 @@ function Login() {
   const btns = ["login-button", "login-google-button"];
 
   return (
-    <div className="relative flex min-h-screen w-full items-center justify-center">
+    <div className="relative flex min-h-screen w-full items-center justify-center animate-slow-opacity-on">
       <CustomParticles size={0} />
       <LogComponent url={"/src/img/robot.png"} />
       <Card
