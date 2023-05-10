@@ -22,7 +22,7 @@ function Order({ order }) {
   };
 
   return (
-    <div className="ShoppingCart__item p2 flex mb-5">
+    <div className="ShoppingCart__item p2 flex mb-5 mr-4">
       <div className="col bg-white rounded-l-lg p-2 border-y border-l">
         <div className="ShoppingCart__item__image h-20 w-20 flex justify-center items-center"
         >
@@ -40,8 +40,8 @@ function Order({ order }) {
             <p>Units: { order.unidades }</p>
             <p>{ order.price },00 €</p>
           </div>
-          <div className="flex w-1/12 mr-1 items-end pb-2">
-            <button className="text-center" onClick={ () => handleDeleteOrder(order.id) }><BsFillTrashFill /></button>
+          <div className="flex w-1/12 mr-2 items-end pb-2">
+            <button className="text-center scale-150 hover:text-danger" onClick={ () => {handleDeleteOrder(order.id)} }><BsFillTrashFill /></button>
           </div>
         </div>
       </div>

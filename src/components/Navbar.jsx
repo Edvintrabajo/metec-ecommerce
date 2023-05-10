@@ -40,12 +40,13 @@ function Navbar() {
           </a>
         </div>
         <div className="flex-none">
-          <div className="dropdown-end dropdown">
+
+          <div className="dropdown-end dropdown ">
             <label
               tabIndex={0}
               className="btn-ghost btn-circle btn border-neutral-500 transition-all hover:border-transparent"
             >
-              <div className="indicator rounded-full p-3">
+              <div className="indicator rounded-full p-3 ">
                 <MdOutlineShoppingCart className="scale-150" />
                 <span className="badge badge-sm indicator-item border-neutral-500">
                   {countOrders}
@@ -54,7 +55,7 @@ function Navbar() {
             </label>
             <div
               tabIndex={0}
-              className="card dropdown-content card-compact mt-3 w-72 bg-base-100 shadow-2xl"
+              className="card dropdown-content card-compact bg-base-100 shadow-2xl"
             >
               <div className="card-body">
                 <span className="text-lg font-bold">{countOrders} Items</span>
@@ -72,6 +73,7 @@ function Navbar() {
               </div>
             </div>
           </div>
+          
           <div className="dropdown-end dropdown ml-5">
             {auth?.currentUser?.email ? (
               <>
@@ -101,7 +103,7 @@ function Navbar() {
                     <a>Settings</a>
                   </li>
                   <li>
-                    <a onClick={() => handleLogOut()}>Logout</a>
+                    <a onClick={() => {handleLogOut()}}>Logout</a>
                   </li>
                 </ul>
               </>
