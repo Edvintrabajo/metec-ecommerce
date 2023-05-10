@@ -16,7 +16,7 @@ import { ref, uploadBytes, getDownloadURL, deleteObject } from 'firebase/storage
 import {v4} from 'uuid'
 
 const productsCollection = collection(db, 'products')
-export const productsPerPage = 10
+export const productsPerPage = 12
 
 export const getProducts = async (setProducts, setCurrentTenProducts) => {
     try{
@@ -24,7 +24,7 @@ export const getProducts = async (setProducts, setCurrentTenProducts) => {
         const data = await getDocs(dataQuery)
         const filterData = data.docs.map((doc) => ({id: doc.id, ...doc.data()}))
         setProducts(filterData)
-        setCurrentTenProducts(filterData.slice(0, 10))
+        setCurrentTenProducts(filterData.slice(0, productsPerPage))
     } catch (error) {
         console.log(error)
     }
@@ -37,7 +37,7 @@ export const getTrendingTop = async (setProducts, setCurrentTenProducts) => {
         const data = await getDocs(trendingTopQuery)
         const filterData = data.docs.map((doc) => ({id: doc.id, ...doc.data()}))
         setProducts(filterData)
-        setCurrentTenProducts(filterData.slice(0, 10))
+        setCurrentTenProducts(filterData.slice(0, productsPerPage))
     } catch (error) {
         console.log(error)
     }
@@ -49,7 +49,7 @@ export const getProductsByCategory = async (setProducts, category, setCurrentTen
         const data = await getDocs(categoryQuery)
         const filterData = data.docs.map((doc) => ({id: doc.id, ...doc.data()}))
         setProducts(filterData)
-        setCurrentTenProducts(filterData.slice(0, 10))
+        setCurrentTenProducts(filterData.slice(0, productsPerPage))
     } catch (error) {
         console.log(error)
     }
@@ -276,7 +276,6 @@ export const evalRatings = (ratings) => {
     return msg
 }
 
-// Get las product of the list
 const last = (array) => {
     return array[array.length - 1]
 }
@@ -301,6 +300,7 @@ export const next = async (setProducts, currentTenProducts, setCurrentTenProduct
                 setCurrentTenProducts(filterData.slice(index + 1, index + productsPerPage + 1))
             }
         })
+        window.scrollTo({top: 120, behavior: 'smooth'});
 
     } catch (error) {
         console.log(error)
@@ -327,6 +327,7 @@ export const prev = async (setProducts, currentTenProducts, setCurrentTenProduct
                 setCurrentTenProducts(filterData.slice(index - productsPerPage, index))
             }
         })
+        window.scrollTo({top: 120, behavior: 'smooth'});
 
     } catch (error) {
         console.log(error)
