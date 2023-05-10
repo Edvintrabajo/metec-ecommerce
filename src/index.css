@@ -42,3 +42,7 @@ body::-webkit-scrollbar {
   background: #666;
   border-radius: 20px;
 }
+
+body {
+  min-width: 360px;
+} 
