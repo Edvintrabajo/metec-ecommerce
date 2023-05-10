@@ -6,7 +6,6 @@ import { collection,
 
 /* Todas estas funciones solo alteran las cookies, en ningún momento alteran al estado */
 
-
 // Obtener ordenes, si no hay ordenes, devuelve un array vacío
 export const getOrders = () => {
     const cookies = document.cookie;

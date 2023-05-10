@@ -1,3 +1,4 @@
+// Esconder filtros al pulsar escape
 const OnKeyEscHide = (id) => {
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
@@ -6,6 +7,7 @@ const OnKeyEscHide = (id) => {
     });
 }
 
+// Mostrar filtros
 export const showFilters = (id) => {
     const filters = document.getElementById(id);
     let timer = 0;
@@ -26,6 +28,7 @@ export const showFilters = (id) => {
     }, 10);
 }
 
+// Esconder filtros
 export const hideFilters = (id) => {
     const filters = document.getElementById(id);
     let timer = 1;

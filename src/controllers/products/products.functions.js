@@ -17,6 +17,7 @@ import { getDocs,
 const productsCollection = collection(db, 'products')
 export const productsPerPage = 12
 
+// Obtener todos los productos del servidor, guardar los productos en el estado de productos, también guardar los primeros 10 productos para la primera página
 export const getProducts = async (setProducts, setCurrentTenProducts) => {
     try{
         const dataQuery = query(productsCollection, orderBy('name', 'desc'))
@@ -29,6 +30,7 @@ export const getProducts = async (setProducts, setCurrentTenProducts) => {
     }
 }
 
+// Obtener todos los productos del servidor con una buena puntuación
 export const getTrendingTop = async (setProducts, setCurrentTenProducts) => {
     // Cambio a futuro: Cambiar a maypr el limite de 5 a 10
     try{        
@@ -42,6 +44,7 @@ export const getTrendingTop = async (setProducts, setCurrentTenProducts) => {
     }
 }
 
+// Obtener productos por categoría
 export const getProductsByCategory = async (setProducts, category, setCurrentTenProducts) => {
     try{
         const categoryQuery = query(productsCollection, where('category', '==', category), orderBy('name', 'asc'))
@@ -54,6 +57,7 @@ export const getProductsByCategory = async (setProducts, category, setCurrentTen
     }
 }
 
+// Insertar un producto en el servidor
 export const addProduct = async (data, setData, setProducts, setCurrentTenProducts) => {
     const imageRefName = `images/${data.imageUpload.name + v4()}`
     const imageRef = ref(storage, imageRefName)
@@ -82,6 +86,7 @@ export const addProduct = async (data, setData, setProducts, setCurrentTenProduc
     }
 }
 
+// Borrar un producto en el servidor
 export const deleteProduct = async (id, setProducts, setCurrentTenProducts) => {
     try{
         const productDoc = doc(db, 'products', id)
@@ -97,6 +102,7 @@ export const deleteProduct = async (id, setProducts, setCurrentTenProducts) => {
     }
 }
 
+// Actualizar un producto en el servidor
 export const updateProduct = async (id, setProducts, data, setData, oldImageRefName, setCurrentTenProducts) => {
     const productDoc = doc(db, 'products', id)
     
@@ -160,6 +166,7 @@ export const updateProduct = async (id, setProducts, data, setData, oldImageRefN
     }
 }
 
+// Cambiar el estado de un formulario
 export const displayForm = (id) => {
     const container = document.getElementById(id)
     if (container.style.display == 'flex') {
@@ -169,6 +176,7 @@ export const displayForm = (id) => {
     }
 }
 
+// Guardar todos los valores del formulario de añadir producto en un estado
 export const addData = (data, setData) => {
     setData(data.name = document.getElementById('name').value)
     setData(data.brand = document.getElementById('brand').value)
@@ -181,6 +189,7 @@ export const addData = (data, setData) => {
     setData(data.imageUpload = document.getElementById('image').files[0])
 }
 
+// Guardar todos los valores del formulario de editar producto en un estado
 export const addDataEdit = (dataEdit, setDataEdit) => {
     setDataEdit(dataEdit.name = document.getElementById('editName').value)
     setDataEdit(dataEdit.brand = document.getElementById('editBrand').value)
@@ -193,6 +202,7 @@ export const addDataEdit = (dataEdit, setDataEdit) => {
     setDataEdit(dataEdit.imageUpload = document.getElementById('editImage').files[0])
 }
 
+// Obtener valores de un producto
 export const getStates = async (id, data, setData) => {
     const productDoc = doc(db, 'products', id)
     const productData = await getDoc(productDoc)
@@ -201,14 +211,17 @@ export const getStates = async (id, data, setData) => {
     showData(data)
 }
 
+// Resetear un formulario
 export const resetForm = (id) => {
     document.getElementById(id).reset()
 }
 
+// Resetear un dato
 const resetData = (data, setData) => {
     setData(data = {})
 }
 
+// Mostrar datos por defecto en el formulario de editar
 const showData = (data) => {
     document.getElementById('editName').value = data.name
     document.getElementById('editBrand').value = data.brand
@@ -220,6 +233,7 @@ const showData = (data) => {
     document.getElementById('editType').value = data.type
 }
 
+// Obtener puntuación según el rating
 export const evalRatings = (ratings) => {
     let msg = []
     
@@ -275,10 +289,12 @@ export const evalRatings = (ratings) => {
     return msg
 }
 
+// Obtener ultimo dato de un array
 const last = (array) => {
     return array[array.length - 1]
 }
 
+// Pasar a la siguiente página (10 productos siguientes)
 export const next = async (setProducts, currentTenProducts, setCurrentTenProducts, category) => {
     try{
         let dataQuery;
@@ -306,6 +322,7 @@ export const next = async (setProducts, currentTenProducts, setCurrentTenProduct
     }
 }
 
+// Pasar a la anterior página (10 productos anteriores)
 export const prev = async (setProducts, currentTenProducts, setCurrentTenProducts, category) => {
     try{
         let dataQuery;
