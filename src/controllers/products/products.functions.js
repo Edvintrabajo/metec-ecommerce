@@ -1,4 +1,7 @@
 import { db } from '../../config/firebase'
+import { storage } from '../../config/firebase'
+import { ref, uploadBytes, getDownloadURL, deleteObject } from 'firebase/storage'
+import {v4} from 'uuid'
 import { getDocs,
     getDoc,
     collection,
@@ -10,10 +13,6 @@ import { getDocs,
     where,
     orderBy
  } from 'firebase/firestore'
-
-import { storage } from '../../config/firebase'
-import { ref, uploadBytes, getDownloadURL, deleteObject } from 'firebase/storage'
-import {v4} from 'uuid'
 
 const productsCollection = collection(db, 'products')
 export const productsPerPage = 12

@@ -1,15 +1,8 @@
-import { v4 as uuidv4 } from "uuid";
 import { db } from '../../config/firebase'
-import { getDocs,
-    getDoc,
-    collection,
-    addDoc,
-    deleteDoc,
-    doc,
-    updateDoc
-} from 'firebase/firestore'
-
 import { auth } from "../../config/firebase";
+import { collection,
+    addDoc,
+} from 'firebase/firestore'
 
 /* Todas estas funciones solo alteran las cookies, en ningún momento alteran al estado */
 

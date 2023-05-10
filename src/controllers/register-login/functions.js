@@ -4,10 +4,9 @@ import {
   createUserWithEmailAndPassword, 
   sendEmailVerification, 
   signInWithEmailAndPassword,
-  signOut 
 } from "firebase/auth";
 
-
+// Registrarse, se comprueba si el email está verificado
 export const signUp = async (userData, setUserData, btns) => {
   const { email, password } = userData;
   disableBtns(btns)
@@ -47,6 +46,7 @@ export const signUp = async (userData, setUserData, btns) => {
 
 };
 
+// Iniciar sesión, se comprueba si el email está verificado
 export const signIn = async (userData, setUserData, btns) => {
   const { email, password } = userData;
   
@@ -82,6 +82,7 @@ export const signIn = async (userData, setUserData, btns) => {
   }
 };
 
+// Cerrar sesión
 export const logOut = async () => {
   auth.signOut().then(() => {
     showMsg("Logged out successfully, see you soon", true, "/login");
@@ -92,6 +93,7 @@ export const logOut = async () => {
   });
 };
 
+// Mostrar mensaje personalizado
 const showMsg = (msg, valid, redir = null) => {
   const msgContainer = document.querySelector("#message-container");
 
@@ -100,6 +102,7 @@ const showMsg = (msg, valid, redir = null) => {
   overshadowEffect(msgContainer, redir);
 };
 
+// Crear cards
 const addCheckCards = (container, valid, msg) => {
   const div = document.createElement("div");
   const img = document.createElement("img");
@@ -123,6 +126,7 @@ const addCheckCards = (container, valid, msg) => {
   container.style.opacity = 1;
 };
 
+// Efecto sombra
 const overshadowEffect = (container, redir = null) => {
   const div = container.querySelector(".message-body");
   let timer = 2;
@@ -143,6 +147,7 @@ const overshadowEffect = (container, redir = null) => {
   }, 10);
 };
 
+// Guardar en el estado los datos del usuario
 export const setCurUserData = (userData, setUserData, prefix) => {
   try {
     setUserData(userData.email = document.getElementById(`${prefix}-email`).value);
@@ -153,12 +158,14 @@ export const setCurUserData = (userData, setUserData, prefix) => {
   }
 }
 
+// Desactivar botones
 const disableBtns = (btns) => {
   btns.forEach((btn) => {
     document.getElementById(btn).disabled = true;
   });
 }
 
+// Activar botones
 export const enableBtns = (btns) => {
   btns.forEach((btn) => {
     document.getElementById(btn).disabled = false;
