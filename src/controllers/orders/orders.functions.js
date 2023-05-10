@@ -11,6 +11,10 @@ import { getDocs,
 
 import { auth } from "../../config/firebase";
 
+/* Todas estas funciones solo alteran las cookies, en ningún momento alteran al estado */
+
+
+// Obtener ordenes, si no hay ordenes, devuelve un array vacío
 export const getOrders = () => {
     const cookies = document.cookie;
     const cookiesArray = cookies.split('; ');
@@ -23,6 +27,7 @@ export const getOrders = () => {
     return orders;
 }
 
+// Añadir una orden
 export const setOrder = (newOrder) => {
     const orders = getOrders();
     const orderIndex = checkOrder(newOrder.idproduct);
@@ -35,6 +40,7 @@ export const setOrder = (newOrder) => {
     document.cookie = `orders=${encodedOrders}; max-age=${30 * 24 * 60 * 60}; path=/; SameSite=Lax`;
 }
 
+// Borrar una orden
 export const deleteOrder = (index) => {
     const orders = getOrders();
     orders.splice(index, 1);
@@ -42,6 +48,7 @@ export const deleteOrder = (index) => {
     document.cookie = `orders=${encodedOrders}; max-age=${30 * 24 * 60 * 60}; path=/; SameSite=Lax`;
 }
 
+// Actualizar una orden
 export const updateOrder = (index, newOrder) => {
     const orders = getOrders();
     orders[index] = newOrder;
@@ -49,30 +56,35 @@ export const updateOrder = (index, newOrder) => {
     document.cookie = `orders=${encodedOrders}; max-age=${30 * 24 * 60 * 60}; path=/; SameSite=Lax`;
 }
 
+// Obtener el índice de una orden, pasándole una id como parámetro
 export const getOrderIndex = (id) => {
     const orders = getOrders();
     const orderIndex = orders.findIndex(order => order.id === id);
     return orderIndex;
 }
 
+// Obtener el número total de ordenes
 export const getOrdersCount = () => {
     const orders = getOrders();
     const count = orders.reduce((acc, order) => acc + order.unidades, 0);
     return count;
 }
 
+// Obtener el precio total de todas las ordenes
 export const getTotalOrders = () => {
     const orders = getOrders();
     const total = orders.reduce((acc, order) => acc + order.unidades * order.price, 0);
     return total;
 }
 
+// Comprobar si un producto ya está en alguna orden, si está, devuelve su índice, si no está, devuelve -1
 export const checkOrder = (idproducto) => {
     const orders = getOrders();
     const orderIndex = orders.findIndex(order => order.idproduct === idproducto);
     return orderIndex;
 }
 
+// Actualizar cantidad de unidades de una orden, pasándole un índice y las unidades por parámetro
 export const updateOrderQuantity = (index, unidades) => {
     const orders = getOrders();
     orders[index].unidades = unidades;
@@ -80,6 +92,7 @@ export const updateOrderQuantity = (index, unidades) => {
     document.cookie = `orders=${encodedOrders}; max-age=${30 * 24 * 60 * 60}; path=/; SameSite=Lax`;
 }
 
+// Restar una unidad a una orden, pasándole un índice como parametro
 export const subtractOrderQuantity = (index) => {
     const orders = getOrders();
     orders[index].unidades--;
@@ -87,6 +100,7 @@ export const subtractOrderQuantity = (index) => {
     document.cookie = `orders=${encodedOrders}; max-age=${30 * 24 * 60 * 60}; path=/; SameSite=Lax`;
 }
 
+// Sumar una unidad a una orden, pasándole un índice como parametro
 export const addOrderQuantity = (index) => {
     const orders = getOrders();
     orders[index].unidades++;
@@ -94,10 +108,12 @@ export const addOrderQuantity = (index) => {
     document.cookie = `orders=${encodedOrders}; max-age=${30 * 24 * 60 * 60}; path=/; SameSite=Lax`;
 }
 
+// Limpiar todas las ordenes
 export const clearOrders = () => {
     document.cookie = `orders=; max-age=0; path=/; SameSite=Lax`;
 }
 
+// Enviar todas las ordenes al servidor, como un pedido, junto a la fecha cuando se realiza, id del usuario, email del usuario, número de items y precio total, si no hay ordenes, no se envía el pedido
 export const sendOrders = async () => {
     const orders = getOrders();
 
