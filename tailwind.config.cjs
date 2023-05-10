@@ -74,7 +74,7 @@ module.exports = withMT({
         '100%': { opacity: '1' },
       },
       slowOpacityOn: {
-        '0%, 50%': { opacity: '0'},
+        '0%, 70%': { opacity: '0'},
         
         '100%': { opacity: '1' },
       }
