@@ -1,5 +1,6 @@
 import React from 'react'
 import { Typography } from "@material-tailwind/react";
+import RobotInfo from './RobotInfo';
 
 function Footer() {
   return (
@@ -7,9 +8,7 @@ function Footer() {
         <footer className="w-full p-8 mt-16 rounded-lg border border-neutral-400">
             <div className="flex flex-row flex-wrap items-center justify-center gap-y-6 gap-x-12 text-center md:justify-between">
                 
-                <div>
-                    <img src="/src/img/robot.png" alt="logo-ct" className="h-[150px]" />
-                </div>
+                <RobotInfo />
                 
                 <ul className="text-left tablet:flex tablet:flex-wrap tablet:items-center tablet:gap-y-2 tablet:gap-x-8">
                     <li>

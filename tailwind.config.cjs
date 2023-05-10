@@ -56,6 +56,8 @@ module.exports = withMT({
     animation: {
       'text-wave': 'textWave 6s infinite',
       'shake-y': 'shakkeY 10s infinite ease-in-out',
+      'opacity-on': 'opacityOn 0.5s ease-in',
+      'greeting': 'greeting 1s ease-in-out infinite alternate',
     },
     keyframes: {
       textWave: {
@@ -66,7 +68,16 @@ module.exports = withMT({
         '0%, 100%': { transform: 'translateY(0)' },
         '10%, 30%, 50%, 70%, 90%': { transform: 'translateY(-10px)' },
         '20%, 40%, 60%, 80%': { transform: 'translateY(10px)' },
-      }
+      },
+      opacityOn: {
+        '0%': { opacity: '0'},
+        '100%': { opacity: '1' },
+      },
+      greeting: {
+        '0%': { transform: 'rotate(0deg)' },
+        '100%': { transform: 'rotate(10deg)' },
+      },
+
     },
   },
   plugins: [require("daisyui")],

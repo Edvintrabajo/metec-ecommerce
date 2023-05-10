@@ -1,7 +1,10 @@
 import React from "react";
 import { useContext } from "react";
 import { Context } from "../context/Context";
-import { signIn, setCurUserData } from "../controllers/register-login/functions";
+import {
+  signIn,
+  setCurUserData,
+} from "../controllers/register-login/functions";
 import { Card, Input, Button, Typography } from "@material-tailwind/react";
 import CustomParticles from "../components/CustomParticles";
 import LogComponent from "./LogComponent";
@@ -13,8 +16,12 @@ function Login() {
   return (
     <div className="relative flex min-h-screen w-full items-center justify-center">
       <CustomParticles size={0} />
-      <LogComponent url={"/src/img/robot.png"}/>
-      <Card color="transparent" shadow={false} className="border-2 bg-white p-4 text-center z-20">
+      <LogComponent url={"/src/img/robot.png"} />
+      <Card
+        color="transparent"
+        shadow={false}
+        className="z-20 border-2 bg-white p-4 text-center"
+      >
         <Typography variant="h4" color="blue-gray">
           Sign In
         </Typography>
@@ -80,7 +87,7 @@ function Login() {
 
       <div
         id="message-container"
-        className="absolute top-0 left-0 hidden h-full w-full items-center justify-center bg-b-rgba-4 text-white"
+        className="absolute top-0 left-0 z-50 hidden h-full w-full items-center justify-center bg-b-rgba-4 text-white"
       ></div>
     </div>
   );

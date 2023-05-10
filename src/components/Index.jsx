@@ -33,6 +33,7 @@ function Index() {
       <EditProduct />
       <DeleteProduct />
       <Footer />
+      {/* https://primereact.org/messages/ */}
       <div
         id="message-container"
         className="absolute top-0 left-0 hidden h-full w-full items-center justify-center bg-b-rgba-4 text-white"
