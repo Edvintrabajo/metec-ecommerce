@@ -28,6 +28,17 @@
   }
 }
 
-::-webkit-scrollbar {
+
+
+body::-webkit-scrollbar {
   display: none;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+ 
+::-webkit-scrollbar-thumb {
+  background: #666;
+  border-radius: 20px;
 }

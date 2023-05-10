@@ -1,10 +1,9 @@
 import React from "react";
-import { deleteOrder, updateOrder, getOrderIndex } from "../controllers/orders/orders.functions";
+import { deleteOrder, getOrderIndex } from "../controllers/orders/orders.functions";
 import { Context } from "../context/Context";
 import { useContext } from "react";
 import { getOrdersCount, getTotalOrders } from "../controllers/orders/orders.functions";
 import { BsFillTrashFill } from "react-icons/bs";
-import { auth } from "../config/firebase";
 
 function Order({ order }) {
 
@@ -36,7 +35,7 @@ function Order({ order }) {
       <div className="flex flex-1 justify-center border-y border-r rounded-r-lg">
         <div className="ShoppingCart__item__details flex w-full p-2 flex-row text-left">
           <div className="flex w-11/12 flex-col align-middle">
-            <p className=" text-base font-semibold">{ order.name }</p>
+            <p className=" text-base font-semibold overflow-x-hidden w-[100px] h-5 text-ellipsis	whitespace-nowrap	">{ order.name }</p>
             <p>Units: { order.unidades }</p>
             <p>{ order.price },00 €</p>
           </div>

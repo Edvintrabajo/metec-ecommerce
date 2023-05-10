@@ -52,7 +52,7 @@ function Footer() {
             </div>
             <hr className="my-8 border-neutral-400" />
             <Typography className="text-center font-normal">
-                &copy; 2023 METEC copy rights reserved
+                &copy; 2023 METEC Copyright reserved
             </Typography>
         </footer>
     </div>

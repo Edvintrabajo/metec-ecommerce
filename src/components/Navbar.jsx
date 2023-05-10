@@ -41,7 +41,7 @@ function Navbar() {
         </div>
         <div className="flex-none">
 
-          <div className="dropdown-end dropdown ">
+          <div className="tablet:dropdown-end dropdown">
             <label
               tabIndex={0}
               className="btn-ghost btn-circle btn border-neutral-500 transition-all hover:border-transparent"
@@ -55,12 +55,13 @@ function Navbar() {
             </label>
             <div
               tabIndex={0}
-              className="card dropdown-content card-compact bg-base-100 shadow-2xl"
+              className="card dropdown-content card-compact top-16 -left-[170px] tablet:-left-[270px] bg-base-100 shadow-2xl tablet:w-[400px]"
             >
               <div className="card-body">
                 <span className="text-lg font-bold">{countOrders} Items</span>
-                <hr />
+                <hr className="mb-2"/>
                 <ShoppingCart />
+                <hr className="mt-2"/>
                 <span className="text-info">Subtotal: {totalPrice},00 €</span>
                 <div className="card-actions">
                   <button
