@@ -1,11 +1,7 @@
 import React, { useEffect } from "react";
 import { useContext } from "react";
 import { Context } from "../context/Context";
-import {
-  getProducts,
-  displayForm,
-  getTrendingTop
-} from "../controllers/products/products.functions";
+import { getTrendingTop } from "../controllers/products/products.functions";
 import Product from "./Product";
 import MainpageTitle from "./MainPageTitle";
 import Pagination from "./Pagination";

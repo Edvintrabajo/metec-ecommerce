@@ -5,12 +5,7 @@ import { deleteProduct } from "../controllers/products/products.functions";
 import { Card, Typography } from "@material-tailwind/react";
 
 function DeleteProduct({handleOpen, product}) {
-  const {
-    setProducts,
-    setCurrentTenProducts,
-    setCurrentPage,
-    setCurrentCategory,
-  } = useContext(Context);
+  const { setProducts, setCurrentTenProducts, setCurrentPage, setCurrentCategory } = useContext(Context);
 
   return (
       <Card>

@@ -8,15 +8,6 @@ function DeleteButton({product}) {
  
     const handleOpen = () => setOpen(!open);
   return (
-    // <button
-    //     className="flex rounded-full border-2 border-danger p-2 text-danger shadow-low-danger transition-all hover:bg-danger hover:text-white hover:shadow-high-danger"
-    //     onClick={() => {
-    //     displayForm("delete-product-form");
-    //     setProductIdEdit(product.id);
-    //     }}
-    // >
-    //     <BsFillTrashFill />
-    // </button>
     <Fragment>
         <button onClick={handleOpen} className="flex rounded-full border-2 border-danger p-2 text-danger shadow-low-danger transition-all hover:bg-danger hover:text-white hover:shadow-high-danger">
             <BsFillTrashFill />
