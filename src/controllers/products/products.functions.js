@@ -1,29 +1,23 @@
-import { db } from "../../config/firebase";
-import {
-  getDocs,
-  getDoc,
-  collection,
-  addDoc,
-  deleteDoc,
-  doc,
-  updateDoc,
-  query,
-  where,
-  orderBy,
-} from "firebase/firestore";
+import { db } from '../../config/firebase'
+import { storage } from '../../config/firebase'
+import { ref, uploadBytes, getDownloadURL, deleteObject } from 'firebase/storage'
+import {v4} from 'uuid'
+import { getDocs,
+    getDoc,
+    collection,
+    addDoc,
+    deleteDoc,
+    doc,
+    updateDoc,
+    query,
+    where,
+    orderBy
+} from 'firebase/firestore'
 
-import { storage } from "../../config/firebase";
-import {
-  ref,
-  uploadBytes,
-  getDownloadURL,
-  deleteObject,
-} from "firebase/storage";
-import { v4 } from "uuid";
+const productsCollection = collection(db, 'products')
+export const productsPerPage = 12
 
-const productsCollection = collection(db, "products");
-export const productsPerPage = 12;
-
+// Obtener todos los productos del servidor, guardar los productos en el estado de productos, también guardar los primeros 10 productos para la primera página
 export const getProducts = async (setProducts, setCurrentTenProducts) => {
   try {
     const dataQuery = query(productsCollection, orderBy("name", "desc"));
@@ -36,6 +30,7 @@ export const getProducts = async (setProducts, setCurrentTenProducts) => {
   }
 };
 
+// Obtener todos los productos del servidor con una buena puntuación
 export const getTrendingTop = async (setProducts, setCurrentTenProducts) => {
   // Cambio a futuro: Cambiar a maypr el limite de 5 a 10
   try {
@@ -53,6 +48,7 @@ export const getTrendingTop = async (setProducts, setCurrentTenProducts) => {
   }
 };
 
+// Obtener productos por categoría
 export const getProductsByCategory = async (
   setProducts,
   category,
@@ -73,6 +69,7 @@ export const getProductsByCategory = async (
   }
 };
 
+// Devuelve un objeto de un producto
 const getData = (pref = "") => {
   return  {
     name: document.getElementById(`${pref}Name`).value,
@@ -87,10 +84,9 @@ const getData = (pref = "") => {
   }
 }
 
+// Insertar un producto en el servidor
 export const addProduct = async (setProducts, setCurrentTenProducts) => {
-
   const data = getData();
-
   const imageRefName = `images/${data.imageUpload.name + v4()}`;
   const imageRef = ref(storage, imageRefName);
   await uploadBytes(imageRef, data.imageUpload);
@@ -117,6 +113,7 @@ export const addProduct = async (setProducts, setCurrentTenProducts) => {
   }
 };
 
+// Borrar un producto en el servidor
 export const deleteProduct = async (id, setProducts, setCurrentTenProducts) => {
   try {
     const productDoc = doc(db, "products", id);
@@ -131,6 +128,7 @@ export const deleteProduct = async (id, setProducts, setCurrentTenProducts) => {
   }
 };
 
+// Actualizar un producto en el servidor
 export const updateProduct = async (product, setProducts, setCurrentTenProducts) => {
   const productDoc = doc(db, "products", product.id);
 
@@ -188,6 +186,7 @@ export const updateProduct = async (product, setProducts, setCurrentTenProducts)
   }
 };
 
+// Cambiar el estado de un formulario
 export const displayForm = (id) => {
   const container = document.getElementById(id);
   if (container.style.display == "flex") {
@@ -197,6 +196,7 @@ export const displayForm = (id) => {
   }
 };
 
+// Asignar valores al formulario de editar
 export const setCurrentProductValues = (product) => {
   document.getElementById("editName").value = product.name;
   document.getElementById("editBrand").value = product.brand;
@@ -208,11 +208,12 @@ export const setCurrentProductValues = (product) => {
   document.getElementById("editType").value = product.type;
 };
 
-
+// Resetear un formulario
 export const resetForm = (id) => {
   document.getElementById(id).reset();
 };
 
+// Obtener puntuación según el rating
 export const evalRatings = (ratings) => {
   let msg = [];
 
@@ -268,10 +269,12 @@ export const evalRatings = (ratings) => {
   return msg;
 };
 
+// Obtener ultimo dato de un array
 const last = (array) => {
   return array[array.length - 1];
 };
 
+// Pasar a la siguiente página (10 productos siguientes)
 export const next = async (
   setProducts,
   currentTenProducts,
@@ -291,7 +294,6 @@ export const next = async (
     } else {
       dataQuery = query(productsCollection, orderBy("name", "desc"));
     }
-
     try {
       const data = await getDocs(dataQuery);
       const filterData = data.docs.map((doc) => ({
@@ -317,6 +319,7 @@ export const next = async (
   }
 };
 
+// Pasar a la anterior página (10 productos anteriores)
 export const prev = async (
   setProducts,
   currentTenProducts,
@@ -362,6 +365,7 @@ export const prev = async (
   }
 };
 
+// Aplicar efecto smooth scroll
 export const scrollToTopSmooth = () => {
   window.scrollTo({ top: 120, behavior: "smooth" });
 };
