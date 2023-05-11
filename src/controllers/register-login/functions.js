@@ -125,10 +125,10 @@ const addCheckCards = (container, valid, msg) => {
   const h2 = document.createElement("h2");
 
   if (!valid) {
-    img.src = "./src/icons/cancel.svg";
+    img.src = "icons/cancel.svg";
     div.style.backgroundColor = "rgb(242, 101, 101)";
   } else {
-    img.src = "./src/icons/check.svg";
+    img.src = "icons/check.svg";
     div.style.backgroundColor = "rgb(101, 242, 101)";
   }
   div.classList.add("message-body");

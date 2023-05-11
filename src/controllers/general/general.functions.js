@@ -7,19 +7,19 @@ export const showAlert = (message, type) => {
     let timer = 2;
 
     if (type == "error") {
-        img.src = "./src/icons/cancel.svg";
+        img.src = "icons/cancel.svg";
         div.style.backgroundColor = "rgb(242, 101, 101)";
     }
     else if (type == "warning") {
-        img.src = "./src/icons/warning.svg";
+        img.src = "icons/warning.svg";
         div.style.backgroundColor = "rgb(242, 242, 101)";
     }
     else if (type == "success") {
-        img.src = "./src/icons/check.svg";
+        img.src = "icons/check.svg";
         div.style.backgroundColor = "rgb(101, 242, 101)";
     } 
     else {
-        img.src = "./src/icons/info.svg";
+        img.src = "icons/info.svg";
         div.style.backgroundColor = "rgb(101, 242, 242)";
     } 
     

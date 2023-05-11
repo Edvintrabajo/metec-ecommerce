@@ -14,7 +14,7 @@ function Register() {
   return (
     <div className="relative flex min-h-screen w-full items-center justify-center animate-slow-opacity-on">
       <CustomParticles size={0} />
-      <LogComponent url={"/src/img/cohete.png"} />
+      <LogComponent url={"img/cohete.png"} />
       <Card
         color="transparent"
         shadow={false}
@@ -69,7 +69,7 @@ function Register() {
               onClick={signInWithGoogle}
             >
               <img
-                src={"./src/icons/google.svg"}
+                src={"icons/google.svg"}
                 alt="metamask"
                 className="h-6 w-6"
               />

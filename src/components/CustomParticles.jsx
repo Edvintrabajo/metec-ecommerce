@@ -115,7 +115,7 @@ function CustomParticles({size = 80}) {
                       "type": "images",
                       "options": {
                           "images": {
-                              "src": "./src/img/robot.png",
+                              "src": "img/robot.png",
                               "width": 500,
                               "height": 634
                           }
