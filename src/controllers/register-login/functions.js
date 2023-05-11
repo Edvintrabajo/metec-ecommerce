@@ -5,6 +5,7 @@ import {
   sendEmailVerification, 
   signInWithEmailAndPassword,
 } from "firebase/auth";
+import { showAlert } from "../general/general.functions";
 
 // Registrarse, se comprueba si el email está verificado
 export const signUp = async (userData, setUserData, btns) => {
@@ -85,11 +86,11 @@ export const signIn = async (userData, setUserData, btns) => {
 // Cerrar sesión
 export const logOut = async () => {
   auth.signOut().then(() => {
-    showMsg("Logged out successfully, see you soon", true, "/login");
+    showAlert("Logged out successfully", "success");
   })
   .catch((error) => {
     const errMsg = checkErrorCodes(error.code);
-    showMsg(errMsg, false);
+    showAlert(errMsg, "error")
   });
 };
 

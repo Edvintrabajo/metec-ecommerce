@@ -3,6 +3,7 @@ import { auth } from "../../config/firebase";
 import { collection,
     addDoc,
 } from 'firebase/firestore'
+import { showAlert } from '../general/general.functions'
 
 /* Todas estas funciones solo alteran las cookies, en ningún momento alteran al estado */
 
@@ -146,7 +147,8 @@ export const sendOrders = async () => {
     try {
         await addDoc(ordersCollection, cart);
         clearOrders();
+        showAlert("Your order was successful maked!", "success");
     } catch (error) {
-        console.log(error);
+        showAlert(error.message, 'danger'); 
     }
 }

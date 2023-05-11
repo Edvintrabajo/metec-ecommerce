@@ -9,19 +9,18 @@ import { FiLogIn } from "react-icons/fi";
 import { AiOutlineForm } from "react-icons/ai";
 import { sendOrders } from "../controllers/orders/orders.functions";
 import { logOut } from "../controllers/register-login/functions";
+import { showAlert } from "../controllers/general/general.functions";
 
 function Navbar() {
   const { countOrders, totalPrice, setOrders } = useContext(Context);
 
   const handleSendOrders = () => {
     if (auth?.currentUser === null) {
-      alert("You must be logged to checkout");
-      window.location.href = "/login";
-      return;
+      showAlert("You must be logged to checkout", "warning");
+    } else {
+      sendOrders();
+      setOrders([]);
     }
-    sendOrders();
-    alert("Your order was successful maked");
-    setOrders([]);
   };
 
   const handleLogOut = () => {

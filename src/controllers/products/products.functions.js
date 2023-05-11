@@ -13,8 +13,10 @@ import { getDocs,
     where,
     orderBy
 } from 'firebase/firestore'
+import { showAlert } from '../general/general.functions'
 
 const productsCollection = collection(db, 'products')
+
 export const productsPerPage = 12
 
 // Obtener todos los productos del servidor, guardar los productos en el estado de productos, también guardar los primeros 10 productos para la primera página
@@ -26,7 +28,7 @@ export const getProducts = async (setProducts, setCurrentTenProducts) => {
     setProducts(filterData);
     setCurrentTenProducts(filterData.slice(0, productsPerPage));
   } catch (error) {
-    console.log(error);
+    showAlert(error.message, "error"); 
   }
 };
 
@@ -44,7 +46,7 @@ export const getTrendingTop = async (setProducts, setCurrentTenProducts) => {
     setProducts(filterData);
     setCurrentTenProducts(filterData.slice(0, productsPerPage));
   } catch (error) {
-    console.log(error);
+    showAlert(error.message, "error"); 
   }
 };
 
@@ -65,7 +67,7 @@ export const getProductsByCategory = async (
     setProducts(filterData);
     setCurrentTenProducts(filterData.slice(0, productsPerPage));
   } catch (error) {
-    console.log(error);
+    showAlert(error.message, "error"); 
   }
 };
 
@@ -105,11 +107,13 @@ export const addProduct = async (setProducts, setCurrentTenProducts) => {
       url,
       imageRefName,
     });
+    showAlert("Product added successfully!", "success")
   } catch (error) {
-    console.log(error);
+    showAlert(error.message, "error"); 
   } finally {
     getProducts(setProducts, setCurrentTenProducts);
     resetForm("create-product-container");
+    scrollToTopSmooth();
   }
 };
 
@@ -121,10 +125,12 @@ export const deleteProduct = async (id, setProducts, setCurrentTenProducts) => {
     const imageRefName = ref(storage, productData.data().imageRefName);
     await deleteObject(imageRefName);
     await deleteDoc(productDoc);
+    showAlert("Product deleted successfully!", "info");
   } catch (error) {
-    console.log(error);
+    showAlert(error.message, "error"); 
   } finally {
     getProducts(setProducts, setCurrentTenProducts);
+    scrollToTopSmooth();
   }
 };
 
@@ -146,10 +152,13 @@ export const updateProduct = async (product, setProducts, setCurrentTenProducts)
         category: data.category,
         type: data.type,
       });
+      showAlert("Product updated successfully!", "info");
     } catch (error) {
-      console.log(error);
+      showAlert(error.message, "error"); 
     } finally {
       getProducts(setProducts, setCurrentTenProducts);
+      resetForm("edit-product-container");
+      scrollToTopSmooth();
     }
   } else {
     const imageRefName = `images/${data.imageUpload.name + v4()}`;
@@ -174,25 +183,17 @@ export const updateProduct = async (product, setProducts, setCurrentTenProducts)
       try {
         const imageRef = ref(storage, product.imageRefName);
         await deleteObject(imageRef);
+        showAlert("Product updated successfully!", "info");
       } catch (error) {
-        console.log(error);
+        showAlert(error.message, "error"); 
       }
     } catch (error) {
-      console.log(error);
+      showAlert(error.message, "error"); 
     } finally {
       getProducts(setProducts, setCurrentTenProducts);
       resetForm("edit-product-container");
+      scrollToTopSmooth();
     }
-  }
-};
-
-// Cambiar el estado de un formulario
-export const displayForm = (id) => {
-  const container = document.getElementById(id);
-  if (container.style.display == "flex") {
-    container.style.display = "none";
-  } else {
-    container.style.display = "flex";
   }
 };
 
