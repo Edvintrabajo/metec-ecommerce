@@ -1,13 +1,11 @@
 import React from "react";
 import { useContext } from "react";
 import { Context } from "../context/Context";
-import {
-  signIn,
-  setCurUserData,
-} from "../controllers/register-login/functions";
+import { signIn, setCurUserData } from "../controllers/register-login/functions";
 import { Card, Input, Button, Typography } from "@material-tailwind/react";
 import CustomParticles from "../components/CustomParticles";
 import LogComponent from "./LogComponent";
+import { signInWithGoogle } from "../controllers/register-login/functions";
 
 function Login() {
   const { userData, setUserData } = useContext(Context);
@@ -63,6 +61,7 @@ function Login() {
               variant="outlined"
               color="blue-gray"
               className="flex  items-center justify-center gap-3"
+              onClick={signInWithGoogle}
             >
               <img
                 src={"./src/icons/google.svg"}

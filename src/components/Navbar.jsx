@@ -2,15 +2,12 @@ import React from "react";
 import ShoppingCart from "./ShoppingCart";
 import { useContext } from "react";
 import { Context } from "../context/Context";
-import { BiUser } from "react-icons/bi";
 import { MdOutlineShoppingCart } from "react-icons/md";
 import { auth } from "../config/firebase";
-import { FiLogIn } from "react-icons/fi";
-import { AiOutlineForm } from "react-icons/ai";
 import { sendOrders } from "../controllers/orders/orders.functions";
-import { logOut } from "../controllers/register-login/functions";
 import { showAlert } from "../controllers/general/general.functions";
-import { AiOutlinePoweroff } from "react-icons/ai";
+import Profile from "./Profile";
+
 function Navbar() {
   const { setCountOrders, countOrders, setTotalPrice, totalPrice, setOrders } = useContext(Context);
 
@@ -23,10 +20,6 @@ function Navbar() {
       setCountOrders(0);
       setTotalPrice(0);
     }
-  };
-
-  const handleLogOut = () => {
-    logOut();
   };
 
   return (
@@ -76,76 +69,8 @@ function Navbar() {
             </div>
           </div>
           
-          <div className="dropdown-end dropdown ml-5">
-            {auth?.currentUser?.email ? (
-              <>
-                <label
-                  tabIndex={0}
-                  className="btn-ghost btn-circle avatar btn border-neutral-500 shadow-2xl transition-all hover:border-transparent"
-                >
-                  <div className="w-10 rounded-full">
-                    <img
-                      src={`https://robohash.org/${auth?.currentUser?.email}`}
-                      alt="avatar"
-                      className="scale-125 rounded-full"
-                    />
-                  </div>
-                </label>
-                <ul
-                  tabIndex={0}
-                  className="dropdown-content menu rounded-box menu-compact mt-3 w-52 bg-base-100 p-2 shadow"
-                >
-                  <li>
-                    <a className="justify-between">
-                      Profile
-                      <span className="badge text-xs">Coming Soon</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a className="justify-between">
-                      Settings
-                      <span className="badge text-xs">Coming Soon</span>
+          <Profile />
 
-                    </a>
-                  </li>
-                  <li>
-                    <a className="justify-between hover:text-danger" onClick={() => {handleLogOut()}}>
-                      Logout
-                      <AiOutlinePoweroff className="scale-150 text-white" />
-                      </a>
-                  </li>
-                </ul>
-              </>
-            ) : (
-              <>
-                <label
-                  tabIndex={0}
-                  className="btn-ghost btn-circle avatar btn border-neutral-500 shadow-2xl transition-all hover:border-transparent"
-                >
-                  <div className="w-10 rounded-full p-3">
-                    <BiUser className=" m-auto scale-150" />
-                  </div>
-                </label>
-                <ul
-                  tabIndex={0}
-                  className="dropdown-content menu rounded-box menu-compact mt-3 w-52 bg-base-100 p-2 shadow"
-                >
-                  <li className="hover:text-edit">
-                    <a href="/login" className="justify-between">
-                      Sign in
-                      <FiLogIn className="scale-150 text-white" />
-                    </a>
-                  </li>
-                  <li className="hover:text-info">
-                    <a href="/login" className="justify-between">
-                      Sign up
-                      <AiOutlineForm className="scale-150 text-white" />
-                    </a>
-                  </li>
-                </ul>
-              </>
-            )}
-          </div>
         </div>
       </div>
     </nav>

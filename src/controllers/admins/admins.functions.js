@@ -14,11 +14,13 @@ export const isAdmin = (email) => {
 }
 
 // Cambiar el estado "setIsAuthtorized" a true si es admin, si no, a false
-export const verifyUserStatus = (setIsAuthtorized) => {
+export const verifyUserStatus = (setIsAuthtorized, setLogged) => {
     if (auth.currentUser) {
         setIsAuthtorized(isAdmin(auth.currentUser.email));
+        setLogged(true);
     } 
     else {
         setIsAuthtorized(false);
+        setLogged(false);
     }
 }

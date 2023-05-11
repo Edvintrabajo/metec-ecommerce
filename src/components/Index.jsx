@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from "react";
+import React, { useEffect, useContext, useState } from "react";
 import { Context } from "../context/Context";
 import ProductList from "./ProductList";
 import Navbar from "./Navbar";
@@ -9,13 +9,13 @@ import FilterBg from "./FilterBg";
 import MessageAlert from "./MessageAlert"
 
 function Index() {
-  const { setIsAuthtorized } = useContext(Context);
+  const { setIsAuthtorized, setLogged } = useContext(Context);
 
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
       if (user) {
         user.reload().then(() => {
-          verifyUserStatus(setIsAuthtorized);
+          verifyUserStatus(setIsAuthtorized, setLogged);
         });
       } else {
         setIsAuthtorized(false);

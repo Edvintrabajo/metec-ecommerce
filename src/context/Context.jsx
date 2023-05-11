@@ -9,6 +9,9 @@ export function ContextProvider(props) {
 
     // USER IS AUTHORIZED
     const [isAuthtorized, setIsAuthtorized] = useState(false)
+
+    // lOGGED
+    const [logged, setLogged] = useState(false)
     
     // LIST OF PRODUCTS
     const [products, setProducts] = useState([])
@@ -37,6 +40,8 @@ export function ContextProvider(props) {
     // STATES & FUNCTIONS
     const states = {
         userData, setUserData,
+        isAuthtorized, setIsAuthtorized,
+        logged, setLogged,
         products, setProducts,
         currentTenProducts, setCurrentTenProducts,
         currentCategory, setCurrentCategory,
@@ -45,7 +50,6 @@ export function ContextProvider(props) {
         orders, setOrders,
         countOrders, setCountOrders,
         totalPrice, setTotalPrice,
-        isAuthtorized, setIsAuthtorized,
     }
 
     return (

@@ -1,9 +1,11 @@
 import checkErrorCodes from "./errorCodes";
-import { auth } from "../../config/firebase";
+import { auth, googleProvider } from "../../config/firebase";
 import { 
   createUserWithEmailAndPassword, 
   sendEmailVerification, 
   signInWithEmailAndPassword,
+  // google sign in
+  signInWithPopup,
 } from "firebase/auth";
 import { showAlert } from "../general/general.functions";
 
@@ -59,7 +61,7 @@ export const signIn = async (userData, setUserData, btns) => {
       const user = auth.currentUser;
       user.reload().then(() => {
         if (user.emailVerified) {
-          showMsg("Logged in successfully", true, "/");
+          window.location.href = "/";
         }
         else {
           auth.signOut();
@@ -82,6 +84,19 @@ export const signIn = async (userData, setUserData, btns) => {
     setUserData(userData = {});
   }
 };
+
+// Iniciar sesión con Google
+export const signInWithGoogle = async () => {
+  try{
+    await signInWithPopup(auth, googleProvider)
+    .then(() => {
+      window.location.href = "/";      
+    })
+  } catch (error) {
+    const errMsg = checkErrorCodes(error.code);
+    showMsg(errMsg, false);
+  }
+}
 
 // Cerrar sesión
 export const logOut = async () => {
@@ -132,7 +147,7 @@ const overshadowEffect = (container, redir = null) => {
   const div = container.querySelector(".message-body");
   let timer = 2;
   const interval = setInterval(() => {
-    timer -= 0.0025;
+    timer -= 0.008;
     if (timer <= 1) {
       timer -= 0.01;
       container.style.opacity = timer;
