@@ -13,7 +13,7 @@ import { getDocs,
     where,
     orderBy
 } from 'firebase/firestore'
-import { showAlert } from '../general/general.functions'
+import { showAlert, scrollToTopSmooth } from '../general/general.functions'
 
 const productsCollection = collection(db, 'products')
 
@@ -364,9 +364,4 @@ export const prev = async (
   } catch (error) {
     console.log(error);
   }
-};
-
-// Aplicar efecto smooth scroll
-export const scrollToTopSmooth = () => {
-  window.scrollTo({ top: 120, behavior: "smooth" });
 };

@@ -10,9 +10,9 @@ import { AiOutlineForm } from "react-icons/ai";
 import { sendOrders } from "../controllers/orders/orders.functions";
 import { logOut } from "../controllers/register-login/functions";
 import { showAlert } from "../controllers/general/general.functions";
-
+import { AiOutlinePoweroff } from "react-icons/ai";
 function Navbar() {
-  const { countOrders, totalPrice, setOrders } = useContext(Context);
+  const { setCountOrders, countOrders, setTotalPrice, totalPrice, setOrders } = useContext(Context);
 
   const handleSendOrders = () => {
     if (auth?.currentUser === null) {
@@ -20,6 +20,8 @@ function Navbar() {
     } else {
       sendOrders();
       setOrders([]);
+      setCountOrders(0);
+      setTotalPrice(0);
     }
   };
 
@@ -40,7 +42,7 @@ function Navbar() {
         </div>
         <div className="flex-none">
 
-          <div className="tablet:dropdown-end dropdown">
+          <div className="dropdown-end dropdown">
             <label
               tabIndex={0}
               className="btn-ghost btn-circle btn border-neutral-500 transition-all hover:border-transparent"
@@ -54,7 +56,7 @@ function Navbar() {
             </label>
             <div
               tabIndex={0}
-              className="card dropdown-content card-compact top-16 -left-[170px] tablet:-left-[270px] bg-base-100 shadow-2xl tablet:w-[400px]"
+              className="card dropdown-content card-compact bg-base-100 shadow-2xl w-[300px] top-16 -left-[170px] laptop:-left-[220px] laptop:w-[350px]"
             >
               <div className="card-body">
                 <span className="text-lg font-bold">{countOrders} Items</span>
@@ -96,14 +98,21 @@ function Navbar() {
                   <li>
                     <a className="justify-between">
                       Profile
-                      <span className="badge">New</span>
+                      <span className="badge text-xs">Coming Soon</span>
                     </a>
                   </li>
                   <li>
-                    <a>Settings</a>
+                    <a className="justify-between">
+                      Settings
+                      <span className="badge text-xs">Coming Soon</span>
+
+                    </a>
                   </li>
                   <li>
-                    <a onClick={() => {handleLogOut()}}>Logout</a>
+                    <a className="justify-between hover:text-danger" onClick={() => {handleLogOut()}}>
+                      Logout
+                      <AiOutlinePoweroff className="scale-150 text-white" />
+                      </a>
                   </li>
                 </ul>
               </>

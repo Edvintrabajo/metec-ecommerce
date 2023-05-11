@@ -17,7 +17,7 @@ function ShoppingCart() {
   return (
     <div className="ShoppingCart ">
 
-      <div className="ShoppingCart__items max-h-[500px] overflow-y-scroll">
+      <div className="ShoppingCart__items max-h-[500px] tablet:max-h-[200px] desktop:max-h-[500px] overflow-y-scroll">
         {orders.length === 0 ? (
           <p className="text-base font-semibold mb-4 text-center">Empty cart</p>
         ) : (

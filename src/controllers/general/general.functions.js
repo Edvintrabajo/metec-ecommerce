@@ -57,3 +57,8 @@ export const showAlert = (message, type) => {
         }
     } , 10);
 }
+
+// Aplicar efecto smooth scroll
+export const scrollToTopSmooth = () => {
+    window.scrollTo({ top: 120, behavior: "smooth" });
+};

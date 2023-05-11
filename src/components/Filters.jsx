@@ -2,8 +2,9 @@ import React, { useContext } from "react";
 import { Context } from "../context/Context";
 import { Menu, MenuHandler, MenuList, MenuItem } from "@material-tailwind/react";
 import { showFilters, hideFilters } from "../controllers/filters/filters.functions";
-import { getProductsByCategory, getProducts, getTrendingTop, scrollToTopSmooth } 
+import { getProductsByCategory, getProducts, getTrendingTop } 
 from "../controllers/products/products.functions";
+import { scrollToTopSmooth } from "../controllers/general/general.functions";
 
 function Filters() {
   const {
