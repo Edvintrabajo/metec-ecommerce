@@ -25,7 +25,6 @@ dist-ssr
 
 # Firebase configuration files
 .firebase/
-firebase.json
 firebase-debug.log
 firebase*.log
 
