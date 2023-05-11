@@ -1,13 +1,11 @@
 import React from "react";
 import { useContext } from "react";
 import { Context } from "../context/Context";
-import {
-  signUp,
-  setCurUserData,
-} from "../controllers/register-login/functions";
+import { signUp, setCurUserData } from "../controllers/register-login/functions";
 import { Card, Input, Button, Typography } from "@material-tailwind/react";
 import CustomParticles from "../components/CustomParticles";
 import LogComponent from "./LogComponent";
+import { signInWithGoogle } from "../controllers/register-login/functions";
 
 function Register() {
   const { userData, setUserData } = useContext(Context);
@@ -35,7 +33,6 @@ function Register() {
             e.preventDefault();
             setCurUserData(userData, setUserData, "register");
             signUp(userData, setUserData, btns);
-            // console.log(auth?.currentUser?.email);
           }}
         >
           <div className="mb-4 flex flex-col gap-6">
@@ -69,6 +66,7 @@ function Register() {
               color="blue-gray"
               className="flex  items-center justify-center gap-3"
               type="button"
+              onClick={signInWithGoogle}
             >
               <img
                 src={"./src/icons/google.svg"}
