@@ -7,12 +7,12 @@ import { BiUser } from "react-icons/bi";
 import { AiOutlinePoweroff } from "react-icons/ai";
 import { logOut } from "../controllers/register-login/functions";
 
-function Profile({hidden = false}) {
+function Profile() {
     
     const { setLogged, logged } = useContext(Context);
 
   return (
-    <div className={!hidden ? "dropdown-end dropdown" : "dropdown-end dropdown hidden tablet:inline-block"}>
+    <div className="dropdown-end dropdown">
       {logged ? (
         <>
           <label

@@ -7,7 +7,7 @@ import { auth } from "../config/firebase";
 import { sendOrders } from "../controllers/orders/orders.functions";
 import { showAlert } from "../controllers/general/general.functions";
 
-function ShoppingButton({hidden = false}) {
+function ShoppingButton() {
     
   const { setCountOrders, countOrders, setTotalPrice, totalPrice, setOrders } = useContext(Context);
 
@@ -23,7 +23,7 @@ function ShoppingButton({hidden = false}) {
   };
 
   return (
-    <div className={!hidden ? "flex-none" : "flex-none hidden tablet:inline-block"}>
+    <div className="flex-none">
       <div className="dropdown-end dropdown">
         <label
           tabIndex={0}
@@ -38,7 +38,7 @@ function ShoppingButton({hidden = false}) {
         </label>
         <div
           tabIndex={0}
-          className="card dropdown-content text-white card-compact top-16 -left-[170px] w-[300px] bg-base-100 shadow-2xl laptop:-left-[220px] laptop:w-[350px]"
+          className="card dropdown-content text-white card-compact top-16 -left-[80px] w-[300px] bg-base-100 shadow-2xl laptop:-left-[220px] laptop:w-[350px]"
         >
           <div className="card-body">
             <span className="text-lg font-bold">{countOrders} Items</span>
