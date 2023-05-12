@@ -20,12 +20,11 @@ function MainNavbar() {
 
   return (
     <nav className="w-full p-4">
-      <Navbar className="w-full px-4 py-4 rounded-lg bg-white" fullWidth color="transparent">
+      <Navbar className="w-full px-4 py-4 rounded-lg bg-white border-neutral-400 border" fullWidth color="transparent">
         <div className=" flex items-center justify-between text-blue-gray-900">
           <Typography
             as="a"
-            href="#"
-            // className="mr-4 cursor-pointer py-1.5 font-medium"
+            href=""
             className="relative text-3xl laptop:text-5xl font-semibold tracking-tighter before:absolute before:inset-0 before:animate-text-wave before:bg-gradient-to-br before:from-[#00DBDE] before:to-[#FC00FF] before:bg-clip-text before:text-transparent before:content-['METEC']"
 
           >
@@ -36,7 +35,7 @@ function MainNavbar() {
           <div className="flex justify-between items-center">
             <IconButton
               variant="text"
-              className="mr-1 h-6 w-6 text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent tablet:hidden"
+              className="mr-4 h-6 w-6 scale-125 text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent tablet:hidden"
               ripple={false}
               onClick={() => setOpenNav(!openNav)}
             >

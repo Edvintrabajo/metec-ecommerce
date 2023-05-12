@@ -38,7 +38,7 @@ function ShoppingButton() {
         </label>
         <div
           tabIndex={0}
-          className="card dropdown-content text-white card-compact top-16 -left-[80px] w-[300px] bg-base-100 shadow-2xl laptop:-left-[220px] laptop:w-[350px]"
+          className="card dropdown-content text-white card-compact top-16 -left-[160px] w-[280px] bg-blue-gray-900 shadow-2xl tablet:-left-[220px] laptop:w-[350px]"
         >
           <div className="card-body">
             <span className="text-lg font-bold">{countOrders} Items</span>

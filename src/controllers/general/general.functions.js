@@ -60,5 +60,5 @@ export const showAlert = (message, type) => {
 
 // Aplicar efecto smooth scroll
 export const scrollToTopSmooth = () => {
-    window.scrollTo({ top: 120, behavior: "smooth" });
+    window.scrollTo({ top: 130, behavior: "smooth" });
 };

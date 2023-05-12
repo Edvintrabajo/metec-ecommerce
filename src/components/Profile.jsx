@@ -33,7 +33,7 @@ function Profile() {
           </label>
           <ul
             tabIndex={0}
-            className="dropdown-content text-white menu rounded-box menu-compact mt-3 w-52 bg-base-100 p-2 shadow"
+            className="dropdown-content text-white menu rounded-box menu-compact mt-3 w-52 bg-blue-gray-900 p-2 shadow"
           >
             <li>
               <a className="justify-between">
@@ -73,7 +73,7 @@ function Profile() {
           </label>
           <ul
             tabIndex={0}
-            className="dropdown-content text-white menu rounded-box menu-compact mt-3 w-52 bg-base-100 p-2 shadow"
+            className="dropdown-content text-white menu rounded-box menu-compact mt-3 w-52 bg-blue-gray-900 p-2 shadow"
           >
             <li className="hover:text-edit">
               <a href="/login" className="justify-between">
