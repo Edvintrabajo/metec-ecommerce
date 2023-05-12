@@ -1,15 +1,23 @@
-import React from "react";
-import { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Context } from "../context/Context";
 import { signUp, setCurUserData } from "../controllers/register-login/functions";
 import { Card, Input, Button, Typography } from "@material-tailwind/react";
 import CustomParticles from "../components/CustomParticles";
 import LogComponent from "./LogComponent";
 import { signInWithGoogle } from "../controllers/register-login/functions";
+import { auth } from "../config/firebase";
 
 function Register() {
   const { userData, setUserData } = useContext(Context);
   const btns = ["register-button", "register-google-button"];
+
+  useEffect(() => {
+    auth.onAuthStateChanged((user) => {
+      if (user) {
+        window.location.href = "/";
+      }
+    });
+  }, []);
 
   return (
     <div className="relative flex h-screen w-full items-center justify-center animate-slow-opacity-on">
