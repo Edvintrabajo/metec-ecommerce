@@ -1,3 +1,4 @@
+// Mensajes de error
 const checkErrorCodes = (error) => {
   let errMsg = ""
 

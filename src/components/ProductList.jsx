@@ -1,20 +1,13 @@
 import React, { useEffect } from "react";
 import { useContext } from "react";
 import { Context } from "../context/Context";
-import {
-  getProducts,
-  displayForm,
-  getStates,
-  getTrendingTop
-} from "../controllers/products/products.functions";
+import { getTrendingTop } from "../controllers/products/products.functions";
 import Product from "./Product";
 import MainpageTitle from "./MainPageTitle";
-import Filters from "./Filters";
-import AddButton from "./AddButton";
 import Pagination from "./Pagination";
 
 function ProductList() {
-  const { setProducts, isAuthtorized, currentTenProducts, setCurrentTenProducts } = useContext(Context);
+  const { setProducts, currentTenProducts, setCurrentTenProducts } = useContext(Context);
 
   // IMPORTANTE:
   // Se debe dejar el get products en el useEffect para que
@@ -28,12 +21,8 @@ function ProductList() {
 
   return (
     <div className="w-full">
-      
-      <Filters />
-      
+            
       <MainpageTitle />
-      
-      {isAuthtorized ? <AddButton /> : <></>}
       
       <div
         id="products-cards-container"
@@ -43,8 +32,6 @@ function ProductList() {
           <Product
             key={product.id}
             product={product}
-            displayForm={displayForm}
-            getStates={getStates}
           />
         ))}
       </div>

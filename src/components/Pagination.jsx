@@ -1,5 +1,5 @@
 import React from "react";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useCallback } from "react";
 import { Context } from "../context/Context";
 import { productsPerPage, next, prev } from "../controllers/products/products.functions";
 import { FcNext, FcPrevious } from "react-icons/fc";
@@ -12,8 +12,13 @@ function Pagination() {
     currentCategory,
   } = useContext(Context);
 
-  useEffect(() => {
+  const handelLoad = useCallback(() => {
     setTotalPage(Math.ceil(products.length / productsPerPage));
+  }, [products]);
+
+
+  useEffect(() => {
+    handelLoad()
   }, [products]);
 
   return (

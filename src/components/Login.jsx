@@ -1,13 +1,11 @@
 import React from "react";
 import { useContext } from "react";
 import { Context } from "../context/Context";
-import {
-  signIn,
-  setCurUserData,
-} from "../controllers/register-login/functions";
+import { signIn, setCurUserData } from "../controllers/register-login/functions";
 import { Card, Input, Button, Typography } from "@material-tailwind/react";
 import CustomParticles from "../components/CustomParticles";
 import LogComponent from "./LogComponent";
+import { signInWithGoogle } from "../controllers/register-login/functions";
 
 function Login() {
   const { userData, setUserData } = useContext(Context);
@@ -16,7 +14,7 @@ function Login() {
   return (
     <div className="relative flex min-h-screen w-full items-center justify-center animate-slow-opacity-on">
       <CustomParticles size={0} />
-      <LogComponent url={"/src/img/robot.png"} />
+      <LogComponent url={"img/robot.png"} />
       <Card
         color="transparent"
         shadow={false}
@@ -63,9 +61,10 @@ function Login() {
               variant="outlined"
               color="blue-gray"
               className="flex  items-center justify-center gap-3"
+              onClick={signInWithGoogle}
             >
               <img
-                src={"./src/icons/google.svg"}
+                src={"icons/google.svg"}
                 alt="metamask"
                 className="h-6 w-6"
               />

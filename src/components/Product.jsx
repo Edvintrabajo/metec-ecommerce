@@ -1,17 +1,14 @@
-import React, { useEffect, useContext } from "react";
+import React, { useContext } from "react";
 import { Context } from "../context/Context";
-import { BsFillTrashFill } from "react-icons/bs";
-import { MdModeEdit, MdOutlineShoppingCart } from "react-icons/md";
+import { MdOutlineShoppingCart } from "react-icons/md";
 import { setOrder, checkOrder, getOrdersCount, getTotalOrders } from "../controllers/orders/orders.functions";
 import { evalRatings } from "../controllers/products/products.functions";
 import { v4 } from "uuid";
-import { auth } from "../config/firebase";
+import EditButton from "./EditButton";
+import DeleteButton from "./DeleteButton";
 
-function Product({ product, displayForm, getStates }) {
+function Product({ product  }) {
   const {
-    setProductIdEdit,
-    setImageRefName,
-    data, setData,
     orders, setOrders,
     setCountOrders,
     setTotalPrice,
@@ -91,27 +88,10 @@ function Product({ product, displayForm, getStates }) {
               </button>
             ) : (
               <>
-                <button
-                  className="mr-2 flex rounded-full border-2 border-danger p-2 text-danger shadow-low-danger transition-all hover:bg-danger hover:text-white hover:shadow-high-danger"
-                  onClick={() => {
-                    displayForm("delete-product-form");
-                    setProductIdEdit(product.id);
-                    getStates(product.id, data, setData);
-                  }}
-                >
-                  <BsFillTrashFill />
-                </button>
-                <button
-                  className="flex rounded-full border-2 border-edit p-2 text-edit shadow-low-edit transition-all hover:bg-edit hover:text-white hover:shadow-high-edit"
-                  onClick={() => {
-                    displayForm("edit-product-form");
-                    setProductIdEdit(product.id);
-                    setImageRefName(product.imageRefName);
-                    getStates(product.id, data, setData);
-                  }}
-                >
-                  <MdModeEdit />
-                </button>
+                
+                <EditButton product={product}/>
+
+                <DeleteButton product={product}/>
               </>
             )}
           </div>

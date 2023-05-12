@@ -1,13 +1,15 @@
 import checkErrorCodes from "./errorCodes";
-import { auth } from "../../config/firebase";
+import { auth, googleProvider } from "../../config/firebase";
 import { 
   createUserWithEmailAndPassword, 
   sendEmailVerification, 
   signInWithEmailAndPassword,
-  signOut 
+  // google sign in
+  signInWithPopup,
 } from "firebase/auth";
+import { showAlert } from "../general/general.functions";
 
-
+// Registrarse, se comprueba si el email está verificado
 export const signUp = async (userData, setUserData, btns) => {
   const { email, password } = userData;
   disableBtns(btns)
@@ -47,6 +49,7 @@ export const signUp = async (userData, setUserData, btns) => {
 
 };
 
+// Iniciar sesión, se comprueba si el email está verificado
 export const signIn = async (userData, setUserData, btns) => {
   const { email, password } = userData;
   
@@ -58,7 +61,7 @@ export const signIn = async (userData, setUserData, btns) => {
       const user = auth.currentUser;
       user.reload().then(() => {
         if (user.emailVerified) {
-          showMsg("Logged in successfully", true, "/");
+          window.location.href = "/";
         }
         else {
           auth.signOut();
@@ -82,16 +85,31 @@ export const signIn = async (userData, setUserData, btns) => {
   }
 };
 
+// Iniciar sesión con Google
+export const signInWithGoogle = async () => {
+  try{
+    await signInWithPopup(auth, googleProvider)
+    .then(() => {
+      window.location.href = "/";      
+    })
+  } catch (error) {
+    const errMsg = checkErrorCodes(error.code);
+    showMsg(errMsg, false);
+  }
+}
+
+// Cerrar sesión
 export const logOut = async () => {
   auth.signOut().then(() => {
-    showMsg("Logged out successfully, see you soon", true, "/login");
+    showAlert("Logged out successfully", "success");
   })
   .catch((error) => {
     const errMsg = checkErrorCodes(error.code);
-    showMsg(errMsg, false);
+    showAlert(errMsg, "error")
   });
 };
 
+// Mostrar mensaje personalizado
 const showMsg = (msg, valid, redir = null) => {
   const msgContainer = document.querySelector("#message-container");
 
@@ -100,16 +118,17 @@ const showMsg = (msg, valid, redir = null) => {
   overshadowEffect(msgContainer, redir);
 };
 
+// Crear cards
 const addCheckCards = (container, valid, msg) => {
   const div = document.createElement("div");
   const img = document.createElement("img");
   const h2 = document.createElement("h2");
 
   if (!valid) {
-    img.src = "./src/icons/cancel.svg";
+    img.src = "icons/cancel.svg";
     div.style.backgroundColor = "rgb(242, 101, 101)";
   } else {
-    img.src = "./src/icons/check.svg";
+    img.src = "icons/check.svg";
     div.style.backgroundColor = "rgb(101, 242, 101)";
   }
   div.classList.add("message-body");
@@ -123,11 +142,12 @@ const addCheckCards = (container, valid, msg) => {
   container.style.opacity = 1;
 };
 
+// Efecto sombra
 const overshadowEffect = (container, redir = null) => {
   const div = container.querySelector(".message-body");
   let timer = 2;
   const interval = setInterval(() => {
-    timer -= 0.0025;
+    timer -= 0.008;
     if (timer <= 1) {
       timer -= 0.01;
       container.style.opacity = timer;
@@ -143,6 +163,7 @@ const overshadowEffect = (container, redir = null) => {
   }, 10);
 };
 
+// Guardar en el estado los datos del usuario
 export const setCurUserData = (userData, setUserData, prefix) => {
   try {
     setUserData(userData.email = document.getElementById(`${prefix}-email`).value);
@@ -153,12 +174,14 @@ export const setCurUserData = (userData, setUserData, prefix) => {
   }
 }
 
+// Desactivar botones
 const disableBtns = (btns) => {
   btns.forEach((btn) => {
     document.getElementById(btn).disabled = true;
   });
 }
 
+// Activar botones
 export const enableBtns = (btns) => {
   btns.forEach((btn) => {
     document.getElementById(btn).disabled = false;
