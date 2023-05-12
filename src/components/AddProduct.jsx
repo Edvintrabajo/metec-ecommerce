@@ -15,6 +15,7 @@ function AddProduct({handleOpen}) {
           onSubmit={(e) => {
             e.preventDefault();
             addProduct(setProducts, setCurrentTenProducts);
+            resetForm("create-product-container");
             setCurrentPage(1)
             setCurrentCategory("All")
             handleOpen();
@@ -30,40 +31,14 @@ function AddProduct({handleOpen}) {
           <div className="flex h-52 w-4/5 flex-wrap items-center justify-center laptop:w-2/5">
             <Input id="Name" label="Name" type="text" required />
             <Input id="Brand" label="Brand" type="text" required />
-            <Input
-              id="Price"
-              label="Price"
-              type="number"
-              required
-              min={0}
-              max={10000}
-            />
-            <Input
-              id="Stock"
-              label="Stock"
-              type="number"
-              required
-              min={0}
-              max={10000}
-            />
+            <Input id="Price" label="Price" type="number" required min={0} max={10000} />
+            <Input id="Stock" label="Stock" type="number" required min={0} max={10000} />
           </div>
           <div className="mb-4 flex h-52 w-4/5 flex-wrap items-center justify-center laptop:w-2/5 tablet:mb-0">
             <Input id="Description" label="Description" type="text" required />
-            <Input
-              id="Ratings"
-              label="Ratings"
-              type="number"
-              required
-              min={0}
-              max={10}
-              className="w-full"
-            />
-            <select
-              id="Category"
-              required
-              label="Category"
-              className="w-full rounded-md border border-neutral-400 text-neutral-500 bg-white p-2 text-sm"
-            >
+            <Input id="Ratings" label="Ratings" type="number" required min={0} max={10} className="w-full" />
+            
+            <select id="Category" required label="Category" className="w-full rounded-md border border-neutral-400 text-neutral-500 bg-white p-2 text-sm">
               <option value="Component">Component</option>
               <option value="Computer">Computer</option>
               <option value="Smartphone">Smartphone</option>
@@ -71,17 +46,12 @@ function AddProduct({handleOpen}) {
               <option value="TV">TVs</option>
               <option value="Peripheral">Peripheral</option>
             </select>
+            
             <Input id="Type" label="Type" type="text" required />
           </div>
 
           <div className="flex w-full justify-center p-2">
-            <input
-              id="Image"
-              type="file"
-              required
-              accept="image/webp"
-              className="w-5/6 tablet:w-2/3 laptop:w-1/2"
-            />
+            <input id="Image" type="file" required accept="image/webp" className="w-5/6 tablet:w-2/3 laptop:w-1/2" />
           </div>
 
           <div className="mt-5 flex w-full justify-evenly">

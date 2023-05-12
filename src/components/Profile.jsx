@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../context/Context";
 import { auth } from "../config/firebase";
 import { FiLogIn } from "react-icons/fi";
@@ -8,8 +8,16 @@ import { AiOutlinePoweroff } from "react-icons/ai";
 import { logOut } from "../controllers/register-login/functions";
 
 function Profile() {
-    
-    const { setLogged, logged } = useContext(Context);
+  
+  const { setLogged, logged } = useContext(Context);
+  const [photoURL, setPhotoURL] = useState("");
+
+  useEffect(() => {
+    auth?.currentUser?.photoURL
+        ? setPhotoURL(auth?.currentUser?.photoURL)
+        : setPhotoURL(`https://robohash.org/${auth?.currentUser?.email}`)
+  }, [auth?.currentUser]);
+
 
   return (
     <div className="dropdown-end dropdown">
@@ -21,11 +29,7 @@ function Profile() {
           >
             <div className="w-10 rounded-full">
               <img
-                src={
-                  auth?.currentUser?.photoURL
-                    ? auth?.currentUser?.photoURL
-                    : `https://robohash.org/${auth?.currentUser?.email}`
-                }
+                src={photoURL}
                 alt="avatar"
                 className="scale-125 rounded-full"
               />

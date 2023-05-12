@@ -32,7 +32,7 @@ export const showAlert = (message, type) => {
     div.appendChild(img);
     div.appendChild(p);
     div.style.display = "flex";
-    div.style.width = "600px";
+    div.style.width = "90%";
     div.style.height = "60px";
     div.style.boxShadow = "0px 0px 10px 0px rgba(0,0,0,0.75)";
     div.style.padding = "5px";

@@ -112,7 +112,6 @@ export const addProduct = async (setProducts, setCurrentTenProducts) => {
     showAlert(error.message, "error"); 
   } finally {
     getProducts(setProducts, setCurrentTenProducts);
-    resetForm("create-product-container");
     scrollToTopSmooth();
   }
 };
