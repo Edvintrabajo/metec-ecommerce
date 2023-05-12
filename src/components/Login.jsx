@@ -20,7 +20,7 @@ function Login() {
   }, []);
 
   return (
-    <div className="relative flex h-screen w-full items-center justify-center animate-slow-opacity-on">
+    <div className="relative flex h-[800px] tablet:h-screen w-full items-center justify-center animate-slow-opacity-on">
       <CustomParticles size={0} />
       <LogComponent url={"img/robot.png"} />
       <Card
