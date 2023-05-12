@@ -1,7 +1,7 @@
 import React, { useEffect, useContext, useState } from "react";
 import { Context } from "../context/Context";
 import ProductList from "./ProductList";
-import Navbar from "./Navbar";
+import MainNavbar from "./MainNavbar";
 import { auth } from "../config/firebase";
 import { verifyUserStatus } from "../controllers/admins/admins.functions";
 import Footer from "./Footer";
@@ -25,7 +25,7 @@ function Index() {
 
   return (
     <div className="relative flex min-h-screen animate-slow-opacity-on flex-col items-center justify-start p-4">
-      <Navbar />
+      <MainNavbar />
       <MessageAlert />
       <ProductList />
       <Footer />

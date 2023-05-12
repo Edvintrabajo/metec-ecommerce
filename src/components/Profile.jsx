@@ -7,17 +7,17 @@ import { BiUser } from "react-icons/bi";
 import { AiOutlinePoweroff } from "react-icons/ai";
 import { logOut } from "../controllers/register-login/functions";
 
-function Profile() {
+function Profile({hidden = false}) {
     
     const { setLogged, logged } = useContext(Context);
 
   return (
-    <div className="dropdown-end dropdown ml-5">
+    <div className={!hidden ? "dropdown-end dropdown" : "dropdown-end dropdown hidden tablet:inline-block"}>
       {logged ? (
         <>
           <label
             tabIndex={0}
-            className="btn-ghost btn-circle avatar btn border-neutral-500 shadow-2xl transition-all hover:border-transparent"
+            className="btn-ghost btn-circle avatar btn m-1 border-neutral-500 shadow-2xl transition-all hover:border-transparent"
           >
             <div className="w-10 rounded-full">
               <img
@@ -33,7 +33,7 @@ function Profile() {
           </label>
           <ul
             tabIndex={0}
-            className="dropdown-content menu rounded-box menu-compact mt-3 w-52 bg-base-100 p-2 shadow"
+            className="dropdown-content text-white menu rounded-box menu-compact mt-3 w-52 bg-base-100 p-2 shadow"
           >
             <li>
               <a className="justify-between">
@@ -65,15 +65,15 @@ function Profile() {
         <>
           <label
             tabIndex={0}
-            className="btn-ghost btn-circle avatar btn border-neutral-500 shadow-2xl transition-all hover:border-transparent"
+            className="btn-ghost btn-circle avatar btn m-1 border-neutral-500 shadow-2xl transition-all hover:border-transparent"
           >
             <div className="w-10 rounded-full p-3">
-              <BiUser className=" m-auto scale-150" />
+              <BiUser className="m-auto scale-150" />
             </div>
           </label>
           <ul
             tabIndex={0}
-            className="dropdown-content menu rounded-box menu-compact mt-3 w-52 bg-base-100 p-2 shadow"
+            className="dropdown-content text-white menu rounded-box menu-compact mt-3 w-52 bg-base-100 p-2 shadow"
           >
             <li className="hover:text-edit">
               <a href="/login" className="justify-between">

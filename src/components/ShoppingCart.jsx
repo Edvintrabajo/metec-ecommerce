@@ -19,7 +19,7 @@ function ShoppingCart() {
 
       <div className="ShoppingCart__items max-h-[500px] tablet:max-h-[200px] desktop:max-h-[500px] overflow-y-scroll">
         {orders.length === 0 ? (
-          <p className="text-base font-semibold mb-4 text-center">Empty cart</p>
+          <p className="text-base font-semibold my-4 text-center">Empty cart</p>
         ) : (
           orders.map((order) => (
             <Order
