@@ -41,7 +41,7 @@ function AboutUs() {
                         </p>
                     </div>
                     <div className='w-[350px] h-[400px] laptop:h-[320px] laptop:w-[220px] bg-info rounded-lg m-4'>
-                        <img src="avatars/Edvin-Avatar-Greeting.png" alt="Edvin-Avatar" className='h-[400px] laptop:h-[320px] ml-2'/>
+                        <img src="avatars/Edvin-Avatar-Greeting.png" alt="Edvin-Avatar" className='h-[400px] laptop:h-[320px] m-auto'/>
                     </div>
                 </div>
 
