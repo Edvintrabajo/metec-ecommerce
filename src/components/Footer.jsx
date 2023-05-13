@@ -4,7 +4,7 @@ import RobotInfo from './RobotInfo';
 
 function Footer() {
   return (
-    <div className='w-full p-4 rounded-lg'>
+    <div className='w-full p-4 rounded-lg z-50'>
         <footer className="w-full p-8 mt-16 rounded-lg border bg-white border-neutral-400 text-black">
             <div className="flex flex-row flex-wrap items-center justify-center gap-y-6 gap-x-12 text-center md:justify-between">
                 
@@ -14,7 +14,7 @@ function Footer() {
                     <li>
                         <Typography
                         as="a"
-                        href="#"
+                        href="/about"
                         className="font-normal transition-colors hover:text-blue-500 focus:text-blue-500"
                         >
                         About Us
@@ -23,7 +23,7 @@ function Footer() {
                     <li>
                         <Typography
                         as="a"
-                        href="#"
+                        href="/contact"
                         className="font-normal transition-colors hover:text-blue-500 focus:text-blue-500"
                         >
                         Contact Us

@@ -10,8 +10,8 @@ function Navlist() {
         color="blue-gray"
         className="p-1 font-normal"
       >
-        <a href="#" className="flex items-center">
-          Pages
+        <a href="/about" className="flex items-center">
+          About
         </a>
       </Typography>
       <Typography
@@ -20,18 +20,8 @@ function Navlist() {
         color="blue-gray"
         className="p-1 font-normal"
       >
-        <a href="#" className="flex items-center">
-          Account
-        </a>
-      </Typography>
-      <Typography
-        as="li"
-        variant="small"
-        color="blue-gray"
-        className="p-1 font-normal"
-      >
-        <a href="#" className="flex items-center">
-          Blocks
+        <a href="/contact" className="flex items-center">
+          Contact
         </a>
       </Typography>
       <Typography
@@ -42,6 +32,16 @@ function Navlist() {
       >
         <a href="#" className="flex items-center">
           Docs
+        </a>
+      </Typography>
+      <Typography
+        as="li"
+        variant="small"
+        color="blue-gray"
+        className="p-1 font-normal"
+      >
+        <a href="#" className="flex items-center">
+          Info
         </a>
       </Typography>
     </ul>

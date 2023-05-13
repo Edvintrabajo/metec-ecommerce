@@ -34,7 +34,7 @@ export const showAlert = (message, type) => {
     div.style.display = "flex";
     div.style.width = "90%";
     div.style.height = "60px";
-    div.style.boxShadow = "0px 0px 10px 0px rgba(0,0,0,0.75)";
+    div.style.boxShadow = "0 10px 20px rgba(0, 0, 0, 0.3)";
     div.style.padding = "5px";
     div.style.marginTop = "7px";
     div.style.justifyContent = "start";

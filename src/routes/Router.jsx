@@ -4,6 +4,8 @@ import Register from '../components/Register'
 import Login from '../components/Login'
 import Index from "../components/Index"
 import Error404Page from "../components/Error404Page"
+import AboutUs from "../components/AboutUs";
+import ContactUs from "../components/ContactUs";
 
 const router = createBrowserRouter([
     {
@@ -17,6 +19,14 @@ const router = createBrowserRouter([
     {
       path: "/login",
       element: <Login />,
+    },
+    {
+      path: "/about",
+      element: <AboutUs />,
+    },
+    {
+      path: "/contact",
+      element: <ContactUs />,
     },
     {
       path: "*",
