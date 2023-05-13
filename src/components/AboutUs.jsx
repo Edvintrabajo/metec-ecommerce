@@ -11,11 +11,11 @@ function AboutUs() {
         <MainNavbar />
         <MessageAlert />
         <div className="flex flex-col items-center justify-center w-full z-40">
-            <h1 className="text-4xl m-4 font-bold text-center text-white z-40">About Us</h1>
+            <h1 id='AboutUs' className="text-4xl m-4 font-bold text-center text-white z-40">About Us</h1>
             <main className='flex flex-wrap w-full flex-col p-4'>
                 
                 <div className='flex items-center justify-center p-4 mb-10 gap-y-4 flex-wrap lg:justify-evenly'>
-                    <div className='flex justify-center flex-col pt-8 gap-y-4 w-full bg-white text-black p-4 rounded-lg overflow-y-auto tablet:w-[350px] tablet:h-[400px] laptop:w-[600px] laptop:h-[320px]'>
+                    <div className='flex justify-center flex-wrap gap-y-4 w-full bg-white text-black p-4 rounded-lg overflow-y-auto tablet:w-[350px] tablet:h-[400px] laptop:w-[600px] laptop:h-[320px]'>
                         <p>
                         Hi, I'm Miguel, a Spanish Web Developer and one of the co-founders of METEC Ecommerce. Our team has been inspired by the rising global demand for online shopping, as an increasing number of individuals now prefer the convenience of shopping from the comfort of their own homes rather than visiting physical stores.                        </p>
                         <p>
@@ -31,7 +31,7 @@ function AboutUs() {
                 </div>
 
                 <div className='flex items-center justify-center p-4 mb-10 gap-y-4 flex-wrap lg:justify-evenly tablet:flex-row-reverse'>
-                    <div className='flex justify-center flex-col pt-8 gap-y-4 w-full bg-white text-black p-4 rounded-lg overflow-y-auto tablet:w-[350px] tablet:h-[400px] laptop:w-[600px] laptop:h-[320px]'>
+                    <div className='flex justify-center flex-wrap gap-y-4 w-full bg-white text-black p-4 rounded-lg overflow-y-auto tablet:w-[350px] tablet:h-[400px] laptop:w-[600px] laptop:h-[320px]'>
                         <p>
                         Hey there! I'm Edvin, a Spanish Web Developer and another proud co-founder of METEC Ecommerce. We embarked on this exciting journey because we wanted to connect with customers worldwide and deliver our top-notch products to their doorsteps.                        </p>
                         <p>
@@ -46,7 +46,7 @@ function AboutUs() {
                 </div>
 
                 <div className='flex items-center justify-center p-4 mb-10 gap-y-4 flex-wrap lg:justify-evenly'>
-                    <div className='flex justify-center flex-col pt-8 gap-y-4 w-full bg-white text-black p-4 rounded-lg overflow-y-auto tablet:w-[350px] tablet:h-[400px] laptop:w-[600px] laptop:h-[320px]'>
+                <div className='flex justify-center flex-wrap gap-y-4 w-full bg-white text-black p-4 rounded-lg overflow-y-auto tablet:w-[350px] tablet:h-[400px] laptop:w-[600px] laptop:h-[320px]'>
                         <p> 
                         Hello! I'm Blitz, your energetic robotic companion for online shopping. I'm here to make your shopping experience quick, exciting, and hassle-free. 
                         </p>

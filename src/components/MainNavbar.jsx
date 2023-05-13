@@ -6,7 +6,6 @@ import {
   Navbar,
   MobileNav,
   Typography,
-  IconButton,
 } from "@material-tailwind/react";
 import { AiOutlineBars } from "react-icons/ai";
 
