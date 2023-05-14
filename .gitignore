@@ -30,4 +30,4 @@ firebase*.log
 
 .github
 
-# src/config/firebase.js
+config-key.js
