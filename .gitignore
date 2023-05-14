@@ -29,3 +29,5 @@ firebase-debug.log
 firebase*.log
 
 .github
+
+src/config/firebase.js
