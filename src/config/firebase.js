@@ -4,13 +4,13 @@ import { getFirestore } from "firebase/firestore";
 import {getStorage} from "firebase/storage"
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCwA9zgmAZ5cm4fjIdVgPchBddKoESbSp4",
-  authDomain: "test-metec-3.firebaseapp.com",
-  projectId: "test-metec-3",
-  storageBucket: "test-metec-3.appspot.com",
-  messagingSenderId: "405205686796",
-  appId: "1:405205686796:web:edaf30172ef4c0e3bfec29",
-  measurementId: "G-4Y6LJJB9SS"
+  apiKey: "API_KEY",
+  authDomain: "AUTH_DOMAIN",
+  projectId: "PROJECT_ID",
+  storageBucket: "STORAGE_BUCKET",
+  messagingSenderId: "MESSAGING_SENDER_ID",
+  appId: "APP_ID",
+  measurementId: "MEASUREMENT_ID"
 };
 
 const app = initializeApp(firebaseConfig);
