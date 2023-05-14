@@ -45,6 +45,7 @@ Logged in users will be able to enjoy the same features as non-logged in users, 
 2. Faster Checkout: By being logged in, users can save time during the checkout process. Their stored payment and shipping details can be easily accessed, reducing the need to enter this information repeatedly for each purchase.
 
 ## 👮 Usage for Admin Users
+> Remember to set up your firebase privileges 
 As an administrator you will have access to some privileges:
 
 **1. Web Admin Dashboard:** Administrators have access to an exclusive admin dashboard that allows them to monitor and control all aspects of the METEC site. From the dashboard, they can manage the product inventory, add new products, update prices, and make changes to product information.
