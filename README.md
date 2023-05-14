@@ -8,7 +8,7 @@ METEC is an innovative online ecommerce platform specializing in offering a wide
 At METEC, customers can explore a catalog of hardware products, including computer components, electronic devices, peripherals, and accessories. We carefully curate our selection to include products from recognized brands known for their reliability and performance. Whether you are a professional in need of enterprise-grade hardware or an individual seeking to improve your personal computing experience, METEC has the right solutions for you.
 
 Join METEC today and discover a world of top-notch hardware products, reliable service, and a seamless online shopping experience. Enhance your technological solutions with confidence at METEC, your trusted partner in the world of hardware ecommerce.
-![](https://i.imgur.com/xVzPfnO.jpg)
+![image](https://github.com/Edvintrabajo/metec-ecommerce/assets/90867675/023c69ae-0a89-4473-800b-b3a0c6b37eb4)
 
 ## ⚡️ Instalation & Run
 To install this project you will need some previous installations.
