@@ -291,8 +291,16 @@ export const next = async (
         where("ratings", ">=", 5),
         orderBy("ratings", "desc")
       );
-    } else {
+    } 
+    else if (category == "All") {
       dataQuery = query(productsCollection, orderBy("name", "desc"));
+    }
+    else {
+      dataQuery = query(
+        productsCollection,
+        where("category", "==", category),
+        orderBy("name", "asc")
+      );      
     }
     try {
       const data = await getDocs(dataQuery);
@@ -300,7 +308,7 @@ export const next = async (
         ...doc.data(),
         id: doc.id,
       }));
-
+      console.log(filterData)
       filterData.map((product, index) => {
         if (product.id == lastElement.id) {
           setProducts(filterData);
@@ -336,8 +344,15 @@ export const prev = async (
         where("ratings", ">=", 5),
         orderBy("ratings", "desc")
       );
-    } else {
+    } else if (category == "All") {
       dataQuery = query(productsCollection, orderBy("name", "desc"));
+    } 
+    else {
+      dataQuery = query(
+        productsCollection,
+        where("category", "==", category),
+        orderBy("name", "asc")
+      );      
     }
 
     try {
