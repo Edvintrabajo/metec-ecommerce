@@ -30,7 +30,7 @@ const checkErrorCodes = (error) => {
           errMsg = 'User not found'
           break;
         case 'auth/too-many-requests':
-          errMsg = 'too many failed attempts, please try again later'
+          errMsg = 'Too many failed attempts, please try again later'
           break;
         // Custom error codes
         case "metec/email-not-verified":
