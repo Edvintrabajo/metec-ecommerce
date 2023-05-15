@@ -165,7 +165,6 @@ export const updateProduct = async (product, setProducts, setCurrentTenProducts,
     } catch (error) {
       showAlert(error.message, "error"); 
     } finally {
-      // getProducts(setProducts, setCurrentTenProducts);
       if (currentCategory === "All") {
         getProducts(setProducts, setCurrentTenProducts);
       } else if (currentCategory === "Trending Top") {
@@ -205,9 +204,14 @@ export const updateProduct = async (product, setProducts, setCurrentTenProducts,
     } catch (error) {
       showAlert(error.message, "error"); 
     } finally {
-      getProducts(setProducts, setCurrentTenProducts);
+      if (currentCategory === "All") {
+        getProducts(setProducts, setCurrentTenProducts);
+      } else if (currentCategory === "Trending Top") {
+        getTrendingTop(setProducts, setCurrentTenProducts);
+      } else {
+        getProductsByCategory(setProducts, currentCategory, setCurrentTenProducts);
+      }
       resetForm("edit-product-container");
-      scrollToTopSmooth();
     }
   }
 };
