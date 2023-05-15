@@ -87,7 +87,7 @@ const getData = (pref = "") => {
 }
 
 // Insertar un producto en el servidor
-export const addProduct = async (setProducts, setCurrentTenProducts) => {
+export const addProduct = async (setProducts, setCurrentTenProducts, currentCategory) => {
   const data = getData();
   const imageRefName = `images/${data.imageUpload.name + v4()}`;
   const imageRef = ref(storage, imageRefName);
@@ -111,13 +111,18 @@ export const addProduct = async (setProducts, setCurrentTenProducts) => {
   } catch (error) {
     showAlert(error.message, "error"); 
   } finally {
-    getProducts(setProducts, setCurrentTenProducts);
-    scrollToTopSmooth();
+    if (currentCategory === "All") {
+      getProducts(setProducts, setCurrentTenProducts);
+    } else if (currentCategory === "Trending Top") {
+      getTrendingTop(setProducts, setCurrentTenProducts);
+    } else {
+      getProductsByCategory(setProducts, currentCategory, setCurrentTenProducts);
+    }
   }
 };
 
 // Borrar un producto en el servidor
-export const deleteProduct = async (id, setProducts, setCurrentTenProducts) => {
+export const deleteProduct = async (id, setProducts, setCurrentTenProducts, currentCategory) => {
   try {
     const productDoc = doc(db, "products", id);
     const productData = await getDoc(productDoc);
@@ -128,13 +133,18 @@ export const deleteProduct = async (id, setProducts, setCurrentTenProducts) => {
   } catch (error) {
     showAlert(error.message, "error"); 
   } finally {
-    getProducts(setProducts, setCurrentTenProducts);
-    scrollToTopSmooth();
+    if (currentCategory === "All") {
+      getProducts(setProducts, setCurrentTenProducts);
+    } else if (currentCategory === "Trending Top") {
+      getTrendingTop(setProducts, setCurrentTenProducts);
+    } else {
+      getProductsByCategory(setProducts, currentCategory, setCurrentTenProducts);
+    }
   }
 };
 
 // Actualizar un producto en el servidor
-export const updateProduct = async (product, setProducts, setCurrentTenProducts) => {
+export const updateProduct = async (product, setProducts, setCurrentTenProducts, currentCategory) => {
   const productDoc = doc(db, "products", product.id);
 
   const data = getData("edit");
@@ -155,9 +165,15 @@ export const updateProduct = async (product, setProducts, setCurrentTenProducts)
     } catch (error) {
       showAlert(error.message, "error"); 
     } finally {
-      getProducts(setProducts, setCurrentTenProducts);
+      // getProducts(setProducts, setCurrentTenProducts);
+      if (currentCategory === "All") {
+        getProducts(setProducts, setCurrentTenProducts);
+      } else if (currentCategory === "Trending Top") {
+        getTrendingTop(setProducts, setCurrentTenProducts);
+      } else {
+        getProductsByCategory(setProducts, currentCategory, setCurrentTenProducts);
+      }
       resetForm("edit-product-container");
-      scrollToTopSmooth();
     }
   } else {
     const imageRefName = `images/${data.imageUpload.name + v4()}`;

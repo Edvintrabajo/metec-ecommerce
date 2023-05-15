@@ -6,7 +6,7 @@ import { Card, Typography, Input } from "@material-tailwind/react";
 import { setCurrentProductValues } from "../controllers/products/products.functions";
 
 function EditProduct({handleOpen, product}) {
-  const { setProducts, setCurrentTenProducts, setCurrentPage, setCurrentCategory } = useContext(Context);
+  const { setProducts, setCurrentTenProducts, setCurrentPage, currentCategory } = useContext(Context);
 
   useEffect(() => {
     setCurrentProductValues(product);
@@ -19,9 +19,8 @@ function EditProduct({handleOpen, product}) {
           className="flex w-full flex-wrap items-center justify-evenly p-4"
           onSubmit={(e) => {
             e.preventDefault();
-            updateProduct(product, setProducts, setCurrentTenProducts );
+            updateProduct(product, setProducts, setCurrentTenProducts, currentCategory );
             setCurrentPage(1);
-            setCurrentCategory("All");
             handleOpen();
           }}
         >

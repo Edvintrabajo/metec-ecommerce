@@ -5,7 +5,7 @@ import { deleteProduct } from "../controllers/products/products.functions";
 import { Card, Typography } from "@material-tailwind/react";
 
 function DeleteProduct({handleOpen, product}) {
-  const { setProducts, setCurrentTenProducts, setCurrentPage, setCurrentCategory } = useContext(Context);
+  const { setProducts, setCurrentTenProducts, setCurrentPage, currentCategory } = useContext(Context);
 
   return (
       <Card>
@@ -14,9 +14,8 @@ function DeleteProduct({handleOpen, product}) {
           className="flex items-center justify-center flex-wrap border-2 bg-white p-4 text-center shadow-high-danger rounded-lg"
           onSubmit={(e) => {
             e.preventDefault();
-            deleteProduct(product.id, setProducts, setCurrentTenProducts);
+            deleteProduct(product.id, setProducts, setCurrentTenProducts, currentCategory);
             setCurrentPage(1);
-            setCurrentCategory("All");
             handleOpen();
           }}
         >

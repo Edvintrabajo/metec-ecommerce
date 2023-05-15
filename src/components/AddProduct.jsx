@@ -5,7 +5,7 @@ import { addProduct, resetForm } from "../controllers/products/products.function
 import { Card, Typography, Input } from "@material-tailwind/react";
 
 function AddProduct({handleOpen}) {
-  const { setProducts, setCurrentTenProducts, setCurrentPage, setCurrentCategory } = useContext(Context);
+  const { setProducts, setCurrentTenProducts, setCurrentPage, currentCategory } = useContext(Context);
 
   return (
       <Card>
@@ -14,10 +14,9 @@ function AddProduct({handleOpen}) {
           className="flex w-full flex-wrap items-center justify-evenly p-4"
           onSubmit={(e) => {
             e.preventDefault();
-            addProduct(setProducts, setCurrentTenProducts);
+            addProduct(setProducts, setCurrentTenProducts, currentCategory);
             resetForm("create-product-container");
             setCurrentPage(1)
-            setCurrentCategory("All")
             handleOpen();
           }}
         >
