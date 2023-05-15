@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { Context } from "../context/Context";
 import Profile from "./Profile";
 import ShoppingButton from "./ShoppingButton";
 import Navlist from "./Navlist";
@@ -9,8 +10,10 @@ import {
 } from "@material-tailwind/react";
 import { AiOutlineBars } from "react-icons/ai";
 
+
 function MainNavbar() {
 
+  const { isAuthtorized } = useContext(Context);
   const [openNav, setOpenNav] = useState(false);
 
   useEffect(() => {
@@ -68,7 +71,7 @@ function MainNavbar() {
                 </svg>
               )}
             </AiOutlineBars>
-            <ShoppingButton/>
+            {isAuthtorized ? <></> : <ShoppingButton/>}
             <Profile/>
           </div>
         </div>

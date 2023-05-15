@@ -48,7 +48,7 @@ function Product({ product  }) {
         />
       </div>
       <div className="p-2 h-[90px]">
-        <h3 className="text-title text-base font-black m-h-12">{product.name}</h3>
+        <h3 className="text-title text-base font-black m-h-12">{product.brand} - {product.name}</h3>
         <p className="h-12 overflow-y-auto text-sm">{product.description}</p>
       </div>
       <div className="flex">
