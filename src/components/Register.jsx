@@ -14,7 +14,12 @@ function Register() {
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
       if (user) {
-        window.location.href = "/";
+        if (user.emailVerified) {
+          window.location.href = "/";
+        }
+        else{
+          user.logout();
+        }
       }
     });
   }, []);
