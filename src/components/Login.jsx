@@ -6,7 +6,7 @@ import CustomParticles from "../components/CustomParticles";
 import LogComponent from "./LogComponent";
 import { signInWithGoogle } from "../controllers/register-login/functions";
 import { auth } from "../config/firebase";
-
+import { logOut } from "../controllers/register-login/functions";
 function Login() {
   const { userData, setUserData } = useContext(Context);
   const btns = ["login-button", "login-google-button"];
@@ -14,7 +14,11 @@ function Login() {
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
       if (user) {
-        window.location.href = "/";
+        if (user.emailVerified) {
+          window.location.href = "/";
+        } else{
+          user.logout();
+        }
       }
     });
   }, []);
