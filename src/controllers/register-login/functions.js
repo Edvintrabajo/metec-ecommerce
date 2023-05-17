@@ -21,8 +21,9 @@ export const signUp = async (userData, setUserData, btns) => {
       sendEmailVerification(user)
         .then(() => {
             if (user && !user.emailVerified) {
-              auth.signOut();
-              showMsg("Please verify your email address to complete registration", true, "/login");
+              auth.signOut().then(() => {
+                showMsg("Please verify your email address to complete registration", true, "/login");
+              });
             }
             if (!user) {
               showMsg("Something went wrong while registering", false);
