@@ -18,11 +18,11 @@ To install this project you will need some previous installations.
 Fist of all you will need to install [node JS](https://nodejs.org/en), and lastly [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
 
 ```shell
-$ git clone https://github.com/Edvintrabajo/metec-ecommerce.git # Clone the repo
-$ cd metec-ecommerce # Access the folder
-$ code . # This will open a new window in your code editor 
-$ npm i # Install the project dependencies
-$ npm run dev # Start the project in the localhost: http://localhost:5173/
+git clone https://github.com/Edvintrabajo/metec-ecommerce.git # Clone the repo
+cd metec-ecommerce # Access the folder
+code . # This will open a new window in your code editor 
+npm i # Install the project dependencies
+npm run dev # Start the project in the localhost: http://localhost:5173/
 ```
 
 
