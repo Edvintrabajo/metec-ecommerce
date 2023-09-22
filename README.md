@@ -9,7 +9,7 @@ At METEC, customers can explore a catalog of hardware products, including comput
 
 Join METEC today and discover a world of top-notch hardware products, reliable service, and a seamless online shopping experience. Enhance your technological solutions with confidence at METEC, your trusted partner in the world of hardware ecommerce.
 
-![image](https://github.com/Edvintrabajo/metec-ecommerce/assets/90867675/99d4fd64-c45d-48e9-89fd-41a24a5fc659)
+![metec](https://github.com/Edvintrabajo/metec-ecommerce/assets/90867675/1eceb756-e372-4dbd-9917-b3267b7bb0a9)
 
 > The web adapts to your windows brightness settings
 
